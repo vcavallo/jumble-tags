@@ -1128,6 +1128,40 @@ export default {
     'Anonymous reply hint':
       'يستخدم هوية Nostr جديدة لمرة واحدة. لن يظهر حسابك في الحدث، لكن قد تظل المرحّلات ومراقبو الشبكة قادرين على ربط نشاطك.',
     'One-time identity': 'هوية لمرة واحدة',
-    'Try loading more': 'محاولة تحميل المزيد'
+    'Try loading more': 'محاولة تحميل المزيد',
+    Tag: 'وسم',
+    People: 'أشخاص',
+    Name: 'الاسم',
+    Applied: 'مطبَّق',
+    Dispute: 'اعتراض',
+    Disputed: 'معترَض عليه',
+    'Add tag': 'إضافة وسم',
+    'Tag applied': 'تم تطبيق الوسم',
+    'Tag disputed': 'تم الاعتراض على الوسم',
+    '{{count}} applied': '{{count}} طبّقوا',
+    '{{count}} disputed': '{{count}} اعترضوا',
+    'Tag this note': 'وسم هذه الملاحظة',
+    'Tag this profile': 'وسم هذا الملف الشخصي',
+    'Tag name': 'اسم الوسم',
+    'Description (optional)': 'الوصف (اختياري)',
+    'What is this tag for?': 'ما الغرض من هذا الوسم؟',
+    'Create & apply': 'إنشاء وتطبيق',
+    'Search tags': 'البحث في الوسوم',
+    'Loading tags...': 'جارٍ تحميل الوسوم...',
+    'Create tag "{{name}}"': 'إنشاء الوسم "{{name}}"',
+    'Content tags': 'وسوم المحتوى',
+    'Profile tags': 'وسوم الملفات الشخصية',
+    'No matching tags': 'لا توجد وسوم مطابقة',
+    'Created by': 'أنشأه',
+    'No notes tagged yet': 'لا توجد ملاحظات موسومة بعد',
+    'No profiles tagged yet': 'لا توجد ملفات شخصية موسومة بعد',
+    'Tag Relays': 'مرحلات الوسوم',
+    'Tag relays': 'مرحلات الوسوم',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'المرحلات المستخدمة للوسوم اللامركزية. تشمل قراءة الوسوم ونشرها هذه المرحلات دائمًا إضافة إلى مرحلاتك.',
+    'publish failed': 'فشل النشر',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'نُشر جزئيًا: نُشر {{count}} حدثًا قبل حدوث خطأ ({{error}}). لم يبقَ شيء معلّق — يمكنك إعادة المحاولة بأمان.',
+    'Cancelled — nothing was published ({{error}})': 'أُلغي — لم يُنشر أي شيء ({{error}})'
   }
 }

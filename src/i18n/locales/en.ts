@@ -1134,6 +1134,40 @@ export default {
     'Anonymous reply hint':
       'Uses a new one-time Nostr identity. Your account will not appear in the event, but relays and network observers may still correlate your activity.',
     'One-time identity': 'One-time identity',
-    'Try loading more': 'Try loading more'
+    'Try loading more': 'Try loading more',
+    Tag: 'Tag',
+    People: 'People',
+    Name: 'Name',
+    Applied: 'Applied',
+    Dispute: 'Dispute',
+    Disputed: 'Disputed',
+    'Add tag': 'Add tag',
+    'Tag applied': 'Tag applied',
+    'Tag disputed': 'Tag disputed',
+    '{{count}} applied': '{{count}} applied',
+    '{{count}} disputed': '{{count}} disputed',
+    'Tag this note': 'Tag this note',
+    'Tag this profile': 'Tag this profile',
+    'Tag name': 'Tag name',
+    'Description (optional)': 'Description (optional)',
+    'What is this tag for?': 'What is this tag for?',
+    'Create & apply': 'Create & apply',
+    'Search tags': 'Search tags',
+    'Loading tags...': 'Loading tags...',
+    'Create tag "{{name}}"': 'Create tag "{{name}}"',
+    'Content tags': 'Content tags',
+    'Profile tags': 'Profile tags',
+    'No matching tags': 'No matching tags',
+    'Created by': 'Created by',
+    'No notes tagged yet': 'No notes tagged yet',
+    'No profiles tagged yet': 'No profiles tagged yet',
+    'Tag Relays': 'Tag Relays',
+    'Tag relays': 'Tag relays',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.',
+    'publish failed': 'publish failed',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.',
+    'Cancelled — nothing was published ({{error}})': 'Cancelled — nothing was published ({{error}})'
   }
 }

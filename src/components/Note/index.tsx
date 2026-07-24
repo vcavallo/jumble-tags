@@ -14,6 +14,7 @@ import Nip05 from '../Nip05'
 import NoteContent from '../NoteContent'
 import NoteOptions from '../NoteOptions'
 import OpBadge from '../OpBadge'
+import { NoteTagChips } from '../TagChips'
 import ParentNotePreview from '../ParentNotePreview'
 import ProtectedBadge from '../ProtectedBadge'
 import TranslateButton from '../TranslateButton'
@@ -133,6 +134,7 @@ export default function Note({
         />
       )}
       <NoteContent event={event} originalNoteId={originalNoteId} showFull={showFull} />
+      {size === 'normal' && <NoteTagChips event={event} className="mt-2" />}
     </div>
   )
 }

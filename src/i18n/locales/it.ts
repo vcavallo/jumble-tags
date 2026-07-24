@@ -1150,6 +1150,41 @@ export default {
     'Anonymous reply hint':
       'Usa una nuova identità Nostr monouso. Il tuo account non apparirà nell’evento, ma i relay e gli osservatori della rete potrebbero comunque collegare la tua attività.',
     'One-time identity': 'Identità monouso',
-    'Try loading more': 'Prova a caricarne altri'
+    'Try loading more': 'Prova a caricarne altri',
+    Tag: 'Tag',
+    People: 'Persone',
+    Name: 'Nome',
+    Applied: 'Applicato',
+    Dispute: 'Contesta',
+    Disputed: 'Contestato',
+    'Add tag': 'Aggiungi tag',
+    'Tag applied': 'Tag applicato',
+    'Tag disputed': 'Tag contestato',
+    '{{count}} applied': '{{count}} applicazioni',
+    '{{count}} disputed': '{{count}} contestazioni',
+    'Tag this note': 'Tagga questa nota',
+    'Tag this profile': 'Tagga questo profilo',
+    'Tag name': 'Nome del tag',
+    'Description (optional)': 'Descrizione (facoltativa)',
+    'What is this tag for?': 'A cosa serve questo tag?',
+    'Create & apply': 'Crea e applica',
+    'Search tags': 'Cerca tag',
+    'Loading tags...': 'Caricamento tag...',
+    'Create tag "{{name}}"': 'Crea il tag "{{name}}"',
+    'Content tags': 'Tag dei contenuti',
+    'Profile tags': 'Tag dei profili',
+    'No matching tags': 'Nessun tag corrispondente',
+    'Created by': 'Creato da',
+    'No notes tagged yet': 'Nessuna nota taggata finora',
+    'No profiles tagged yet': 'Nessun profilo taggato finora',
+    'Tag Relays': 'Relay dei tag',
+    'Tag relays': 'Relay dei tag',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Relay usati per i tag decentralizzati. Le letture e le pubblicazioni dei tag li includono sempre oltre ai tuoi relay.',
+    'publish failed': 'pubblicazione non riuscita',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Pubblicazione parziale: {{count}} eventi pubblicati prima di un errore ({{error}}). Non è rimasto nulla in sospeso — puoi riprovare senza rischi.',
+    'Cancelled — nothing was published ({{error}})':
+      'Annullato — non è stato pubblicato nulla ({{error}})'
   }
 }

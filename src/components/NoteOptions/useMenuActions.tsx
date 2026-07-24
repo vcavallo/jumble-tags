@@ -27,6 +27,7 @@ import {
   Pin,
   PinOff,
   SatelliteDish,
+  Tag,
   Trash2,
   TriangleAlert
 } from 'lucide-react'
@@ -58,6 +59,7 @@ interface UseMenuActionsProps {
   showSubMenuActions: (subMenu: SubMenuAction[], title: string) => void
   setIsRawEventDialogOpen: (open: boolean) => void
   setIsReportDialogOpen: (open: boolean) => void
+  setIsTagPickerOpen: (open: boolean) => void
   isSmallScreen: boolean
 }
 
@@ -67,6 +69,7 @@ export function useMenuActions({
   showSubMenuActions,
   setIsRawEventDialogOpen,
   setIsReportDialogOpen,
+  setIsTagPickerOpen,
   isSmallScreen
 }: UseMenuActionsProps) {
   const { t } = useTranslation()
@@ -241,6 +244,16 @@ export function useMenuActions({
         separator: true
       })
     }
+
+    actions.push({
+      icon: Tag,
+      label: t('Add tag'),
+      onClick: () => {
+        closeDrawer()
+        checkLogin(() => setIsTagPickerOpen(true))
+      },
+      separator: !pubkey
+    })
 
     const isProtected = isProtectedEvent(event)
     if (!isProtected || event.pubkey === pubkey) {

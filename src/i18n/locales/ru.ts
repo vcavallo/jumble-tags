@@ -1149,6 +1149,40 @@ export default {
     'Anonymous reply hint':
       'Используется новая одноразовая идентичность Nostr. Ваш аккаунт не появится в событии, но ретрансляторы и наблюдатели сети всё ещё могут связать вашу активность.',
     'One-time identity': 'Одноразовая идентичность',
-    'Try loading more': 'Попробовать загрузить ещё'
+    'Try loading more': 'Попробовать загрузить ещё',
+    Tag: 'Тег',
+    People: 'Люди',
+    Name: 'Название',
+    Applied: 'Применён',
+    Dispute: 'Оспорить',
+    Disputed: 'Оспорен',
+    'Add tag': 'Добавить тег',
+    'Tag applied': 'Тег применён',
+    'Tag disputed': 'Тег оспорен',
+    '{{count}} applied': 'Применили: {{count}}',
+    '{{count}} disputed': 'Оспорили: {{count}}',
+    'Tag this note': 'Тегировать заметку',
+    'Tag this profile': 'Тегировать профиль',
+    'Tag name': 'Название тега',
+    'Description (optional)': 'Описание (необязательно)',
+    'What is this tag for?': 'Для чего этот тег?',
+    'Create & apply': 'Создать и применить',
+    'Search tags': 'Поиск тегов',
+    'Loading tags...': 'Загрузка тегов...',
+    'Create tag "{{name}}"': 'Создать тег "{{name}}"',
+    'Content tags': 'Теги контента',
+    'Profile tags': 'Теги профилей',
+    'No matching tags': 'Нет подходящих тегов',
+    'Created by': 'Создал(а)',
+    'No notes tagged yet': 'Пока нет заметок с этим тегом',
+    'No profiles tagged yet': 'Пока нет профилей с этим тегом',
+    'Tag Relays': 'Реле тегов',
+    'Tag relays': 'Реле тегов',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Реле для децентрализованных тегов. Чтение и публикация тегов всегда используют их вместе с вашими реле.',
+    'publish failed': 'не удалось опубликовать',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Опубликовано частично: {{count}} событие(й) успело опубликоваться до ошибки ({{error}}). Ничего незавершённого не осталось — можно безопасно повторить.',
+    'Cancelled — nothing was published ({{error}})': 'Отменено — ничего не опубликовано ({{error}})'
   }
 }

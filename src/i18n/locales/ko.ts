@@ -1129,6 +1129,41 @@ export default {
     'Anonymous reply hint':
       '새로운 일회용 Nostr 신원을 사용합니다. 이벤트에 내 계정은 표시되지 않지만, 릴레이와 네트워크 관찰자가 활동을 연관 지을 수 있습니다.',
     'One-time identity': '일회용 신원',
-    'Try loading more': '더 불러오기'
+    'Try loading more': '더 불러오기',
+    Tag: '태그',
+    People: '사람',
+    Name: '이름',
+    Applied: '적용됨',
+    Dispute: '이의 제기',
+    Disputed: '이의 제기됨',
+    'Add tag': '태그 추가',
+    'Tag applied': '태그가 적용되었습니다',
+    'Tag disputed': '태그에 이의를 제기했습니다',
+    '{{count}} applied': '적용 {{count}}건',
+    '{{count}} disputed': '이의 {{count}}건',
+    'Tag this note': '이 노트에 태그 달기',
+    'Tag this profile': '이 프로필에 태그 달기',
+    'Tag name': '태그 이름',
+    'Description (optional)': '설명 (선택)',
+    'What is this tag for?': '이 태그의 용도는 무엇인가요?',
+    'Create & apply': '만들고 적용',
+    'Search tags': '태그 검색',
+    'Loading tags...': '태그 불러오는 중...',
+    'Create tag "{{name}}"': '"{{name}}" 태그 만들기',
+    'Content tags': '콘텐츠 태그',
+    'Profile tags': '프로필 태그',
+    'No matching tags': '일치하는 태그가 없습니다',
+    'Created by': '만든 사람',
+    'No notes tagged yet': '아직 태그된 노트가 없습니다',
+    'No profiles tagged yet': '아직 태그된 프로필이 없습니다',
+    'Tag Relays': '태그 릴레이',
+    'Tag relays': '태그 릴레이',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      '분산형 태그에 사용하는 릴레이입니다. 태그 읽기와 게시에는 내 릴레이와 함께 항상 이 릴레이가 포함됩니다.',
+    'publish failed': '게시 실패',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      '부분 게시됨: 오류({{error}}) 전에 {{count}}개의 이벤트가 게시되었습니다. 불완전한 항목은 남지 않았으므로 안전하게 다시 시도할 수 있습니다.',
+    'Cancelled — nothing was published ({{error}})':
+      '취소됨 — 아무것도 게시되지 않았습니다 ({{error}})'
   }
 }

@@ -1,5 +1,6 @@
 import FavoriteRelaysSetting from '@/components/FavoriteRelaysSetting'
 import MailboxSetting from '@/components/MailboxSetting'
+import TagRelaysSetting from '@/components/TagRelaysSetting'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { IS_COMMUNITY_MODE } from '@/constants'
 import SecondaryPageLayout from '@/layouts/SecondaryPageLayout'
@@ -17,6 +18,9 @@ const RelaySettingsPage = forwardRef(({ index }: { index?: number }, ref) => {
         break
       case '#favorite-relays':
         setTabValue('favorite-relays')
+        break
+      case '#tag-relays':
+        setTabValue('tag-relays')
         break
     }
   }, [])
@@ -37,12 +41,16 @@ const RelaySettingsPage = forwardRef(({ index }: { index?: number }, ref) => {
         <TabsList>
           <TabsTrigger value="favorite-relays">{t('Favorite Relays')}</TabsTrigger>
           <TabsTrigger value="mailbox">{t('Read & Write Relays')}</TabsTrigger>
+          <TabsTrigger value="tag-relays">{t('Tag Relays')}</TabsTrigger>
         </TabsList>
         <TabsContent value="favorite-relays">
           <FavoriteRelaysSetting />
         </TabsContent>
         <TabsContent value="mailbox">
           <MailboxSetting />
+        </TabsContent>
+        <TabsContent value="tag-relays">
+          <TagRelaysSetting />
         </TabsContent>
       </Tabs>
     </SecondaryPageLayout>

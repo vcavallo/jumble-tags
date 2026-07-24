@@ -1146,6 +1146,41 @@ export default {
     'Anonymous reply hint':
       'Egy új, egyszer használatos Nostr-identitást használ. A fiókod nem jelenik meg az eseményben, de a relék és a hálózati megfigyelők továbbra is összekapcsolhatják a tevékenységeidet.',
     'One-time identity': 'Egyszer használatos identitás',
-    'Try loading more': 'Próbálj többet betölteni'
+    'Try loading more': 'Próbálj többet betölteni',
+    Tag: 'Címke',
+    People: 'Emberek',
+    Name: 'Név',
+    Applied: 'Alkalmazva',
+    Dispute: 'Vitat',
+    Disputed: 'Vitatva',
+    'Add tag': 'Címke hozzáadása',
+    'Tag applied': 'Címke alkalmazva',
+    'Tag disputed': 'Címke vitatva',
+    '{{count}} applied': '{{count}} alkalmazás',
+    '{{count}} disputed': '{{count}} vitatás',
+    'Tag this note': 'Jegyzet címkézése',
+    'Tag this profile': 'Profil címkézése',
+    'Tag name': 'Címke neve',
+    'Description (optional)': 'Leírás (nem kötelező)',
+    'What is this tag for?': 'Mire való ez a címke?',
+    'Create & apply': 'Létrehozás és alkalmazás',
+    'Search tags': 'Címkék keresése',
+    'Loading tags...': 'Címkék betöltése...',
+    'Create tag "{{name}}"': '"{{name}}" címke létrehozása',
+    'Content tags': 'Tartalomcímkék',
+    'Profile tags': 'Profilcímkék',
+    'No matching tags': 'Nincs egyező címke',
+    'Created by': 'Létrehozta',
+    'No notes tagged yet': 'Még nincs címkézett jegyzet',
+    'No profiles tagged yet': 'Még nincs címkézett profil',
+    'Tag Relays': 'Címke relék',
+    'Tag relays': 'Címke relék',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'A decentralizált címkékhez használt relék. A címkék olvasása és közzététele a saját reléid mellett mindig ezeket is használja.',
+    'publish failed': 'a közzététel sikertelen',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Részben közzétéve: {{count}} esemény jelent meg a hiba ({{error}}) előtt. Semmi sem maradt függőben — nyugodtan újrapróbálhatod.',
+    'Cancelled — nothing was published ({{error}})':
+      'Megszakítva — semmi sem lett közzétéve ({{error}})'
   }
 }

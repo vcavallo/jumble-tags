@@ -1143,6 +1143,41 @@ export default {
     'Anonymous reply hint':
       '新しい使い捨ての Nostr ID を使用します。イベントにあなたのアカウントは表示されませんが、リレーやネットワーク監視者が活動を関連付けられる可能性があります。',
     'One-time identity': '使い捨て ID',
-    'Try loading more': 'さらに読み込む'
+    'Try loading more': 'さらに読み込む',
+    Tag: 'タグ',
+    People: 'ユーザー',
+    Name: '名前',
+    Applied: '適用済み',
+    Dispute: '異議',
+    Disputed: '異議あり',
+    'Add tag': 'タグを追加',
+    'Tag applied': 'タグを適用しました',
+    'Tag disputed': 'タグに異議を唱えました',
+    '{{count}} applied': '適用 {{count}}件',
+    '{{count}} disputed': '異議 {{count}}件',
+    'Tag this note': 'このノートにタグ付け',
+    'Tag this profile': 'このプロフィールにタグ付け',
+    'Tag name': 'タグ名',
+    'Description (optional)': '説明（任意）',
+    'What is this tag for?': 'このタグの用途は？',
+    'Create & apply': '作成して適用',
+    'Search tags': 'タグを検索',
+    'Loading tags...': 'タグを読み込み中...',
+    'Create tag "{{name}}"': 'タグ「{{name}}」を作成',
+    'Content tags': 'コンテンツタグ',
+    'Profile tags': 'プロフィールタグ',
+    'No matching tags': '一致するタグはありません',
+    'Created by': '作成者',
+    'No notes tagged yet': 'タグ付けされたノートはまだありません',
+    'No profiles tagged yet': 'タグ付けされたプロフィールはまだありません',
+    'Tag Relays': 'タグリレー',
+    'Tag relays': 'タグリレー',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      '分散型タグに使うリレー。タグの読み書きは自分のリレーに加えて常にこれらを使用します。',
+    'publish failed': '公開に失敗しました',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      '一部のみ公開: エラー（{{error}}）の前に{{count}}件のイベントが公開されました。不完全なものは残っていません — 安全に再試行できます。',
+    'Cancelled — nothing was published ({{error}})':
+      'キャンセルしました — 何も公開されていません（{{error}}）'
   }
 }

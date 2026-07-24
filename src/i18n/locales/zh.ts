@@ -1100,6 +1100,40 @@ export default {
     'Anonymous reply hint':
       '使用一个新的一次性 Nostr 身份。事件中不会出现你的账号，但中继和网络观察者仍可能关联你的活动。',
     'One-time identity': '一次性身份',
-    'Try loading more': '尝试加载更多'
+    'Try loading more': '尝试加载更多',
+    Tag: '标签',
+    People: '用户',
+    Name: '名称',
+    Applied: '已应用',
+    Dispute: '异议',
+    Disputed: '已异议',
+    'Add tag': '添加标签',
+    'Tag applied': '标签已应用',
+    'Tag disputed': '已对标签提出异议',
+    '{{count}} applied': '{{count}} 人应用',
+    '{{count}} disputed': '{{count}} 人异议',
+    'Tag this note': '为这条笔记添加标签',
+    'Tag this profile': '为这个用户添加标签',
+    'Tag name': '标签名称',
+    'Description (optional)': '描述（可选）',
+    'What is this tag for?': '这个标签的用途是什么？',
+    'Create & apply': '创建并应用',
+    'Search tags': '搜索标签',
+    'Loading tags...': '正在加载标签...',
+    'Create tag "{{name}}"': '创建标签“{{name}}”',
+    'Content tags': '内容标签',
+    'Profile tags': '用户标签',
+    'No matching tags': '没有匹配的标签',
+    'Created by': '创建者',
+    'No notes tagged yet': '还没有被打标签的笔记',
+    'No profiles tagged yet': '还没有被打标签的用户',
+    'Tag Relays': '标签中继',
+    'Tag relays': '标签中继',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      '用于去中心化标签的中继。标签的读取和发布总是会在你自己的中继之外使用它们。',
+    'publish failed': '发布失败',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      '部分发布：在出错（{{error}}）前已发布 {{count}} 个事件。没有留下未完成的内容——可以放心重试。',
+    'Cancelled — nothing was published ({{error}})': '已取消——未发布任何内容（{{error}}）'
   }
 }

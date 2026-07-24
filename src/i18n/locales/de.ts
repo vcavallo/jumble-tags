@@ -1161,6 +1161,41 @@ export default {
     'Anonymous reply hint':
       'Verwendet eine neue einmalige Nostr-Identität. Dein Konto erscheint nicht im Event, Relays und Netzwerkbeobachter können deine Aktivitäten jedoch möglicherweise weiterhin zuordnen.',
     'One-time identity': 'Einmalige Identität',
-    'Try loading more': 'Versuchen, mehr zu laden'
+    'Try loading more': 'Versuchen, mehr zu laden',
+    Tag: 'Tag',
+    People: 'Personen',
+    Name: 'Name',
+    Applied: 'Angewendet',
+    Dispute: 'Anfechten',
+    Disputed: 'Angefochten',
+    'Add tag': 'Tag hinzufügen',
+    'Tag applied': 'Tag angewendet',
+    'Tag disputed': 'Tag angefochten',
+    '{{count}} applied': '{{count}} angewendet',
+    '{{count}} disputed': '{{count}} angefochten',
+    'Tag this note': 'Notiz taggen',
+    'Tag this profile': 'Profil taggen',
+    'Tag name': 'Tag-Name',
+    'Description (optional)': 'Beschreibung (optional)',
+    'What is this tag for?': 'Wofür ist dieser Tag?',
+    'Create & apply': 'Erstellen & anwenden',
+    'Search tags': 'Tags durchsuchen',
+    'Loading tags...': 'Tags werden geladen...',
+    'Create tag "{{name}}"': 'Tag "{{name}}" erstellen',
+    'Content tags': 'Inhalts-Tags',
+    'Profile tags': 'Profil-Tags',
+    'No matching tags': 'Keine passenden Tags',
+    'Created by': 'Erstellt von',
+    'No notes tagged yet': 'Noch keine Notizen getaggt',
+    'No profiles tagged yet': 'Noch keine Profile getaggt',
+    'Tag Relays': 'Tag-Relays',
+    'Tag relays': 'Tag-Relays',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Relays für dezentrale Tags. Tag-Lese- und Schreibvorgänge nutzen diese immer zusätzlich zu deinen eigenen Relays.',
+    'publish failed': 'Veröffentlichung fehlgeschlagen',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Teilweise veröffentlicht: {{count}} Event(s) wurden vor einem Fehler veröffentlicht ({{error}}). Es blieb nichts Unvollständiges zurück — du kannst es gefahrlos erneut versuchen.',
+    'Cancelled — nothing was published ({{error}})':
+      'Abgebrochen — nichts wurde veröffentlicht ({{error}})'
   }
 }

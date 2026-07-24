@@ -87,6 +87,10 @@ export const toRelayReviews = (url: string) => `/relays/${encodeURIComponent(url
 export const toMuteList = () => '/mutes'
 export const toRizful = () => '/rizful'
 export const toBookmarks = () => '/bookmarks'
+export const toTag = (authorPubkey: string, slug: string) => {
+  const npub = authorPubkey.startsWith('npub') ? authorPubkey : nip19.npubEncode(authorPubkey)
+  return `/tags/${npub}/${encodeURIComponent(slug)}`
+}
 export const toFollowPack = (eventOrId: Event | string) => {
   if (typeof eventOrId === 'string') return `/follow-packs/${eventOrId}`
   const naddr = getNoteBech32Id(eventOrId)

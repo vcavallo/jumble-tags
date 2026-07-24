@@ -1160,6 +1160,40 @@ export default {
     'Anonymous reply hint':
       'Utilise une nouvelle identité Nostr à usage unique. Votre compte n’apparaîtra pas dans l’événement, mais les relais et les observateurs du réseau pourront peut-être encore corréler votre activité.',
     'One-time identity': 'Identité à usage unique',
-    'Try loading more': 'Essayer d’en charger plus'
+    'Try loading more': 'Essayer d’en charger plus',
+    Tag: 'Tag',
+    People: 'Personnes',
+    Name: 'Nom',
+    Applied: 'Appliqué',
+    Dispute: 'Contester',
+    Disputed: 'Contesté',
+    'Add tag': 'Ajouter un tag',
+    'Tag applied': 'Tag appliqué',
+    'Tag disputed': 'Tag contesté',
+    '{{count}} applied': '{{count}} application(s)',
+    '{{count}} disputed': '{{count}} contestation(s)',
+    'Tag this note': 'Taguer cette note',
+    'Tag this profile': 'Taguer ce profil',
+    'Tag name': 'Nom du tag',
+    'Description (optional)': 'Description (facultative)',
+    'What is this tag for?': 'À quoi sert ce tag ?',
+    'Create & apply': 'Créer et appliquer',
+    'Search tags': 'Rechercher des tags',
+    'Loading tags...': 'Chargement des tags...',
+    'Create tag "{{name}}"': 'Créer le tag "{{name}}"',
+    'Content tags': 'Tags de contenu',
+    'Profile tags': 'Tags de profil',
+    'No matching tags': 'Aucun tag correspondant',
+    'Created by': 'Créé par',
+    'No notes tagged yet': 'Aucune note taguée pour le moment',
+    'No profiles tagged yet': 'Aucun profil tagué pour le moment',
+    'Tag Relays': 'Relais de tags',
+    'Tag relays': 'Relais de tags',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Relais utilisés pour les tags décentralisés. Les lectures et publications de tags les incluent toujours en plus de vos propres relais.',
+    'publish failed': 'échec de la publication',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      "Publication partielle : {{count}} événement(s) publiés avant une erreur ({{error}}). Rien d'incomplet n'a été laissé — vous pouvez réessayer sans risque.",
+    'Cancelled — nothing was published ({{error}})': "Annulé — rien n'a été publié ({{error}})"
   }
 }

@@ -1101,6 +1101,40 @@ export default {
     'Anonymous reply hint':
       '使用一個全新的一次性 Nostr 身分。事件中不會出現你的帳號，但中繼和網路觀察者仍可能關聯你的活動。',
     'One-time identity': '一次性身分',
-    'Try loading more': '嘗試載入更多'
+    'Try loading more': '嘗試載入更多',
+    Tag: '標籤',
+    People: '使用者',
+    Name: '名稱',
+    Applied: '已套用',
+    Dispute: '爭議',
+    Disputed: '已提出爭議',
+    'Add tag': '新增標籤',
+    'Tag applied': '標籤已套用',
+    'Tag disputed': '已對標籤提出爭議',
+    '{{count}} applied': '{{count}} 人套用',
+    '{{count}} disputed': '{{count}} 人爭議',
+    'Tag this note': '為這則貼文加上標籤',
+    'Tag this profile': '為這個使用者加上標籤',
+    'Tag name': '標籤名稱',
+    'Description (optional)': '描述（選填）',
+    'What is this tag for?': '這個標籤的用途是什麼？',
+    'Create & apply': '建立並套用',
+    'Search tags': '搜尋標籤',
+    'Loading tags...': '正在載入標籤...',
+    'Create tag "{{name}}"': '建立標籤「{{name}}」',
+    'Content tags': '內容標籤',
+    'Profile tags': '個人檔案標籤',
+    'No matching tags': '沒有符合的標籤',
+    'Created by': '建立者',
+    'No notes tagged yet': '還沒有被加標籤的貼文',
+    'No profiles tagged yet': '還沒有被加標籤的個人檔案',
+    'Tag Relays': '標籤中繼',
+    'Tag relays': '標籤中繼',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      '用於去中心化標籤的中繼。標籤的讀取與發布除了你自己的中繼外，一律會包含這些中繼。',
+    'publish failed': '發布失敗',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      '部分發布：在錯誤（{{error}}）發生前已發布 {{count}} 個事件。沒有留下未完成的內容——可以放心重試。',
+    'Cancelled — nothing was published ({{error}})': '已取消——未發布任何內容（{{error}}）'
   }
 }

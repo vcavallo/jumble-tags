@@ -78,6 +78,7 @@ class LocalStorageService {
   private nsfwDisplayPolicy: TNsfwDisplayPolicy = NSFW_DISPLAY_POLICY.HIDE_CONTENT
   private defaultRelayUrls: string[] = BIG_RELAY_URLS
   private searchRelayUrls: string[] = SEARCHABLE_RELAY_URLS
+  private tagRelayUrls: string[] | null = null // null = use the tagging config default
   private searchHistory: string[] = []
   private mutedWords: string[] = []
   private minTrustScore: number = 0
@@ -482,6 +483,22 @@ class LocalStorageService {
           urls.every((url) => typeof url === 'string')
         ) {
           this.searchRelayUrls = urls
+        }
+      } catch {
+        // Invalid JSON, use default
+      }
+    }
+
+    const tagRelayUrlsStr = window.localStorage.getItem(StorageKey.TAG_RELAY_URLS)
+    if (tagRelayUrlsStr) {
+      try {
+        const urls = JSON.parse(tagRelayUrlsStr)
+        if (
+          Array.isArray(urls) &&
+          urls.length > 0 &&
+          urls.every((url) => typeof url === 'string')
+        ) {
+          this.tagRelayUrls = urls
         }
       } catch {
         // Invalid JSON, use default
@@ -1232,6 +1249,20 @@ class LocalStorageService {
   setSearchRelayUrls(urls: string[]) {
     this.searchRelayUrls = urls
     window.localStorage.setItem(StorageKey.SEARCH_RELAY_URLS, JSON.stringify(urls))
+  }
+
+  getTagRelayUrls() {
+    return this.tagRelayUrls
+  }
+
+  setTagRelayUrls(urls: string[]) {
+    if (urls.length === 0) {
+      this.tagRelayUrls = null
+      window.localStorage.removeItem(StorageKey.TAG_RELAY_URLS)
+      return
+    }
+    this.tagRelayUrls = urls
+    window.localStorage.setItem(StorageKey.TAG_RELAY_URLS, JSON.stringify(urls))
   }
 
   getSearchHistory() {

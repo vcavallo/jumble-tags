@@ -1148,6 +1148,40 @@ export default {
     'Anonymous reply hint':
       'Usa uma nova identidade Nostr descartável. Sua conta não aparecerá no evento, mas relays e observadores da rede ainda poderão correlacionar sua atividade.',
     'One-time identity': 'Identidade descartável',
-    'Try loading more': 'Tentar carregar mais'
+    'Try loading more': 'Tentar carregar mais',
+    Tag: 'Tag',
+    People: 'Pessoas',
+    Name: 'Nome',
+    Applied: 'Aplicada',
+    Dispute: 'Contestar',
+    Disputed: 'Contestada',
+    'Add tag': 'Adicionar tag',
+    'Tag applied': 'Tag aplicada',
+    'Tag disputed': 'Tag contestada',
+    '{{count}} applied': '{{count}} aplicações',
+    '{{count}} disputed': '{{count}} contestações',
+    'Tag this note': 'Adicionar tag a esta nota',
+    'Tag this profile': 'Adicionar tag a este perfil',
+    'Tag name': 'Nome da tag',
+    'Description (optional)': 'Descrição (opcional)',
+    'What is this tag for?': 'Para que serve esta tag?',
+    'Create & apply': 'Criar e aplicar',
+    'Search tags': 'Buscar tags',
+    'Loading tags...': 'Carregando tags...',
+    'Create tag "{{name}}"': 'Criar tag "{{name}}"',
+    'Content tags': 'Tags de conteúdo',
+    'Profile tags': 'Tags de perfil',
+    'No matching tags': 'Nenhuma tag correspondente',
+    'Created by': 'Criada por',
+    'No notes tagged yet': 'Nenhuma nota com tag ainda',
+    'No profiles tagged yet': 'Nenhum perfil com tag ainda',
+    'Tag Relays': 'Relays de tags',
+    'Tag relays': 'Relays de tags',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Relays usados para tags descentralizadas. Leituras e publicações de tags sempre os incluem além dos seus próprios relays.',
+    'publish failed': 'falha ao publicar',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Publicação parcial: {{count}} evento(s) publicados antes de uma falha ({{error}}). Nada ficou pendente — você pode tentar novamente com segurança.',
+    'Cancelled — nothing was published ({{error}})': 'Cancelado — nada foi publicado ({{error}})'
   }
 }

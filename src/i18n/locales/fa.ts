@@ -1143,6 +1143,40 @@ export default {
     'Anonymous reply hint':
       'از یک هویت جدید و یک‌بارمصرف Nostr استفاده می‌کند. حساب شما در رویداد نمایش داده نمی‌شود، اما رله‌ها و ناظران شبکه ممکن است همچنان فعالیت شما را مرتبط کنند.',
     'One-time identity': 'هویت یک‌بارمصرف',
-    'Try loading more': 'تلاش برای بارگذاری بیشتر'
+    'Try loading more': 'تلاش برای بارگذاری بیشتر',
+    Tag: 'برچسب',
+    People: 'افراد',
+    Name: 'نام',
+    Applied: 'اعمال‌شده',
+    Dispute: 'اعتراض',
+    Disputed: 'اعتراض‌شده',
+    'Add tag': 'افزودن برچسب',
+    'Tag applied': 'برچسب اعمال شد',
+    'Tag disputed': 'به برچسب اعتراض شد',
+    '{{count}} applied': '{{count}} نفر اعمال کرده‌اند',
+    '{{count}} disputed': '{{count}} نفر اعتراض کرده‌اند',
+    'Tag this note': 'برچسب‌گذاری این یادداشت',
+    'Tag this profile': 'برچسب‌گذاری این نمایه',
+    'Tag name': 'نام برچسب',
+    'Description (optional)': 'توضیحات (اختیاری)',
+    'What is this tag for?': 'این برچسب برای چیست؟',
+    'Create & apply': 'ایجاد و اعمال',
+    'Search tags': 'جستجوی برچسب‌ها',
+    'Loading tags...': 'در حال بارگیری برچسب‌ها...',
+    'Create tag "{{name}}"': 'ایجاد برچسب «{{name}}»',
+    'Content tags': 'برچسب‌های محتوا',
+    'Profile tags': 'برچسب‌های نمایه',
+    'No matching tags': 'برچسب منطبقی وجود ندارد',
+    'Created by': 'ایجادشده توسط',
+    'No notes tagged yet': 'هنوز یادداشتی برچسب نخورده است',
+    'No profiles tagged yet': 'هنوز نمایه‌ای برچسب نخورده است',
+    'Tag Relays': 'رله‌های برچسب',
+    'Tag relays': 'رله‌های برچسب',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'رله‌های مورد استفاده برای برچسب‌های غیرمتمرکز. خواندن و انتشار برچسب‌ها همیشه علاوه بر رله‌های خودتان شامل این‌ها نیز می‌شود.',
+    'publish failed': 'انتشار ناموفق بود',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'انتشار ناقص: {{count}} رویداد پیش از خطا ({{error}}) منتشر شد. چیزی ناتمام باقی نمانده — می‌توانید با خیال راحت دوباره تلاش کنید.',
+    'Cancelled — nothing was published ({{error}})': 'لغو شد — چیزی منتشر نشد ({{error}})'
   }
 }

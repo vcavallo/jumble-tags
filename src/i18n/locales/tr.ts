@@ -1146,6 +1146,41 @@ export default {
     'Anonymous reply hint':
       'Yeni ve tek kullanımlık bir Nostr kimliği kullanır. Hesabınız etkinlikte görünmez, ancak röleler ve ağ gözlemcileri etkinliğinizi yine de ilişkilendirebilir.',
     'One-time identity': 'Tek kullanımlık kimlik',
-    'Try loading more': 'Daha fazlasını yüklemeyi dene'
+    'Try loading more': 'Daha fazlasını yüklemeyi dene',
+    Tag: 'Etiket',
+    People: 'Kişiler',
+    Name: 'Ad',
+    Applied: 'Uygulandı',
+    Dispute: 'İtiraz et',
+    Disputed: 'İtiraz edildi',
+    'Add tag': 'Etiket ekle',
+    'Tag applied': 'Etiket uygulandı',
+    'Tag disputed': 'Etikete itiraz edildi',
+    '{{count}} applied': '{{count}} uygulama',
+    '{{count}} disputed': '{{count}} itiraz',
+    'Tag this note': 'Bu notu etiketle',
+    'Tag this profile': 'Bu profili etiketle',
+    'Tag name': 'Etiket adı',
+    'Description (optional)': 'Açıklama (isteğe bağlı)',
+    'What is this tag for?': 'Bu etiket ne için?',
+    'Create & apply': 'Oluştur ve uygula',
+    'Search tags': 'Etiket ara',
+    'Loading tags...': 'Etiketler yükleniyor...',
+    'Create tag "{{name}}"': '"{{name}}" etiketini oluştur',
+    'Content tags': 'İçerik etiketleri',
+    'Profile tags': 'Profil etiketleri',
+    'No matching tags': 'Eşleşen etiket yok',
+    'Created by': 'Oluşturan',
+    'No notes tagged yet': 'Henüz etiketlenmiş not yok',
+    'No profiles tagged yet': 'Henüz etiketlenmiş profil yok',
+    'Tag Relays': 'Etiket Röleleri',
+    'Tag relays': 'Etiket röleleri',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Merkeziyetsiz etiketler için kullanılan röleler. Etiket okuma ve yayınlama, kendi rölelerinize ek olarak her zaman bunları da kullanır.',
+    'publish failed': 'yayınlama başarısız',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Kısmen yayınlandı: bir hatadan ({{error}}) önce {{count}} etkinlik yayınlandı. Yarım kalan bir şey yok — güvenle yeniden deneyebilirsiniz.',
+    'Cancelled — nothing was published ({{error}})':
+      'İptal edildi — hiçbir şey yayınlanmadı ({{error}})'
   }
 }

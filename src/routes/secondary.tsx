@@ -24,6 +24,7 @@ import SearchPage from '@/pages/secondary/SearchPage'
 import SettingsPage from '@/pages/secondary/SettingsPage'
 import StandaloneEmojiEditorPage from '@/pages/secondary/StandaloneEmojiEditorPage'
 import SystemSettingsPage from '@/pages/secondary/SystemSettingsPage'
+import TagPage from '@/pages/secondary/TagPage'
 import TranslationPage from '@/pages/secondary/TranslationPage'
 import UserAggregationDetailPage from '@/pages/secondary/UserAggregationDetailPage'
 import WalletPage from '@/pages/secondary/WalletPage'
@@ -44,6 +45,8 @@ const SECONDARY_ROUTE_CONFIGS: {
   { path: '/users/:id/relays', element: <OthersRelaySettingsPage /> },
   { path: '/relays/:url', element: <RelayPage /> },
   { path: '/relays/:url/reviews', element: <RelayReviewsPage /> },
+  { path: '/tags/:author/:slug', element: <TagPage /> },
+  { path: '/tags/:author', element: <TagPage /> },
   { path: '/search', element: <SearchPage /> },
   { path: '/external-content', element: <ExternalContentPage /> },
   { path: '/settings', element: <SettingsPage /> },

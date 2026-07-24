@@ -1153,6 +1153,41 @@ export default {
     'Anonymous reply hint':
       'Używa nowej, jednorazowej tożsamości Nostr. Twoje konto nie pojawi się w zdarzeniu, ale przekaźniki i obserwatorzy sieci nadal mogą powiązać Twoją aktywność.',
     'One-time identity': 'Jednorazowa tożsamość',
-    'Try loading more': 'Spróbuj wczytać więcej'
+    'Try loading more': 'Spróbuj wczytać więcej',
+    Tag: 'Tag',
+    People: 'Osoby',
+    Name: 'Nazwa',
+    Applied: 'Zastosowano',
+    Dispute: 'Zakwestionuj',
+    Disputed: 'Zakwestionowano',
+    'Add tag': 'Dodaj tag',
+    'Tag applied': 'Tag zastosowany',
+    'Tag disputed': 'Tag zakwestionowany',
+    '{{count}} applied': 'Zastosowań: {{count}}',
+    '{{count}} disputed': 'Sprzeciwów: {{count}}',
+    'Tag this note': 'Otaguj tę notatkę',
+    'Tag this profile': 'Otaguj ten profil',
+    'Tag name': 'Nazwa tagu',
+    'Description (optional)': 'Opis (opcjonalnie)',
+    'What is this tag for?': 'Do czego służy ten tag?',
+    'Create & apply': 'Utwórz i zastosuj',
+    'Search tags': 'Szukaj tagów',
+    'Loading tags...': 'Wczytywanie tagów...',
+    'Create tag "{{name}}"': 'Utwórz tag "{{name}}"',
+    'Content tags': 'Tagi treści',
+    'Profile tags': 'Tagi profili',
+    'No matching tags': 'Brak pasujących tagów',
+    'Created by': 'Utworzony przez',
+    'No notes tagged yet': 'Brak otagowanych notatek',
+    'No profiles tagged yet': 'Brak otagowanych profili',
+    'Tag Relays': 'Przekaźniki tagów',
+    'Tag relays': 'Przekaźniki tagów',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'Przekaźniki używane do zdecentralizowanych tagów. Odczyt i publikacja tagów zawsze korzysta z nich oprócz twoich przekaźników.',
+    'publish failed': 'publikacja nie powiodła się',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'Opublikowano częściowo: {{count}} zdarzeń trafiło na przekaźniki przed błędem ({{error}}). Nic nie zostało w stanie niespójnym — możesz bezpiecznie spróbować ponownie.',
+    'Cancelled — nothing was published ({{error}})':
+      'Anulowano — nic nie zostało opublikowane ({{error}})'
   }
 }

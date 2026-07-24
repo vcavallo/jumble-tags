@@ -1125,6 +1125,41 @@ export default {
     'Anonymous reply hint':
       'ใช้ตัวตน Nostr แบบครั้งเดียวที่สร้างขึ้นใหม่ บัญชีของคุณจะไม่ปรากฏในอีเวนต์ แต่รีเลย์และผู้สังเกตการณ์เครือข่ายอาจยังเชื่อมโยงกิจกรรมของคุณได้',
     'One-time identity': 'ตัวตนแบบครั้งเดียว',
-    'Try loading more': 'ลองโหลดเพิ่มเติม'
+    'Try loading more': 'ลองโหลดเพิ่มเติม',
+    Tag: 'แท็ก',
+    People: 'ผู้คน',
+    Name: 'ชื่อ',
+    Applied: 'ใช้แล้ว',
+    Dispute: 'คัดค้าน',
+    Disputed: 'ถูกคัดค้าน',
+    'Add tag': 'เพิ่มแท็ก',
+    'Tag applied': 'ใช้แท็กแล้ว',
+    'Tag disputed': 'คัดค้านแท็กแล้ว',
+    '{{count}} applied': 'ใช้ {{count}} ครั้ง',
+    '{{count}} disputed': 'คัดค้าน {{count}} ครั้ง',
+    'Tag this note': 'แท็กโน้ตนี้',
+    'Tag this profile': 'แท็กโปรไฟล์นี้',
+    'Tag name': 'ชื่อแท็ก',
+    'Description (optional)': 'คำอธิบาย (ไม่บังคับ)',
+    'What is this tag for?': 'แท็กนี้ใช้สำหรับอะไร?',
+    'Create & apply': 'สร้างและใช้',
+    'Search tags': 'ค้นหาแท็ก',
+    'Loading tags...': 'กำลังโหลดแท็ก...',
+    'Create tag "{{name}}"': 'สร้างแท็ก "{{name}}"',
+    'Content tags': 'แท็กเนื้อหา',
+    'Profile tags': 'แท็กโปรไฟล์',
+    'No matching tags': 'ไม่มีแท็กที่ตรงกัน',
+    'Created by': 'สร้างโดย',
+    'No notes tagged yet': 'ยังไม่มีโน้ตที่ถูกแท็ก',
+    'No profiles tagged yet': 'ยังไม่มีโปรไฟล์ที่ถูกแท็ก',
+    'Tag Relays': 'รีเลย์แท็ก',
+    'Tag relays': 'รีเลย์แท็ก',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'รีเลย์ที่ใช้สำหรับแท็กแบบกระจายศูนย์ การอ่านและเผยแพร่แท็กจะรวมรีเลย์เหล่านี้เสมอ นอกเหนือจากรีเลย์ของคุณเอง',
+    'publish failed': 'เผยแพร่ไม่สำเร็จ',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'เผยแพร่บางส่วน: มี {{count}} เหตุการณ์ถูกเผยแพร่ก่อนเกิดข้อผิดพลาด ({{error}}) ไม่มีสิ่งใดค้างอยู่ — ลองใหม่ได้อย่างปลอดภัย',
+    'Cancelled — nothing was published ({{error}})':
+      'ยกเลิกแล้ว — ไม่มีสิ่งใดถูกเผยแพร่ ({{error}})'
   }
 }

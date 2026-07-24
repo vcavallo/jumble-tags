@@ -18,6 +18,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NotFound from '../NotFound'
 import SearchInput from '../SearchInput'
+import { ProfileTagChips } from '../TagChips'
 import SpQrCode from '../SpQrCode'
 import TextWithEmojis from '../TextWithEmojis'
 import TrustScoreBadge from '../TrustScoreBadge'
@@ -170,6 +171,7 @@ export default function Profile({ id }: { id?: string }) {
                 className="mt-2 text-wrap wrap-break-word whitespace-pre-wrap select-text"
               />
             </Collapsible>
+            <ProfileTagChips pubkey={pubkey} className="mt-2" />
             {website && (
               <div className="text-primary mt-2 flex items-center gap-1 truncate select-text">
                 <Link size={14} className="shrink-0" />

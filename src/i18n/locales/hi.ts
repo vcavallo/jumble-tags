@@ -1142,6 +1142,41 @@ export default {
     'Anonymous reply hint':
       'एक नई, एक बार उपयोग होने वाली Nostr पहचान का उपयोग करता है। आपका खाता इवेंट में दिखाई नहीं देगा, लेकिन रिले और नेटवर्क पर्यवेक्षक फिर भी आपकी गतिविधि को आपसे जोड़ सकते हैं।',
     'One-time identity': 'एक बार की पहचान',
-    'Try loading more': 'और लोड करने की कोशिश करें'
+    'Try loading more': 'और लोड करने की कोशिश करें',
+    Tag: 'टैग',
+    People: 'लोग',
+    Name: 'नाम',
+    Applied: 'लागू',
+    Dispute: 'आपत्ति करें',
+    Disputed: 'आपत्ति की गई',
+    'Add tag': 'टैग जोड़ें',
+    'Tag applied': 'टैग लागू किया गया',
+    'Tag disputed': 'टैग पर आपत्ति की गई',
+    '{{count}} applied': '{{count}} ने लागू किया',
+    '{{count}} disputed': '{{count}} ने आपत्ति की',
+    'Tag this note': 'इस नोट को टैग करें',
+    'Tag this profile': 'इस प्रोफ़ाइल को टैग करें',
+    'Tag name': 'टैग का नाम',
+    'Description (optional)': 'विवरण (वैकल्पिक)',
+    'What is this tag for?': 'यह टैग किस लिए है?',
+    'Create & apply': 'बनाएँ और लागू करें',
+    'Search tags': 'टैग खोजें',
+    'Loading tags...': 'टैग लोड हो रहे हैं...',
+    'Create tag "{{name}}"': 'टैग "{{name}}" बनाएँ',
+    'Content tags': 'कॉन्टेंट टैग',
+    'Profile tags': 'प्रोफ़ाइल टैग',
+    'No matching tags': 'कोई मिलता-जुलता टैग नहीं',
+    'Created by': 'निर्माता',
+    'No notes tagged yet': 'अभी तक कोई नोट टैग नहीं हुआ',
+    'No profiles tagged yet': 'अभी तक कोई प्रोफ़ाइल टैग नहीं हुई',
+    'Tag Relays': 'टैग रिले',
+    'Tag relays': 'टैग रिले',
+    'Relays used for decentralized tags. Tag reads and publishes always include these in addition to your own relays.':
+      'विकेंद्रीकृत टैग के लिए उपयोग होने वाले रिले। टैग पढ़ने और प्रकाशित करने में आपके अपने रिले के अलावा ये हमेशा शामिल रहते हैं।',
+    'publish failed': 'प्रकाशन विफल',
+    'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
+      'आंशिक रूप से प्रकाशित: त्रुटि ({{error}}) से पहले {{count}} इवेंट प्रकाशित हुए। कुछ भी अधूरा नहीं छूटा — आप सुरक्षित रूप से पुनः प्रयास कर सकते हैं।',
+    'Cancelled — nothing was published ({{error}})':
+      'रद्द किया गया — कुछ भी प्रकाशित नहीं हुआ ({{error}})'
   }
 }
