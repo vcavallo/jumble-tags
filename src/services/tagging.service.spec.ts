@@ -308,4 +308,90 @@ describe('tagging service read pipeline', () => {
     expect(data.notes.filter(isRowEndorsed).map((row) => row.target.id)).toEqual([noteB, noteA])
     expect(data.people).toHaveLength(0)
   })
+
+  it('classifies ARTICLE (addressable) taggings via the #a batch path', async () => {
+    const articleAuthor = 'f'.repeat(63) + '1'
+    const address = `30023:${articleAuthor}:my-article`
+    const element = asEvent(
+      buildTagElement({ name: 'Longform', taPubkeys: Z_HANDLE_PUBKEYS }),
+      TAG_AUTHOR
+    )
+    const header = asEvent(
+      buildTaggingHeader({
+        tagAuthorPubkey: TAG_AUTHOR,
+        slug: 'longform',
+        names: ['x', 'y'],
+        description: '',
+        taPubkeys: Z_HANDLE_PUBKEYS
+      }),
+      TAG_AUTHOR
+    )
+    const build = (polarity: 1 | -1, asserter: string) =>
+      buildEventTaggingAssertion({
+        headerAuthorPubkey: TAG_AUTHOR,
+        slug: 'longform',
+        target: { address },
+        polarity,
+        asserterPubkey: asserter,
+        taPubkeys: Z_HANDLE_PUBKEYS
+      })
+    const applyByAlice = asEvent(build(1, ALICE), ALICE, 1001)
+    // Assertion d-tag identifies the target by the address's AUTHOR segment.
+    expect(applyByAlice.tags.find((t) => t[0] === 'd')![1]).toBe(
+      `event-tag-longform-${articleAuthor.slice(0, 8)}-${ALICE.slice(0, 8)}`
+    )
+    expect(applyByAlice.tags.find((t) => t[0] === 'a')![1]).toBe(address)
+    mocks.state.events = [element, header, applyByAlice, asEvent(build(-1, VIEWER), VIEWER, 1002)]
+    mocks.state.pubkey = VIEWER
+
+    taggingService.requestTargetTags(`a:${address}`, VIEWER)
+    await flush()
+
+    const aQueries = mocks.state.queries.filter((f) => '#a' in f && f.kinds?.includes(39999))
+    expect(aQueries.length).toBeGreaterThan(0)
+    const state = taggingService.getTargetTags(`a:${address}`)
+    expect(state?.status).toBe('ready')
+    const chip = state!.chips[0]
+    expect(chip.tag).toEqual({ authorPubkey: TAG_AUTHOR, slug: 'longform' })
+    expect(chip.applications.map((entry) => entry.pubkey)).toEqual([ALICE])
+    expect(chip.disputes.map((entry) => entry.pubkey)).toEqual([VIEWER])
+    expect(chip.mine).toBe('dispute')
+  })
+
+  it('tag-page rows carry addressable article targets', async () => {
+    const articleAuthor = 'f'.repeat(63) + '2'
+    const address = `30023:${articleAuthor}:tagged-article`
+    const element = asEvent(
+      buildTagElement({ name: 'Articlerows', taPubkeys: Z_HANDLE_PUBKEYS }),
+      TAG_AUTHOR
+    )
+    const header = asEvent(
+      buildTaggingHeader({
+        tagAuthorPubkey: TAG_AUTHOR,
+        slug: 'articlerows',
+        names: ['x', 'y'],
+        description: '',
+        taPubkeys: Z_HANDLE_PUBKEYS
+      }),
+      TAG_AUTHOR
+    )
+    const assertion = asEvent(
+      buildEventTaggingAssertion({
+        headerAuthorPubkey: TAG_AUTHOR,
+        slug: 'articlerows',
+        target: { address },
+        polarity: 1,
+        asserterPubkey: ALICE,
+        taPubkeys: Z_HANDLE_PUBKEYS
+      }),
+      ALICE,
+      1001
+    )
+    mocks.state.events = [element, header, assertion]
+
+    const data = await taggingService.fetchTagPageData(TAG_AUTHOR, 'articlerows')
+    expect(data.notes).toHaveLength(1)
+    expect(data.notes[0].target).toEqual({ address })
+    expect(isRowEndorsed(data.notes[0])).toBe(true)
+  })
 })
