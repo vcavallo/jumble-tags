@@ -1189,6 +1189,8 @@ export default {
       'يمكنك إنشاؤه من أي ملاحظة تستخدم هذا الهاشتاغ',
     'Show hashtag posts': 'إظهار منشورات الهاشتاغ',
     'View tag page': 'عرض صفحة الوسم',
-    'Hashtag posts': 'منشورات الهاشتاغ'
+    'Hashtag posts': 'منشورات الهاشتاغ',
+    'Create & dispute': 'إنشاء واعتراض',
+    'All hashtags': 'كل الهاشتاغات'
   }
 }

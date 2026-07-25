@@ -1197,6 +1197,8 @@ export default {
       'You can bridge it from any note that uses this hashtag',
     'Show hashtag posts': 'Show hashtag posts',
     'View tag page': 'View tag page',
-    'Hashtag posts': 'Hashtag posts'
+    'Hashtag posts': 'Hashtag posts',
+    'Create & dispute': 'Create & dispute',
+    'All hashtags': 'All hashtags'
   }
 }

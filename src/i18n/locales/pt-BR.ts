@@ -1210,6 +1210,8 @@ export default {
       'Você pode criá-la a partir de qualquer nota que use esta hashtag',
     'Show hashtag posts': 'Mostrar posts da hashtag',
     'View tag page': 'Ver página da tag',
-    'Hashtag posts': 'Posts da hashtag'
+    'Hashtag posts': 'Posts da hashtag',
+    'Create & dispute': 'Criar e contestar',
+    'All hashtags': 'Todas as hashtags'
   }
 }

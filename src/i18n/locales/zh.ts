@@ -1160,6 +1160,8 @@ export default {
       '你可以从任何使用该话题标签的笔记进行桥接',
     'Show hashtag posts': '显示话题标签帖子',
     'View tag page': '查看标签页面',
-    'Hashtag posts': '话题标签帖子'
+    'Hashtag posts': '话题标签帖子',
+    'Create & dispute': '创建并提出异议',
+    'All hashtags': '全部话题标签'
   }
 }

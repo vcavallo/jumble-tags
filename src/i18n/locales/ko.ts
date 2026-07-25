@@ -1192,6 +1192,8 @@ export default {
       '이 해시태그를 쓰는 노트에서 연결할 수 있습니다',
     'Show hashtag posts': '해시태그 게시물 보기',
     'View tag page': '태그 페이지 보기',
-    'Hashtag posts': '해시태그 게시물'
+    'Hashtag posts': '해시태그 게시물',
+    'Create & dispute': '만들고 이의 제기',
+    'All hashtags': '모든 해시태그'
   }
 }

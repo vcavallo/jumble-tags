@@ -1224,6 +1224,8 @@ export default {
       'Du kannst ihn von jeder Notiz mit diesem Hashtag überbrücken',
     'Show hashtag posts': 'Hashtag-Beiträge zeigen',
     'View tag page': 'Tag-Seite öffnen',
-    'Hashtag posts': 'Hashtag-Beiträge'
+    'Hashtag posts': 'Hashtag-Beiträge',
+    'Create & dispute': 'Erstellen & anfechten',
+    'All hashtags': 'Alle Hashtags'
   }
 }

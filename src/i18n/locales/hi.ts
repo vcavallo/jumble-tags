@@ -1205,6 +1205,8 @@ export default {
       'इस हैशटैग वाली किसी भी नोट से आप इसे बना सकते हैं',
     'Show hashtag posts': 'हैशटैग पोस्ट दिखाएँ',
     'View tag page': 'टैग पेज देखें',
-    'Hashtag posts': 'हैशटैग पोस्ट'
+    'Hashtag posts': 'हैशटैग पोस्ट',
+    'Create & dispute': 'बनाएँ और आपत्ति करें',
+    'All hashtags': 'सभी हैशटैग'
   }
 }
