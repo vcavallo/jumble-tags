@@ -1212,6 +1212,8 @@ export default {
       'Его можно создать из любой заметки с этим хэштегом',
     'Show hashtag posts': 'Показать посты с хэштегом',
     'View tag page': 'Открыть страницу тега',
-    'Hashtag posts': 'Посты с хэштегом'
+    'Hashtag posts': 'Посты с хэштегом',
+    'Create & dispute': 'Создать и оспорить',
+    'All hashtags': 'Все хэштеги'
   }
 }

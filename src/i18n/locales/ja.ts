@@ -1206,6 +1206,8 @@ export default {
       'このハッシュタグを使うノートからブリッジできます',
     'Show hashtag posts': 'ハッシュタグの投稿を表示',
     'View tag page': 'タグページを見る',
-    'Hashtag posts': 'ハッシュタグの投稿'
+    'Hashtag posts': 'ハッシュタグの投稿',
+    'Create & dispute': '作成して異議を唱える',
+    'All hashtags': 'すべてのハッシュタグ'
   }
 }

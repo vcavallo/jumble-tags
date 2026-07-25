@@ -1204,6 +1204,8 @@ export default {
       'می‌توانید آن را از هر یادداشتی که این هشتگ را دارد بسازید',
     'Show hashtag posts': 'نمایش پست‌های هشتگ',
     'View tag page': 'مشاهده صفحه برچسب',
-    'Hashtag posts': 'پست‌های هشتگ'
+    'Hashtag posts': 'پست‌های هشتگ',
+    'Create & dispute': 'ایجاد و اعتراض',
+    'All hashtags': 'همه هشتگ‌ها'
   }
 }

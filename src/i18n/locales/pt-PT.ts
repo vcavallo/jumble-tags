@@ -1214,6 +1214,8 @@ export default {
       'Pode criá-la a partir de qualquer nota que use esta hashtag',
     'Show hashtag posts': 'Mostrar publicações da hashtag',
     'View tag page': 'Ver página da tag',
-    'Hashtag posts': 'Publicações da hashtag'
+    'Hashtag posts': 'Publicações da hashtag',
+    'Create & dispute': 'Criar e contestar',
+    'All hashtags': 'Todas as hashtags'
   }
 }

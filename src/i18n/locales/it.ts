@@ -1213,6 +1213,8 @@ export default {
       'Puoi crearlo da qualsiasi nota che usa questo hashtag',
     'Show hashtag posts': "Mostra i post dell'hashtag",
     'View tag page': 'Apri la pagina del tag',
-    'Hashtag posts': "Post dell'hashtag"
+    'Hashtag posts': "Post dell'hashtag",
+    'Create & dispute': 'Crea e contesta',
+    'All hashtags': 'Tutti gli hashtag'
   }
 }

@@ -1188,6 +1188,8 @@ export default {
       'คุณสามารถเชื่อมได้จากโน้ตใดก็ตามที่ใช้แฮชแท็กนี้',
     'Show hashtag posts': 'แสดงโพสต์แฮชแท็ก',
     'View tag page': 'ดูหน้าแท็ก',
-    'Hashtag posts': 'โพสต์แฮชแท็ก'
+    'Hashtag posts': 'โพสต์แฮชแท็ก',
+    'Create & dispute': 'สร้างและคัดค้าน',
+    'All hashtags': 'แฮชแท็กทั้งหมด'
   }
 }

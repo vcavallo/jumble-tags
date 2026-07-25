@@ -1209,6 +1209,8 @@ export default {
       'Bu hashtag’i kullanan herhangi bir nottan köprüleyebilirsiniz',
     'Show hashtag posts': 'Hashtag gönderilerini göster',
     'View tag page': 'Etiket sayfasını gör',
-    'Hashtag posts': 'Hashtag gönderileri'
+    'Hashtag posts': 'Hashtag gönderileri',
+    'Create & dispute': 'Oluştur ve itiraz et',
+    'All hashtags': 'Tüm hashtagler'
   }
 }

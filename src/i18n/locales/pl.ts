@@ -1216,6 +1216,8 @@ export default {
       'Możesz go utworzyć z dowolnej notatki używającej tego hashtagu',
     'Show hashtag posts': 'Pokaż wpisy z hashtagiem',
     'View tag page': 'Zobacz stronę tagu',
-    'Hashtag posts': 'Wpisy z hashtagiem'
+    'Hashtag posts': 'Wpisy z hashtagiem',
+    'Create & dispute': 'Utwórz i zakwestionuj',
+    'All hashtags': 'Wszystkie hashtagi'
   }
 }

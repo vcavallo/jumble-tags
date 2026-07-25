@@ -16,13 +16,7 @@ import { useTagStance } from './useTagStance'
  * exists yet). Once the viewer's tagging lands, the read pipeline replaces
  * this chip with the counted decentralized chip.
  */
-export default function LegacyHashtagChip({
-  hashtag,
-  event
-}: {
-  hashtag: string
-  event: Event
-}) {
+export default function LegacyHashtagChip({ hashtag, event }: { hashtag: string; event: Event }) {
   const { t } = useTranslation()
   const { push } = useSecondaryPage()
   const { applyStance, busy } = useTagStance()

@@ -1209,6 +1209,8 @@ export default {
       'Bármely, ezt a hashtaget használó jegyzetből létrehozhatod',
     'Show hashtag posts': 'Hashtag-bejegyzések megjelenítése',
     'View tag page': 'Címkeoldal megnyitása',
-    'Hashtag posts': 'Hashtag-bejegyzések'
+    'Hashtag posts': 'Hashtag-bejegyzések',
+    'Create & dispute': 'Létrehozás és vitatás',
+    'All hashtags': 'Összes hashtag'
   }
 }

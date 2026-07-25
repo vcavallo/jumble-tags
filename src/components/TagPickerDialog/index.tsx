@@ -3,11 +3,20 @@ import SearchInput from '@/components/SearchInput'
 import { Button } from '@/components/ui/button'
 import { DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
 import { useNoteTags, useProfileTags } from '@/hooks/useTargetTags'
 import { slug as slugify } from '@/lib/tagging/sdk/event-tagging/index.js'
 import taggingService, { TTagApplicability, TTagElement } from '@/services/tagging.service'
-import { Check, ChevronDown, ChevronUp, Loader2, Plus, Tag as TagIcon } from 'lucide-react'
+import {
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+  Plus,
+  Tag as TagIcon,
+  ThumbsDown
+} from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TTagStanceInput, TTagStanceTarget, useTagStance } from '../TagChips/useTagStance'
@@ -47,6 +56,10 @@ export default function TagPickerDialog({
   const [creating, setCreating] = useState(false)
   const [newTagName, setNewTagName] = useState('')
   const [newTagDescription, setNewTagDescription] = useState('')
+  // Apply-mode stance: picking a tag can apply it (+1, default) or dispute it
+  // (−1) — the only way to dispute a tag that has no visible chip yet.
+  const [stanceMode, setStanceMode] = useState<'apply' | 'dispute'>('apply')
+  const polarity = stanceMode === 'dispute' ? -1 : 1
 
   const noteState = useNoteTags(target?.type === 'event' ? target.event : undefined)
   const profileState = useProfileTags(target?.type === 'pubkey' ? target.pubkey : undefined)
@@ -66,6 +79,7 @@ export default function TagPickerDialog({
       setNewTagName('')
       setNewTagDescription('')
       setShowOtherSection(false)
+      setStanceMode('apply')
       return
     }
     let cancelled = false
@@ -94,8 +108,7 @@ export default function TagPickerDialog({
         el.slug.includes(qSlug || q) ||
         el.description.toLowerCase().includes(q)
     )
-    const leadingSet =
-      leadingContext === 'event' ? applicability?.event : applicability?.pubkey
+    const leadingSet = leadingContext === 'event' ? applicability?.event : applicability?.pubkey
     const leading: TTagElement[] = []
     const other: TTagElement[] = []
     for (const el of filtered) {
@@ -122,7 +135,7 @@ export default function TagPickerDialog({
       return
     }
     if (!target) return
-    applyStance(target, tagInput, 1, () => onOpenChange(false))
+    applyStance(target, tagInput, polarity, () => onOpenChange(false))
   }
 
   const createAndApply = () => {
@@ -135,7 +148,7 @@ export default function TagPickerDialog({
       return
     }
     if (!target) return
-    applyStance(target, tagInput, 1, () => {
+    applyStance(target, tagInput, polarity, () => {
       onOpenChange(false)
     })
   }
@@ -162,6 +175,7 @@ export default function TagPickerDialog({
           )}
         </div>
         {stance === 'apply' && <Check className="text-primary size-4 shrink-0" />}
+        {stance === 'dispute' && <ThumbsDown className="text-destructive size-4 shrink-0" />}
       </button>
     )
   }
@@ -181,6 +195,26 @@ export default function TagPickerDialog({
               ? t('Tag this profile')
               : t('Tag this note')}
         </DialogTitle>
+        {!onSelect && (
+          <Tabs
+            value={stanceMode}
+            onValueChange={(value) => setStanceMode(value as 'apply' | 'dispute')}
+          >
+            <TabsList className="grid h-8 w-full grid-cols-2">
+              <TabsTrigger value="apply" className="h-6 gap-1 text-xs">
+                <Check className="size-3" />
+                {t('Apply')}
+              </TabsTrigger>
+              <TabsTrigger
+                value="dispute"
+                className="data-[state=active]:text-destructive h-6 gap-1 text-xs"
+              >
+                <ThumbsDown className="size-3" />
+                {t('Dispute')}
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        )}
         {creating ? (
           <div className="space-y-3">
             <div className="space-y-1">
@@ -205,9 +239,17 @@ export default function TagPickerDialog({
               <Button variant="ghost" disabled={busy} onClick={() => setCreating(false)}>
                 {t('Back')}
               </Button>
-              <Button disabled={busy || !newTagName.trim()} onClick={createAndApply}>
+              <Button
+                variant={!onSelect && stanceMode === 'dispute' ? 'destructive' : 'default'}
+                disabled={busy || !newTagName.trim()}
+                onClick={createAndApply}
+              >
                 {busy && <Loader2 className="animate-spin" />}
-                {onSelect ? t('Add tag') : t('Create & apply')}
+                {onSelect
+                  ? t('Add tag')
+                  : stanceMode === 'dispute'
+                    ? t('Create & dispute')
+                    : t('Create & apply')}
               </Button>
             </div>
           </div>

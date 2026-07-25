@@ -1161,6 +1161,8 @@ export default {
       '你可以從任何使用該主題標籤的貼文進行橋接',
     'Show hashtag posts': '顯示主題標籤貼文',
     'View tag page': '檢視標籤頁面',
-    'Hashtag posts': '主題標籤貼文'
+    'Hashtag posts': '主題標籤貼文',
+    'Create & dispute': '建立並提出爭議',
+    'All hashtags': '全部主題標籤'
   }
 }
