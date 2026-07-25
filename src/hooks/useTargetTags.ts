@@ -11,7 +11,9 @@ function useTargetTags(targetKey?: string): TTargetTagsState | undefined {
   const { pubkey } = useNostr()
   useEffect(() => {
     if (targetKey) {
-      taggingService.requestTargetTags(targetKey)
+      // Pass the viewer explicitly: on account restore this effect runs before
+      // the provider-level effect that sets client.pubkey.
+      taggingService.requestTargetTags(targetKey, pubkey)
     }
   }, [targetKey, pubkey])
   return useSyncExternalStore(

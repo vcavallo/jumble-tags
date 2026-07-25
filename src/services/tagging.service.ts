@@ -259,17 +259,22 @@ class TaggingService {
   }
 
   /** Chips depend on the viewer (`mine` overlay) — drop caches on account switch. */
-  private checkViewer() {
-    if (client.pubkey === this.lastViewer) return
-    this.lastViewer = client.pubkey
+  private checkViewer(viewer: string | undefined) {
+    if (viewer === this.lastViewer) return
+    this.lastViewer = viewer
     const keys = Array.from(this.targetTagsMap.keys())
     this.targetTagsMap.clear()
     keys.forEach((key) => this.notify(key))
   }
 
-  /** Kick off a (batched) fetch for a target's tags. No-op if already loaded/loading. */
-  requestTargetTags(key: string) {
-    this.checkViewer()
+  /**
+   * Kick off a (batched) fetch for a target's tags. No-op if already
+   * loaded/loading. `viewer` is the logged-in pubkey as the CALLER sees it —
+   * hooks pass it explicitly because `client.pubkey` is set by a parent-level
+   * effect that runs after child effects on account restore.
+   */
+  requestTargetTags(key: string, viewer?: string | null) {
+    this.checkViewer(viewer === undefined ? client.pubkey : (viewer ?? undefined))
     if (this.targetTagsMap.has(key) || this.inFlight.has(key)) return
     this.targetTagsMap.set(key, { status: 'loading', chips: [] })
     this.notify(key)
@@ -353,7 +358,7 @@ class TaggingService {
       }
 
       const headers = Array.from(this.headerCache.values())
-      const viewer = client.pubkey
+      const viewer = this.lastViewer ?? client.pubkey
       const coordsForNames = new Set<string>()
       for (const [key, bucket] of buckets) {
         const result = classifyEventTaggings({
@@ -461,7 +466,7 @@ class TaggingService {
         buckets.get(`p:${tagging.target.ref}`)?.push(tagging)
       }
 
-      const viewer = client.pubkey
+      const viewer = this.lastViewer ?? client.pubkey
       const coordsForNames = new Set<string>()
       for (const [key, bucket] of buckets) {
         const chips = this.chipsFromNormalized(bucket, viewer)
@@ -877,8 +882,20 @@ class TaggingService {
   }): Promise<TApplyResult> {
     const viewer = client.pubkey
     if (!viewer) throw new Error('You need to login first')
+    // Provenance enrichment: when the caller only knows the tag identity (e.g.
+    // a chip stance change), attach the cached tag-element's event id so the
+    // assertion carries the applied-version `e` (hybrid e+a shape).
+    let enrichedInput = tagInput
+    if ('authorPubkey' in tagInput && !tagInput.eventId) {
+      const cached = this.tagElementByCoord.get(
+        tagElementAddr(tagInput.authorPubkey, tagInput.slug)
+      )
+      if (cached?.eventId) {
+        enrichedInput = { ...tagInput, eventId: cached.eventId }
+      }
+    }
     const result = await applyProfileTagging({
-      tagInput,
+      tagInput: enrichedInput,
       targetPubkey,
       polarity,
       asserterPubkey: viewer,
@@ -990,11 +1007,15 @@ class TaggingService {
 
   /** =========== tag page =========== */
 
-  async fetchTagPageData(tagAuthorPubkey: string, slug: string): Promise<TTagPageData> {
+  async fetchTagPageData(
+    tagAuthorPubkey: string,
+    slug: string,
+    viewerPubkey?: string | null
+  ): Promise<TTagPageData> {
     const coordinate = tagElementAddr(tagAuthorPubkey, slug)
     await this.ensureTagElements([coordinate])
     const element = this.tagElementByCoord.get(coordinate) ?? null
-    const viewer = client.pubkey
+    const viewer = viewerPubkey ?? client.pubkey
 
     // Notes: headers (per honored authority) → taggings per header → group by target.
     const headers = await this.findHeadersForTag(tagAuthorPubkey, slug)

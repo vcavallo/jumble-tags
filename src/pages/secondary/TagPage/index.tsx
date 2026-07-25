@@ -6,6 +6,7 @@ import Username from '@/components/Username'
 import { useFetchEvent } from '@/hooks'
 import SecondaryPageLayout from '@/layouts/SecondaryPageLayout'
 import { userIdToPubkey } from '@/lib/pubkey'
+import { useNostr } from '@/providers/NostrProvider'
 import taggingService, { TTagPageData } from '@/services/tagging.service'
 import { Loader2, Tag as TagIcon } from 'lucide-react'
 import { nip19 } from 'nostr-tools'
@@ -22,6 +23,7 @@ const SHOW_COUNT = 10
 const TagPage = forwardRef(
   ({ author, slug, index }: { author?: string; slug?: string; index?: number }, ref) => {
     const { t } = useTranslation()
+    const { pubkey: viewerPubkey } = useNostr()
     const [tab, setTab] = useState('notes')
     const [data, setData] = useState<TTagPageData | null>(null)
     const [isFetching, setIsFetching] = useState(true)
@@ -49,7 +51,7 @@ const TagPage = forwardRef(
       let cancelled = false
       setIsFetching(true)
       taggingService
-        .fetchTagPageData(tagId.pubkey, tagId.slug)
+        .fetchTagPageData(tagId.pubkey, tagId.slug, viewerPubkey)
         .then((result) => {
           if (!cancelled) setData(result)
         })
@@ -62,7 +64,7 @@ const TagPage = forwardRef(
       return () => {
         cancelled = true
       }
-    }, [tagId])
+    }, [tagId, viewerPubkey])
 
     if (!tagId) {
       return (

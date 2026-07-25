@@ -1,6 +1,7 @@
 import ResponsiveDialog from '@/components/ResponsiveDialog'
 import SearchInput from '@/components/SearchInput'
 import { Button } from '@/components/ui/button'
+import { DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useNoteTags, useProfileTags } from '@/hooks/useTargetTags'
@@ -143,10 +144,12 @@ export default function TagPickerDialog({
 
   return (
     <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
-      <div className="space-y-3">
-        <div className="text-lg font-semibold">
+      {/* min-w-0: DialogContent is a grid — without this the nowrap (truncate)
+          rows inflate the auto track past the dialog width. */}
+      <div className="min-w-0 space-y-3">
+        <DialogTitle className="text-lg font-semibold">
           {target.type === 'event' ? t('Tag this note') : t('Tag this profile')}
-        </div>
+        </DialogTitle>
         {creating ? (
           <div className="space-y-3">
             <div className="space-y-1">
