@@ -39,8 +39,9 @@
   "trust": {
     "mode": "house-ta",
     "minRank": 1,
-    "maxHops": 20,
+    "maxHops": 999,
     "unknownPolicy": "trusted",
-    "_comment": "house-ta = build the asserter-trust predicate from the house's NIP-85 kind-30382 assertions (see sdk/trust.js), read from trustRelays, authored by nip85AuthorPubkeys. unknownPolicy 'trusted' counts asserters with no published score — matching the reference deployment's un-provisioned-POV fallback; note the live corpus is a 2026-05-26 snapshot until the house pipeline re-runs, so expect many unscored (thus counted) asserters. 'everyone' mode skips 30382 lookups entirely."
+    "_comment": "house-ta = build the asserter-trust predicate from the house's NIP-85 kind-30382 assertions (see sdk/trust.js), read from trustRelays, authored by nip85AuthorPubkeys. unknownPolicy 'trusted' counts asserters with no published score — matching the reference deployment's un-provisioned-POV fallback; note the live corpus is a 2026-05-26 snapshot until the house pipeline re-runs, so expect many unscored (thus counted) asserters. 'everyone' mode skips 30382 lookups entirely.",
+    "_maxHops": "VERIFIED 2026-07-24: the live 30382 corpus carries rank (and followers) but NO hops tag at all, and sdk/trust.js treats a missing hops as 999 (unreachable). With the kit's original maxHops=20 every SCORED asserter failed the hops gate — scored community members' taggings counted zero while unscored keys passed via unknownPolicy, inverting the intent. 999 disables the hops gate (rank still gates via minRank) until the house pipeline actually publishes hops; restore a real cutoff then."
   }
 }
