@@ -1139,6 +1139,7 @@ export default {
     "Author's hashtag": '作者的话题标签',
     "Author's hashtag — not a decentralized tag yet": '作者的话题标签——还不是去中心化标签',
     'Agree & apply as tag': '同意并应用为标签',
+    'Disagree & dispute as tag': '不同意并以标签形式提出异议',
     'Browse hashtag': '浏览话题',
     'Also hashtagged by the author': '作者也将其用作话题标签',
     'Note posted, but applying a tag failed: {{error}}': '笔记已发布，但标签应用失败：{{error}}',

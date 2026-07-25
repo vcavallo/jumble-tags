@@ -1166,6 +1166,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       'แฮชแท็กของผู้เขียน — ยังไม่ใช่แท็กแบบกระจายศูนย์',
     'Agree & apply as tag': 'เห็นด้วยและใช้เป็นแท็ก',
+    'Disagree & dispute as tag': 'ไม่เห็นด้วยและคัดค้านเป็นแท็ก',
     'Browse hashtag': 'ดูแฮชแท็ก',
     'Also hashtagged by the author': 'ผู้เขียนใช้เป็นแฮชแท็กด้วย',
     'Note posted, but applying a tag failed: {{error}}':

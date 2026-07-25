@@ -1170,6 +1170,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       '작성자의 해시태그 — 아직 분산형 태그가 아닙니다',
     'Agree & apply as tag': '동의하고 태그로 적용',
+    'Disagree & dispute as tag': '동의하지 않음 — 태그로 이의 제기',
     'Browse hashtag': '해시태그 둘러보기',
     'Also hashtagged by the author': '작성자가 해시태그로도 사용함',
     'Note posted, but applying a tag failed: {{error}}':

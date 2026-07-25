@@ -1184,6 +1184,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       '作者のハッシュタグ — まだ分散型タグではありません',
     'Agree & apply as tag': '同意してタグとして適用',
+    'Disagree & dispute as tag': '同意せず、タグとして異議を唱える',
     'Browse hashtag': 'ハッシュタグを見る',
     'Also hashtagged by the author': '作者もハッシュタグとして使用',
     'Note posted, but applying a tag failed: {{error}}':

@@ -1187,6 +1187,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       'A szerző hashtagje — még nem decentralizált címke',
     'Agree & apply as tag': 'Egyetértek — alkalmazás címkeként',
+    'Disagree & dispute as tag': 'Nem értek egyet — vitatás címkeként',
     'Browse hashtag': 'Hashtag böngészése',
     'Also hashtagged by the author': 'A szerző hashtagként is használta',
     'Note posted, but applying a tag failed: {{error}}':

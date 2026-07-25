@@ -1140,6 +1140,7 @@ export default {
     "Author's hashtag": '作者的主題標籤',
     "Author's hashtag — not a decentralized tag yet": '作者的主題標籤——還不是去中心化標籤',
     'Agree & apply as tag': '同意並套用為標籤',
+    'Disagree & dispute as tag': '不同意並以標籤形式提出爭議',
     'Browse hashtag': '瀏覽主題標籤',
     'Also hashtagged by the author': '作者也將其用作主題標籤',
     'Note posted, but applying a tag failed: {{error}}': '貼文已發布，但標籤套用失敗：{{error}}',

@@ -29,12 +29,13 @@ export default function LegacyHashtagChip({
   const [open, setOpen] = useState(false)
   const [resolving, setResolving] = useState(false)
 
-  const agree = async () => {
+  // Agree (+1) or dispute (−1) the author's hashtag as a decentralized tagging.
+  const takeStance = async (polarity: 1 | -1) => {
     if (busy || resolving) return
     setResolving(true)
     try {
       const { input } = await taggingService.resolveTagInputForHashtag(hashtag)
-      await applyStance({ type: 'event', event }, input, 1, () => setOpen(false))
+      await applyStance({ type: 'event', event }, input, polarity, () => setOpen(false))
     } finally {
       setResolving(false)
     }
@@ -64,9 +65,23 @@ export default function LegacyHashtagChip({
             </div>
           </div>
           <div className="space-y-2">
-            <Button size="sm" className="w-full" disabled={busy || resolving} onClick={agree}>
+            <Button
+              size="sm"
+              className="w-full"
+              disabled={busy || resolving}
+              onClick={() => takeStance(1)}
+            >
               {(busy || resolving) && <Loader2 className="animate-spin" />}
               {t('Agree & apply as tag')}
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              className="text-destructive hover:text-destructive w-full"
+              disabled={busy || resolving}
+              onClick={() => takeStance(-1)}
+            >
+              {t('Disagree & dispute as tag')}
             </Button>
             <Button
               size="sm"

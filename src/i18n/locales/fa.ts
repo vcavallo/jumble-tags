@@ -1182,6 +1182,7 @@ export default {
     "Author's hashtag": 'هشتگ نویسنده',
     "Author's hashtag — not a decentralized tag yet": 'هشتگ نویسنده — هنوز برچسب غیرمتمرکز نیست',
     'Agree & apply as tag': 'موافقم — به‌عنوان برچسب اعمال کن',
+    'Disagree & dispute as tag': 'مخالفم — اعتراض به‌عنوان برچسب',
     'Browse hashtag': 'مرور هشتگ',
     'Also hashtagged by the author': 'نویسنده آن را به‌عنوان هشتگ هم استفاده کرده است',
     'Note posted, but applying a tag failed: {{error}}':

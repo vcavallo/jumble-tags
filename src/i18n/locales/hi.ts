@@ -1183,6 +1183,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       'लेखक का हैशटैग — अभी विकेंद्रीकृत टैग नहीं है',
     'Agree & apply as tag': 'सहमत हों और टैग के रूप में लागू करें',
+    'Disagree & dispute as tag': 'असहमत — टैग के रूप में आपत्ति करें',
     'Browse hashtag': 'हैशटैग ब्राउज़ करें',
     'Also hashtagged by the author': 'लेखक ने इसे हैशटैग के रूप में भी उपयोग किया',
     'Note posted, but applying a tag failed: {{error}}':

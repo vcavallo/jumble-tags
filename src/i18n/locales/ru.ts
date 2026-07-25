@@ -1190,6 +1190,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       'Хэштег автора — ещё не децентрализованный тег',
     'Agree & apply as tag': 'Согласиться и применить как тег',
+    'Disagree & dispute as tag': 'Не согласиться и оспорить как тег',
     'Browse hashtag': 'Смотреть хэштег',
     'Also hashtagged by the author': 'Автор также использовал как хэштег',
     'Note posted, but applying a tag failed: {{error}}':

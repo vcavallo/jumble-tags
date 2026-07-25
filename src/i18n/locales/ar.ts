@@ -1167,6 +1167,7 @@ export default {
     "Author's hashtag": 'وسم المؤلف',
     "Author's hashtag — not a decentralized tag yet": 'وسم المؤلف — ليس وسمًا لامركزيًا بعد',
     'Agree & apply as tag': 'أوافق — تطبيقه كوسم',
+    'Disagree & dispute as tag': 'لا أوافق — اعتراض كوسم',
     'Browse hashtag': 'تصفح الوسم',
     'Also hashtagged by the author': 'استخدمه المؤلف كوسم أيضًا',
     'Note posted, but applying a tag failed: {{error}}':

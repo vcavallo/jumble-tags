@@ -1187,6 +1187,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       'Yazarın hashtag’i — henüz merkeziyetsiz bir etiket değil',
     'Agree & apply as tag': 'Katıl ve etiket olarak uygula',
+    'Disagree & dispute as tag': 'Katılmıyorum — etiket olarak itiraz et',
     'Browse hashtag': 'Hashtag’e göz at',
     'Also hashtagged by the author': 'Yazar tarafından hashtag olarak da kullanıldı',
     'Note posted, but applying a tag failed: {{error}}':

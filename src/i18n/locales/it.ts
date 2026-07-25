@@ -1191,6 +1191,7 @@ export default {
     "Author's hashtag — not a decentralized tag yet":
       "Hashtag dell'autore — non è ancora un tag decentralizzato",
     'Agree & apply as tag': "D'accordo — applica come tag",
+    'Disagree & dispute as tag': 'Non sono d’accordo — contesta come tag',
     'Browse hashtag': 'Sfoglia hashtag',
     'Also hashtagged by the author': "Usato anche come hashtag dall'autore",
     'Note posted, but applying a tag failed: {{error}}':
