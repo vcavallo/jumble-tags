@@ -1185,6 +1185,18 @@ export default {
       'Tags were not applied because the note was posted as a different account',
     'Decentralized tags for #': 'Decentralized tags for #',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'Typing # opens the decentralized tag picker instead of writing a plain hashtag'
+      'Typing # opens the decentralized tag picker instead of writing a plain hashtag',
+    Tags: 'Tags',
+    Hashtags: 'Hashtags',
+    Blend: 'Blend',
+    'Show disputed': 'Show disputed',
+    'Hide disputed': 'Hide disputed',
+    'Disputed by the network': 'Disputed by the network',
+    'No decentralized tag "{{name}}" yet': 'No decentralized tag "{{name}}" yet',
+    'You can bridge it from any note that uses this hashtag':
+      'You can bridge it from any note that uses this hashtag',
+    'Show hashtag posts': 'Show hashtag posts',
+    'View tag page': 'View tag page',
+    'Hashtag posts': 'Hashtag posts'
   }
 }

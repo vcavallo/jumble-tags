@@ -1194,6 +1194,18 @@ export default {
       '別のアカウントで公開されたため、タグは適用されませんでした',
     'Decentralized tags for #': '# で分散型タグ',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      '# を入力すると通常のハッシュタグの代わりに分散型タグピッカーが開きます'
+      '# を入力すると通常のハッシュタグの代わりに分散型タグピッカーが開きます',
+    Tags: 'タグ',
+    Hashtags: 'ハッシュタグ',
+    Blend: 'ブレンド',
+    'Show disputed': '異議ありを表示',
+    'Hide disputed': '異議ありを隠す',
+    'Disputed by the network': 'ネットワークにより異議あり',
+    'No decentralized tag "{{name}}" yet': '分散型タグ「{{name}}」はまだありません',
+    'You can bridge it from any note that uses this hashtag':
+      'このハッシュタグを使うノートからブリッジできます',
+    'Show hashtag posts': 'ハッシュタグの投稿を表示',
+    'View tag page': 'タグページを見る',
+    'Hashtag posts': 'ハッシュタグの投稿'
   }
 }

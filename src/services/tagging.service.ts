@@ -92,9 +92,36 @@ export function chipNetCount(chip: TTagChipData) {
   return chip.applications.length - chip.disputes.length
 }
 
-/** Chips are hidden at net ≤ 0 — unless the viewer has their own stance on them. */
+/**
+ * A chip renders whenever there is ANY counted activity or the viewer holds a
+ * stance — a disputed-to-nothing tag stays visible (struck through) so every
+ * viewer can SEE it was disputed rather than wondering why it vanished.
+ */
 export function isChipVisible(chip: TTagChipData) {
-  return chipNetCount(chip) > 0 || chip.mine !== null
+  return chip.applications.length > 0 || chip.disputes.length > 0 || chip.mine !== null
+}
+
+/** A chip whose counted balance is disputed away (drives the struck styling). */
+export function isChipDisputed(chip: TTagChipData) {
+  return chip.disputes.length > 0 && chipNetCount(chip) <= 0
+}
+
+/** Net apply−dispute for a tag-page row. */
+export function rowNet(row: { applications: number; disputes: number }) {
+  return row.applications - row.disputes
+}
+
+/**
+ * A tag-page row belongs in the default ("legit") browse view when its counted
+ * balance is positive, or the viewer applied it themselves (their stance never
+ * vanishes). Everything else is the hidden-by-default disputed set.
+ */
+export function isRowEndorsed(row: {
+  applications: number
+  disputes: number
+  mine: 'apply' | 'dispute' | null
+}) {
+  return rowNet(row) > 0 || row.mine === 'apply'
 }
 
 export function targetKeyForEvent(event: Event) {
@@ -1097,9 +1124,9 @@ class TaggingService {
           })
         }
       }
-      notes = Array.from(rowByKey.values())
-        .filter((row) => row.applications - row.disputes > 0 || row.mine)
-        .sort((a, b) => b.appliedAt - a.appliedAt)
+      // ALL rows, including disputed ones — presentation (hide by default,
+      // reveal on demand) is the UI's decision.
+      notes = Array.from(rowByKey.values()).sort((a, b) => b.appliedAt - a.appliedAt)
     }
 
     // People: profile taggings using this tag, trust-filtered, net > 0.
@@ -1153,9 +1180,7 @@ class TaggingService {
         row.disputes += 1
       }
     }
-    const people = Array.from(peopleByPubkey.values())
-      .filter((row) => row.applications - row.disputes > 0 || row.mine)
-      .sort((a, b) => b.appliedAt - a.appliedAt)
+    const people = Array.from(peopleByPubkey.values()).sort((a, b) => b.appliedAt - a.appliedAt)
 
     return { element, notes, people }
   }

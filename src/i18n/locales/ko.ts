@@ -1180,6 +1180,18 @@ export default {
       '다른 계정으로 게시되어 태그가 적용되지 않았습니다',
     'Decentralized tags for #': '#에 분산형 태그 사용',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      '#를 입력하면 일반 해시태그 대신 분산형 태그 선택기가 열립니다'
+      '#를 입력하면 일반 해시태그 대신 분산형 태그 선택기가 열립니다',
+    Tags: '태그',
+    Hashtags: '해시태그',
+    Blend: '혼합',
+    'Show disputed': '이의 제기된 항목 표시',
+    'Hide disputed': '이의 제기된 항목 숨기기',
+    'Disputed by the network': '네트워크에서 이의 제기됨',
+    'No decentralized tag "{{name}}" yet': '아직 "{{name}}" 분산형 태그가 없습니다',
+    'You can bridge it from any note that uses this hashtag':
+      '이 해시태그를 쓰는 노트에서 연결할 수 있습니다',
+    'Show hashtag posts': '해시태그 게시물 보기',
+    'View tag page': '태그 페이지 보기',
+    'Hashtag posts': '해시태그 게시물'
   }
 }

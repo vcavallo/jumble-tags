@@ -1193,6 +1193,18 @@ export default {
       'टैग लागू नहीं हुए क्योंकि नोट दूसरे खाते से प्रकाशित हुआ था',
     'Decentralized tags for #': '# के लिए विकेंद्रीकृत टैग',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      '# टाइप करने पर सादे हैशटैग की जगह विकेंद्रीकृत टैग चुनने वाला खुलता है'
+      '# टाइप करने पर सादे हैशटैग की जगह विकेंद्रीकृत टैग चुनने वाला खुलता है',
+    Tags: 'टैग',
+    Hashtags: 'हैशटैग',
+    Blend: 'मिश्रित',
+    'Show disputed': 'आपत्ति वाले दिखाएँ',
+    'Hide disputed': 'आपत्ति वाले छिपाएँ',
+    'Disputed by the network': 'नेटवर्क द्वारा आपत्ति',
+    'No decentralized tag "{{name}}" yet': 'अभी "{{name}}" विकेंद्रीकृत टैग नहीं है',
+    'You can bridge it from any note that uses this hashtag':
+      'इस हैशटैग वाली किसी भी नोट से आप इसे बना सकते हैं',
+    'Show hashtag posts': 'हैशटैग पोस्ट दिखाएँ',
+    'View tag page': 'टैग पेज देखें',
+    'Hashtag posts': 'हैशटैग पोस्ट'
   }
 }

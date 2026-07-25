@@ -1212,6 +1212,18 @@ export default {
       'Tags wurden nicht angewendet, weil die Notiz mit einem anderen Konto veröffentlicht wurde',
     'Decentralized tags for #': 'Dezentrale Tags für #',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'Beim Tippen von # öffnet sich der dezentrale Tag-Picker statt eines einfachen Hashtags'
+      'Beim Tippen von # öffnet sich der dezentrale Tag-Picker statt eines einfachen Hashtags',
+    Tags: 'Tags',
+    Hashtags: 'Hashtags',
+    Blend: 'Mischung',
+    'Show disputed': 'Angefochtene zeigen',
+    'Hide disputed': 'Angefochtene ausblenden',
+    'Disputed by the network': 'Vom Netzwerk angefochten',
+    'No decentralized tag "{{name}}" yet': 'Noch kein dezentraler Tag "{{name}}"',
+    'You can bridge it from any note that uses this hashtag':
+      'Du kannst ihn von jeder Notiz mit diesem Hashtag überbrücken',
+    'Show hashtag posts': 'Hashtag-Beiträge zeigen',
+    'View tag page': 'Tag-Seite öffnen',
+    'Hashtag posts': 'Hashtag-Beiträge'
   }
 }

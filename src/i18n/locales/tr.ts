@@ -1197,6 +1197,18 @@ export default {
       'Not farklı bir hesapla yayınlandığı için etiketler uygulanmadı',
     'Decentralized tags for #': '# için merkeziyetsiz etiketler',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      '# yazınca düz hashtag yerine merkeziyetsiz etiket seçici açılır'
+      '# yazınca düz hashtag yerine merkeziyetsiz etiket seçici açılır',
+    Tags: 'Etiketler',
+    Hashtags: 'Hashtagler',
+    Blend: 'Karışık',
+    'Show disputed': 'İtiraz edilenleri göster',
+    'Hide disputed': 'İtiraz edilenleri gizle',
+    'Disputed by the network': 'Ağ tarafından itiraz edildi',
+    'No decentralized tag "{{name}}" yet': 'Henüz "{{name}}" adlı merkeziyetsiz etiket yok',
+    'You can bridge it from any note that uses this hashtag':
+      'Bu hashtag’i kullanan herhangi bir nottan köprüleyebilirsiniz',
+    'Show hashtag posts': 'Hashtag gönderilerini göster',
+    'View tag page': 'Etiket sayfasını gör',
+    'Hashtag posts': 'Hashtag gönderileri'
   }
 }

@@ -1,10 +1,11 @@
 import { Favicon } from '@/components/Favicon'
 import NormalFeed from '@/components/NormalFeed'
+import TagBrowseFeed from '@/components/TagBrowseFeed'
 import { Button } from '@/components/ui/button'
 import SecondaryPageLayout from '@/layouts/SecondaryPageLayout'
 import { toProfileList } from '@/lib/link'
 import { fetchPubkeysFromDomain, getWellKnownNip05Url } from '@/lib/nip05'
-import { getDefaultRelayUrls, getSearchRelayUrls } from '@/lib/relay'
+import { getSearchRelayUrls } from '@/lib/relay'
 import { useSecondaryPage } from '@/PageManager'
 import { useNostr } from '@/providers/NostrProvider'
 import client from '@/services/client.service'
@@ -21,7 +22,12 @@ const NoteListPage = forwardRef(({ index }: { index?: number }, ref) => {
   const [controls, setControls] = useState<React.ReactNode>(null)
   const [data, setData] = useState<
     | {
-        type: 'hashtag' | 'search'
+        type: 'search'
+        kinds?: number[]
+      }
+    | {
+        type: 'hashtag'
+        hashtag: string
         kinds?: number[]
       }
     | {
@@ -42,14 +48,8 @@ const NoteListPage = forwardRef(({ index }: { index?: number }, ref) => {
         .filter((k) => !isNaN(k))
       const hashtag = searchParams.get('t')
       if (hashtag) {
-        setData({ type: 'hashtag' })
+        setData({ type: 'hashtag', hashtag, kinds })
         setTitle(`# ${hashtag}`)
-        setSubRequests([
-          {
-            filter: { '#t': [hashtag], ...(kinds.length > 0 ? { kinds } : {}) },
-            urls: getDefaultRelayUrls()
-          }
-        ])
         return
       }
       const search = searchParams.get('s')
@@ -106,15 +106,10 @@ const NoteListPage = forwardRef(({ index }: { index?: number }, ref) => {
         </span>
       </div>
     )
+  } else if (data?.type === 'hashtag') {
+    content = <TagBrowseFeed hashtag={data.hashtag} kinds={data.kinds} />
   } else if (data) {
-    let feedId: string
-    if (data.type === 'hashtag') {
-      feedId = 'hashtag'
-    } else if (data.type === 'domain') {
-      feedId = `domain-${data.domain}`
-    } else {
-      feedId = 'search'
-    }
+    const feedId = data.type === 'domain' ? `domain-${data.domain}` : 'search'
 
     content = (
       <NormalFeed

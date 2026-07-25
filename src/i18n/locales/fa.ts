@@ -1192,6 +1192,18 @@ export default {
       'برچسب‌ها اعمال نشدند چون یادداشت با حساب دیگری منتشر شد',
     'Decentralized tags for #': 'برچسب‌های غیرمتمرکز برای #',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'تایپ # به‌جای هشتگ ساده، انتخاب‌گر برچسب غیرمتمرکز را باز می‌کند'
+      'تایپ # به‌جای هشتگ ساده، انتخاب‌گر برچسب غیرمتمرکز را باز می‌کند',
+    Tags: 'برچسب‌ها',
+    Hashtags: 'هشتگ‌ها',
+    Blend: 'ترکیبی',
+    'Show disputed': 'نمایش اعتراض‌شده‌ها',
+    'Hide disputed': 'پنهان‌کردن اعتراض‌شده‌ها',
+    'Disputed by the network': 'مورد اعتراض شبکه',
+    'No decentralized tag "{{name}}" yet': 'هنوز برچسب غیرمتمرکز «{{name}}» وجود ندارد',
+    'You can bridge it from any note that uses this hashtag':
+      'می‌توانید آن را از هر یادداشتی که این هشتگ را دارد بسازید',
+    'Show hashtag posts': 'نمایش پست‌های هشتگ',
+    'View tag page': 'مشاهده صفحه برچسب',
+    'Hashtag posts': 'پست‌های هشتگ'
   }
 }

@@ -1200,6 +1200,18 @@ export default {
       'Теги не применены, потому что заметка опубликована от другого аккаунта',
     'Decentralized tags for #': 'Децентрализованные теги для #',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'Ввод # открывает выбор децентрализованных тегов вместо обычного хэштега'
+      'Ввод # открывает выбор децентрализованных тегов вместо обычного хэштега',
+    Tags: 'Теги',
+    Hashtags: 'Хэштеги',
+    Blend: 'Смешанно',
+    'Show disputed': 'Показать оспоренные',
+    'Hide disputed': 'Скрыть оспоренные',
+    'Disputed by the network': 'Оспорено сетью',
+    'No decentralized tag "{{name}}" yet': 'Децентрализованного тега "{{name}}" пока нет',
+    'You can bridge it from any note that uses this hashtag':
+      'Его можно создать из любой заметки с этим хэштегом',
+    'Show hashtag posts': 'Показать посты с хэштегом',
+    'View tag page': 'Открыть страницу тега',
+    'Hashtag posts': 'Посты с хэштегом'
   }
 }

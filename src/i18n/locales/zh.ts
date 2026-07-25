@@ -1148,6 +1148,18 @@ export default {
       '由于笔记以其他账号发布，标签未被应用',
     'Decentralized tags for #': '# 使用去中心化标签',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      '输入 # 时打开去中心化标签选择器，而不是普通话题标签'
+      '输入 # 时打开去中心化标签选择器，而不是普通话题标签',
+    Tags: '标签',
+    Hashtags: '话题标签',
+    Blend: '混合',
+    'Show disputed': '显示被异议的',
+    'Hide disputed': '隐藏被异议的',
+    'Disputed by the network': '被网络提出异议',
+    'No decentralized tag "{{name}}" yet': '还没有去中心化标签“{{name}}”',
+    'You can bridge it from any note that uses this hashtag':
+      '你可以从任何使用该话题标签的笔记进行桥接',
+    'Show hashtag posts': '显示话题标签帖子',
+    'View tag page': '查看标签页面',
+    'Hashtag posts': '话题标签帖子'
   }
 }

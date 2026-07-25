@@ -1176,6 +1176,18 @@ export default {
       'ไม่ได้ใช้แท็กเพราะโน้ตถูกโพสต์ด้วยบัญชีอื่น',
     'Decentralized tags for #': 'แท็กแบบกระจายศูนย์สำหรับ #',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'การพิมพ์ # จะเปิดตัวเลือกแท็กแบบกระจายศูนย์แทนแฮชแท็กธรรมดา'
+      'การพิมพ์ # จะเปิดตัวเลือกแท็กแบบกระจายศูนย์แทนแฮชแท็กธรรมดา',
+    Tags: 'แท็ก',
+    Hashtags: 'แฮชแท็ก',
+    Blend: 'ผสม',
+    'Show disputed': 'แสดงที่ถูกคัดค้าน',
+    'Hide disputed': 'ซ่อนที่ถูกคัดค้าน',
+    'Disputed by the network': 'ถูกเครือข่ายคัดค้าน',
+    'No decentralized tag "{{name}}" yet': 'ยังไม่มีแท็กแบบกระจายศูนย์ "{{name}}"',
+    'You can bridge it from any note that uses this hashtag':
+      'คุณสามารถเชื่อมได้จากโน้ตใดก็ตามที่ใช้แฮชแท็กนี้',
+    'Show hashtag posts': 'แสดงโพสต์แฮชแท็ก',
+    'View tag page': 'ดูหน้าแท็ก',
+    'Hashtag posts': 'โพสต์แฮชแท็ก'
   }
 }

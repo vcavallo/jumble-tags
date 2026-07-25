@@ -1201,6 +1201,18 @@ export default {
       'I tag non sono stati applicati perché la nota è stata pubblicata con un altro account',
     'Decentralized tags for #': 'Tag decentralizzati per #',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'Digitando # si apre il selettore di tag decentralizzati invece di scrivere un normale hashtag'
+      'Digitando # si apre il selettore di tag decentralizzati invece di scrivere un normale hashtag',
+    Tags: 'Tag',
+    Hashtags: 'Hashtag',
+    Blend: 'Misto',
+    'Show disputed': 'Mostra contestati',
+    'Hide disputed': 'Nascondi contestati',
+    'Disputed by the network': 'Contestato dalla rete',
+    'No decentralized tag "{{name}}" yet': 'Nessun tag decentralizzato "{{name}}" ancora',
+    'You can bridge it from any note that uses this hashtag':
+      'Puoi crearlo da qualsiasi nota che usa questo hashtag',
+    'Show hashtag posts': "Mostra i post dell'hashtag",
+    'View tag page': 'Apri la pagina del tag',
+    'Hashtag posts': "Post dell'hashtag"
   }
 }

@@ -411,7 +411,7 @@ function HashtagItem({
       </div>
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="truncate font-semibold">#{hashtag}</div>
-        <div className="text-sm text-muted-foreground">{t('Search for hashtag')}</div>
+        <div className="text-sm text-muted-foreground">{t('Search tags')}</div>
       </div>
     </Item>
   )

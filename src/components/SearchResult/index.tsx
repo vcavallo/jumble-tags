@@ -1,10 +1,11 @@
 import { SPECIAL_FEED_ID } from '@/constants'
-import { getDefaultRelayUrls, getSearchRelayUrls } from '@/lib/relay'
+import { getSearchRelayUrls } from '@/lib/relay'
 import { TSearchParams } from '@/types'
 import NormalFeed from '../NormalFeed'
 import Profile from '../Profile'
 import { ProfileListBySearch } from '../ProfileListBySearch'
 import Relay from '../Relay'
+import TagBrowseFeed from '../TagBrowseFeed'
 import TrendingNotes from '../TrendingNotes'
 
 export default function SearchResult({ searchParams }: { searchParams: TSearchParams | null }) {
@@ -27,13 +28,7 @@ export default function SearchResult({ searchParams }: { searchParams: TSearchPa
     )
   }
   if (searchParams.type === 'hashtag') {
-    return (
-      <NormalFeed
-        feedId={SPECIAL_FEED_ID.HASHTAG}
-        subRequests={[{ urls: getDefaultRelayUrls(), filter: { '#t': [searchParams.search] } }]}
-        showRelayCloseReason
-      />
-    )
+    return <TagBrowseFeed hashtag={searchParams.search} />
   }
   if (searchParams.type === 'nak') {
     return (

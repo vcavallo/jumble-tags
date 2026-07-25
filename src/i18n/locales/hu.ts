@@ -1197,6 +1197,18 @@ export default {
       'A címkék nem lettek alkalmazva, mert a jegyzet másik fiókkal lett közzétéve',
     'Decentralized tags for #': 'Decentralizált címkék a #-hez',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'A # beírása a decentralizált címkeválasztót nyitja meg sima hashtag helyett'
+      'A # beírása a decentralizált címkeválasztót nyitja meg sima hashtag helyett',
+    Tags: 'Címkék',
+    Hashtags: 'Hashtagek',
+    Blend: 'Vegyes',
+    'Show disputed': 'Vitatottak megjelenítése',
+    'Hide disputed': 'Vitatottak elrejtése',
+    'Disputed by the network': 'A hálózat vitatja',
+    'No decentralized tag "{{name}}" yet': 'Még nincs "{{name}}" decentralizált címke',
+    'You can bridge it from any note that uses this hashtag':
+      'Bármely, ezt a hashtaget használó jegyzetből létrehozhatod',
+    'Show hashtag posts': 'Hashtag-bejegyzések megjelenítése',
+    'View tag page': 'Címkeoldal megnyitása',
+    'Hashtag posts': 'Hashtag-bejegyzések'
   }
 }

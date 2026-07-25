@@ -53,7 +53,7 @@ import {
 } from '@/lib/tagging/sdk/event-tagging/index.js'
 import { buildProfileTagAssertion } from '@/lib/tagging/sdk/profile-tagging.js'
 import { Z_HANDLE_PUBKEYS } from '@/lib/tagging/config'
-import taggingService, { chipNetCount, isChipVisible } from './tagging.service'
+import taggingService, { chipNetCount, isChipVisible, isRowEndorsed } from './tagging.service'
 
 const TAG_AUTHOR = 'a'.repeat(64)
 const ALICE = 'b'.repeat(64)
@@ -194,7 +194,9 @@ describe('tagging service read pipeline', () => {
     const chip = taggingService.getTargetTags(`e:${noteId}`)!.chips[0]
     expect(chip.applications).toHaveLength(0)
     expect(chip.disputes.map((entry) => entry.pubkey)).toEqual([ALICE])
-    expect(isChipVisible(chip)).toBe(false)
+    // Disputed-to-nothing chips stay visible (struck) so everyone can SEE the
+    // dispute rather than wondering why the tag vanished.
+    expect(isChipVisible(chip)).toBe(true)
   })
 
   it('resolves legacy profile assertions (no a-tag) through the tag-element event id', async () => {
@@ -299,7 +301,11 @@ describe('tagging service read pipeline', () => {
 
     const data = await taggingService.fetchTagPageData(TAG_AUTHOR, 'pagetest')
     expect(data.element?.name).toBe('Pagetest')
-    expect(data.notes.map((row) => row.target.id)).toEqual([noteB, noteA])
+    // ALL rows come back (most recently applied first; dispute-only rows have
+    // no applied timestamp and sort last) — hiding disputed rows is the UI's
+    // default, via isRowEndorsed.
+    expect(data.notes.map((row) => row.target.id)).toEqual([noteB, noteA, noteC])
+    expect(data.notes.filter(isRowEndorsed).map((row) => row.target.id)).toEqual([noteB, noteA])
     expect(data.people).toHaveLength(0)
   })
 })

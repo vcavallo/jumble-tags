@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { toTag } from '@/lib/link'
 import { cn } from '@/lib/utils'
 import { useSecondaryPage } from '@/PageManager'
-import { chipNetCount, TTagChipData } from '@/services/tagging.service'
+import { chipNetCount, isChipDisputed, TTagChipData } from '@/services/tagging.service'
 import { ChevronRight, Hash, Tag as TagIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -54,10 +54,7 @@ export default function TagChip({
               <title>{t('Also hashtagged by the author')}</title>
             </Hash>
           )}
-          <span
-            dir="auto"
-            className={cn('truncate', net <= 0 && chip.mine === 'dispute' && 'line-through')}
-          >
+          <span dir="auto" className={cn('truncate', isChipDisputed(chip) && 'line-through')}>
             {name}
           </span>
           <span className="shrink-0 opacity-70">{net}</span>

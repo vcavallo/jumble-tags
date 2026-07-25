@@ -1149,6 +1149,18 @@ export default {
       '由於貼文以其他帳號發布，標籤未被套用',
     'Decentralized tags for #': '# 使用去中心化標籤',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      '輸入 # 時開啟去中心化標籤選擇器，而不是一般主題標籤'
+      '輸入 # 時開啟去中心化標籤選擇器，而不是一般主題標籤',
+    Tags: '標籤',
+    Hashtags: '主題標籤',
+    Blend: '混合',
+    'Show disputed': '顯示被爭議的',
+    'Hide disputed': '隱藏被爭議的',
+    'Disputed by the network': '被網路提出爭議',
+    'No decentralized tag "{{name}}" yet': '還沒有去中心化標籤「{{name}}」',
+    'You can bridge it from any note that uses this hashtag':
+      '你可以從任何使用該主題標籤的貼文進行橋接',
+    'Show hashtag posts': '顯示主題標籤貼文',
+    'View tag page': '檢視標籤頁面',
+    'Hashtag posts': '主題標籤貼文'
   }
 }

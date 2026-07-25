@@ -1177,6 +1177,18 @@ export default {
       'لم تُطبّق الوسوم لأن الملاحظة نُشرت بحساب آخر',
     'Decentralized tags for #': 'وسوم لامركزية عند كتابة #',
     'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
-      'كتابة # تفتح منتقي الوسوم اللامركزية بدلًا من وسم عادي'
+      'كتابة # تفتح منتقي الوسوم اللامركزية بدلًا من وسم عادي',
+    Tags: 'وسوم',
+    Hashtags: 'هاشتاغات',
+    Blend: 'مزيج',
+    'Show disputed': 'إظهار المعترَض عليها',
+    'Hide disputed': 'إخفاء المعترَض عليها',
+    'Disputed by the network': 'اعترضت عليه الشبكة',
+    'No decentralized tag "{{name}}" yet': 'لا يوجد وسم لامركزي "{{name}}" بعد',
+    'You can bridge it from any note that uses this hashtag':
+      'يمكنك إنشاؤه من أي ملاحظة تستخدم هذا الهاشتاغ',
+    'Show hashtag posts': 'إظهار منشورات الهاشتاغ',
+    'View tag page': 'عرض صفحة الوسم',
+    'Hashtag posts': 'منشورات الهاشتاغ'
   }
 }
