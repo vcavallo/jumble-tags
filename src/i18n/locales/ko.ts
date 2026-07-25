@@ -1164,6 +1164,21 @@ export default {
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       '부분 게시됨: 오류({{error}}) 전에 {{count}}개의 이벤트가 게시되었습니다. 불완전한 항목은 남지 않았으므로 안전하게 다시 시도할 수 있습니다.',
     'Cancelled — nothing was published ({{error}})':
-      '취소됨 — 아무것도 게시되지 않았습니다 ({{error}})'
+      '취소됨 — 아무것도 게시되지 않았습니다 ({{error}})',
+    'Add tags': '태그 추가',
+    "Author's hashtag": '작성자의 해시태그',
+    "Author's hashtag — not a decentralized tag yet":
+      '작성자의 해시태그 — 아직 분산형 태그가 아닙니다',
+    'Agree & apply as tag': '동의하고 태그로 적용',
+    'Browse hashtag': '해시태그 둘러보기',
+    'Also hashtagged by the author': '작성자가 해시태그로도 사용함',
+    'Note posted, but applying a tag failed: {{error}}':
+      '노트는 게시되었지만 태그 적용에 실패했습니다: {{error}}',
+    'Applied {{count}} tag(s) to your note': '노트에 태그 {{count}}개를 적용했습니다',
+    'Tags were not applied because the note was posted as a different account':
+      '다른 계정으로 게시되어 태그가 적용되지 않았습니다',
+    'Decentralized tags for #': '#에 분산형 태그 사용',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      '#를 입력하면 일반 해시태그 대신 분산형 태그 선택기가 열립니다'
   }
 }

@@ -2,7 +2,7 @@ import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Switch } from '@/components/ui/switch'
 import storage from '@/services/local-storage.service'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export default function PostOptions({
@@ -25,12 +25,18 @@ export default function PostOptions({
   setMinPow: Dispatch<SetStateAction<number>>
 }) {
   const { t } = useTranslation()
+  const [preferDtagOnHash, setPreferDtagOnHash] = useState(() => storage.getPreferDtagOnHash())
 
   if (!show) return null
 
   const onAddClientTagChange = (checked: boolean) => {
     setAddClientTag(checked)
     storage.setAddClientTag(checked)
+  }
+
+  const onPreferDtagOnHashChange = (checked: boolean) => {
+    setPreferDtagOnHash(checked)
+    storage.setPreferDtagOnHash(checked)
   }
 
   const onNsfwChange = (checked: boolean) => {
@@ -62,6 +68,21 @@ export default function PostOptions({
           onCheckedChange={onNsfwChange}
           disabled={posting}
         />
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <Label htmlFor="prefer-dtag-on-hash">{t('Decentralized tags for #')}</Label>
+          <Switch
+            id="prefer-dtag-on-hash"
+            checked={preferDtagOnHash}
+            onCheckedChange={onPreferDtagOnHashChange}
+            disabled={posting}
+          />
+        </div>
+        <div className="text-xs text-muted-foreground">
+          {t('Typing # opens the decentralized tag picker instead of writing a plain hashtag')}
+        </div>
       </div>
 
       <div className="grid gap-4 pb-4">

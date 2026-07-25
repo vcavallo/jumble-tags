@@ -1162,6 +1162,20 @@ export default {
     'publish failed': 'فشل النشر',
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'نُشر جزئيًا: نُشر {{count}} حدثًا قبل حدوث خطأ ({{error}}). لم يبقَ شيء معلّق — يمكنك إعادة المحاولة بأمان.',
-    'Cancelled — nothing was published ({{error}})': 'أُلغي — لم يُنشر أي شيء ({{error}})'
+    'Cancelled — nothing was published ({{error}})': 'أُلغي — لم يُنشر أي شيء ({{error}})',
+    'Add tags': 'إضافة وسوم',
+    "Author's hashtag": 'وسم المؤلف',
+    "Author's hashtag — not a decentralized tag yet": 'وسم المؤلف — ليس وسمًا لامركزيًا بعد',
+    'Agree & apply as tag': 'أوافق — تطبيقه كوسم',
+    'Browse hashtag': 'تصفح الوسم',
+    'Also hashtagged by the author': 'استخدمه المؤلف كوسم أيضًا',
+    'Note posted, but applying a tag failed: {{error}}':
+      'نُشرت الملاحظة، لكن تعذّر تطبيق وسم: {{error}}',
+    'Applied {{count}} tag(s) to your note': 'طُبّق {{count}} وسم/وسوم على ملاحظتك',
+    'Tags were not applied because the note was posted as a different account':
+      'لم تُطبّق الوسوم لأن الملاحظة نُشرت بحساب آخر',
+    'Decentralized tags for #': 'وسوم لامركزية عند كتابة #',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      'كتابة # تفتح منتقي الوسوم اللامركزية بدلًا من وسم عادي'
   }
 }

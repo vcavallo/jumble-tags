@@ -1,24 +1,61 @@
 import TagPickerDialog from '@/components/TagPickerDialog'
 import { useNoteTags, useProfileTags } from '@/hooks/useTargetTags'
+import { slug as slugify } from '@/lib/tagging/sdk/event-tagging/index.js'
 import { cn } from '@/lib/utils'
 import { useNostr } from '@/providers/NostrProvider'
 import { isChipVisible } from '@/services/tagging.service'
 import { Plus, Tag as TagIcon } from 'lucide-react'
 import { Event } from 'nostr-tools'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import LegacyHashtagChip from './LegacyHashtagChip'
 import TagChip from './TagChip'
 
-/** The compact decentralized-tag chip row for a note (feed card + thread view). */
+const MAX_LEGACY_HASHTAGS = 10
+
+/**
+ * The compact tag chip row for a note (feed card + thread view): counted
+ * decentralized-tag chips first, then the author's legacy `#hashtags` (dashed)
+ * as the bridge into decentralized tagging. A hashtag whose slug matches a
+ * visible decentralized chip is folded into that chip (shown with a `#` mark)
+ * instead of rendering twice.
+ */
 export function NoteTagChips({ event, className }: { event: Event; className?: string }) {
   const state = useNoteTags(event)
   const chips = state?.chips.filter(isChipVisible) ?? []
-  if (chips.length === 0) return null
+
+  const hashtags = useMemo(() => {
+    const seen = new Set<string>()
+    const out: string[] = []
+    for (const tag of event.tags) {
+      if (tag[0] !== 't' || !tag[1]?.trim()) continue
+      const hashtag = tag[1].trim()
+      const key = slugify(hashtag)
+      if (!key || seen.has(key)) continue
+      seen.add(key)
+      out.push(hashtag)
+    }
+    return out.slice(0, MAX_LEGACY_HASHTAGS)
+  }, [event])
+
+  const chipSlugs = new Set(chips.map((chip) => chip.tag.slug))
+  const legacyHashtags = hashtags.filter((hashtag) => !chipSlugs.has(slugify(hashtag)))
+  const hashtagSlugs = new Set(hashtags.map((hashtag) => slugify(hashtag)))
+
+  if (chips.length === 0 && legacyHashtags.length === 0) return null
 
   return (
     <div className={cn('flex flex-wrap items-center gap-1', className)}>
       {chips.map((chip) => (
-        <TagChip key={chip.coordinate} chip={chip} target={{ type: 'event', event }} />
+        <TagChip
+          key={chip.coordinate}
+          chip={chip}
+          target={{ type: 'event', event }}
+          hashtagged={hashtagSlugs.has(chip.tag.slug)}
+        />
+      ))}
+      {legacyHashtags.map((hashtag) => (
+        <LegacyHashtagChip key={hashtag} hashtag={hashtag} event={event} />
       ))}
     </div>
   )

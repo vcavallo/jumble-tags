@@ -1181,6 +1181,21 @@ export default {
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'Részben közzétéve: {{count}} esemény jelent meg a hiba ({{error}}) előtt. Semmi sem maradt függőben — nyugodtan újrapróbálhatod.',
     'Cancelled — nothing was published ({{error}})':
-      'Megszakítva — semmi sem lett közzétéve ({{error}})'
+      'Megszakítva — semmi sem lett közzétéve ({{error}})',
+    'Add tags': 'Címkék hozzáadása',
+    "Author's hashtag": 'A szerző hashtagje',
+    "Author's hashtag — not a decentralized tag yet":
+      'A szerző hashtagje — még nem decentralizált címke',
+    'Agree & apply as tag': 'Egyetértek — alkalmazás címkeként',
+    'Browse hashtag': 'Hashtag böngészése',
+    'Also hashtagged by the author': 'A szerző hashtagként is használta',
+    'Note posted, but applying a tag failed: {{error}}':
+      'A jegyzet közzétéve, de egy címke alkalmazása nem sikerült: {{error}}',
+    'Applied {{count}} tag(s) to your note': '{{count}} címke alkalmazva a jegyzetedre',
+    'Tags were not applied because the note was posted as a different account':
+      'A címkék nem lettek alkalmazva, mert a jegyzet másik fiókkal lett közzétéve',
+    'Decentralized tags for #': 'Decentralizált címkék a #-hez',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      'A # beírása a decentralizált címkeválasztót nyitja meg sima hashtag helyett'
   }
 }

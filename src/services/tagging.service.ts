@@ -810,6 +810,39 @@ class TaggingService {
     }
   }
 
+  /**
+   * Resolve a legacy `#hashtag` to the decentralized tag to apply when the
+   * viewer "agrees" with it: the matching existing tag-element when one exists
+   * (preferring applicability-listed mints, then the oldest mint), else a
+   * create-input named after the hashtag.
+   */
+  async resolveTagInputForHashtag(hashtag: string): Promise<{
+    input:
+      | { name: string; description?: string }
+      | { authorPubkey: string; slug: string; eventId?: string }
+    existing: boolean
+  }> {
+    const slug = slugify(hashtag)
+    const [elements, applicability] = await Promise.all([
+      this.getAllTagElements(),
+      this.getApplicability()
+    ])
+    const matches = elements.filter((element) => element.slug === slug)
+    if (matches.length === 0) {
+      return { input: { name: titleizeSlug(slug) }, existing: false }
+    }
+    const applicable = matches.filter(
+      (element) =>
+        applicability.event.has(element.coordinate) || applicability.pubkey.has(element.coordinate)
+    )
+    const pool = applicable.length > 0 ? applicable : matches
+    const chosen = pool.slice().sort((a, b) => a.createdAt - b.createdAt)[0]
+    return {
+      input: { authorPubkey: chosen.authorPubkey, slug: chosen.slug, eventId: chosen.eventId },
+      existing: true
+    }
+  }
+
   /** =========== write paths =========== */
 
   private get orchestratorDeps() {

@@ -37,6 +37,9 @@ export type TPostTextareaHandle = {
   getJSON: () => unknown
 }
 
+/** ProseMirror leaf placeholder used when reading text around the caret. */
+const LEAF_CHAR = '￼'
+
 const PostTextarea = forwardRef<
   TPostTextareaHandle,
   {
@@ -44,6 +47,12 @@ const PostTextarea = forwardRef<
     setText: Dispatch<SetStateAction<string>>
     initialContent?: Content
     onSubmit?: () => void
+    /**
+     * Called when `#` is typed at a word boundary. Return true to swallow the
+     * keystroke (e.g. the decentralized tag picker opens instead); return
+     * false to let the `#` be typed as a plain legacy hashtag.
+     */
+    onHashKey?: () => boolean
     className?: string
     onUploadStart?: (file: File, cancel: () => void) => void
     onUploadProgress?: (file: File, progress: number) => void
@@ -62,6 +71,7 @@ const PostTextarea = forwardRef<
       setText,
       initialContent,
       onSubmit,
+      onHashKey,
       className,
       onUploadStart,
       onUploadProgress,
@@ -137,12 +147,25 @@ const PostTextarea = forwardRef<
         attributes: {
           class: cn('px-5 py-2 text-base focus-visible:outline-hidden sm:px-6', className)
         },
-        handleKeyDown: (_view, event) => {
+        handleKeyDown: (view, event) => {
           // Handle Ctrl+Enter or Cmd+Enter for submit
           if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
             event.preventDefault()
             onSubmit?.()
             return true
+          }
+          // `#` at a word boundary can open the decentralized tag picker
+          // instead of starting a plain hashtag (see onHashKey).
+          if (event.key === '#' && onHashKey && !event.ctrlKey && !event.metaKey && !event.altKey) {
+            const { empty, $from } = view.state.selection
+            if (empty) {
+              const before = $from.parent.textBetween(0, $from.parentOffset, undefined, LEAF_CHAR)
+              const atWordBoundary = !before || /\s$/.test(before)
+              if (atWordBoundary && onHashKey()) {
+                event.preventDefault()
+                return true
+              }
+            }
           }
           return false
         },

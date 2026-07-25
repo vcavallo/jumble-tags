@@ -36,6 +36,12 @@ export type TSendInput = {
   parentEvent?: NostrEvent
   parentEventCoordinate?: string
   highlightedText?: string
+  /**
+   * Called once the signed event has been accepted by relays (initial send, or
+   * a later retry in the same session). Held in memory only — functions cannot
+   * be persisted with the pending record — so it does not survive a reload.
+   */
+  onPublished?: (event: NostrEvent) => void
 }
 
 class PostDraftService extends EventTarget {
@@ -43,6 +49,7 @@ class PostDraftService extends EventTarget {
 
   private map = new Map<string, TPostDraft>()
   private inflight = new Set<string>()
+  private onPublishedCallbacks = new Map<string, (event: NostrEvent) => void>()
   private initialized = false
   private initPromise: Promise<void> | null = null
 
@@ -182,8 +189,12 @@ class PostDraftService extends EventTarget {
       publishOptions,
       parentEvent,
       parentEventCoordinate,
-      highlightedText
+      highlightedText,
+      onPublished
     } = input
+    if (onPublished) {
+      this.onPublishedCallbacks.set(id, onPublished)
+    }
 
     // Resolve the concrete relay set first (needs the user's relay context but
     // not a signature), so once signing succeeds we go straight to pending.
@@ -266,6 +277,15 @@ class PostDraftService extends EventTarget {
       // Optimistically surface the published note in any open thread, matching
       // the pre-drafts-box behavior where post() inserted the reply directly.
       threadService.addRepliesToThread([pending.signedEvent])
+      const onPublished = this.onPublishedCallbacks.get(pending.id)
+      if (onPublished) {
+        this.onPublishedCallbacks.delete(pending.id)
+        try {
+          onPublished(pending.signedEvent)
+        } catch {
+          // Post-publish hooks (e.g. composer taggings) surface their own errors.
+        }
+      }
     } catch (err) {
       // One relay reason per line so the failed draft can list them readably.
       await this.markFailed(pending, formatError(err).join('\n'))

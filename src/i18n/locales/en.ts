@@ -1168,6 +1168,22 @@ export default {
     'publish failed': 'publish failed',
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.',
-    'Cancelled — nothing was published ({{error}})': 'Cancelled — nothing was published ({{error}})'
+    'Cancelled — nothing was published ({{error}})':
+      'Cancelled — nothing was published ({{error}})',
+    'Add tags': 'Add tags',
+    "Author's hashtag": "Author's hashtag",
+    "Author's hashtag — not a decentralized tag yet":
+      "Author's hashtag — not a decentralized tag yet",
+    'Agree & apply as tag': 'Agree & apply as tag',
+    'Browse hashtag': 'Browse hashtag',
+    'Also hashtagged by the author': 'Also hashtagged by the author',
+    'Note posted, but applying a tag failed: {{error}}':
+      'Note posted, but applying a tag failed: {{error}}',
+    'Applied {{count}} tag(s) to your note': 'Applied {{count}} tag(s) to your note',
+    'Tags were not applied because the note was posted as a different account':
+      'Tags were not applied because the note was posted as a different account',
+    'Decentralized tags for #': 'Decentralized tags for #',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      'Typing # opens the decentralized tag picker instead of writing a plain hashtag'
   }
 }

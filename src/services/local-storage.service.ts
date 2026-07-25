@@ -79,6 +79,7 @@ class LocalStorageService {
   private defaultRelayUrls: string[] = BIG_RELAY_URLS
   private searchRelayUrls: string[] = SEARCHABLE_RELAY_URLS
   private tagRelayUrls: string[] | null = null // null = use the tagging config default
+  private preferDtagOnHash: boolean = true
   private searchHistory: string[] = []
   private mutedWords: string[] = []
   private minTrustScore: number = 0
@@ -504,6 +505,9 @@ class LocalStorageService {
         // Invalid JSON, use default
       }
     }
+
+    this.preferDtagOnHash =
+      window.localStorage.getItem(StorageKey.PREFER_DTAG_ON_HASH) !== 'false'
 
     const searchHistoryStr = window.localStorage.getItem(StorageKey.SEARCH_HISTORY)
     if (searchHistoryStr) {
@@ -1263,6 +1267,15 @@ class LocalStorageService {
     }
     this.tagRelayUrls = urls
     window.localStorage.setItem(StorageKey.TAG_RELAY_URLS, JSON.stringify(urls))
+  }
+
+  getPreferDtagOnHash() {
+    return this.preferDtagOnHash
+  }
+
+  setPreferDtagOnHash(prefer: boolean) {
+    this.preferDtagOnHash = prefer
+    window.localStorage.setItem(StorageKey.PREFER_DTAG_ON_HASH, prefer ? 'true' : 'false')
   }
 
   getSearchHistory() {

@@ -1194,6 +1194,21 @@ export default {
     'publish failed': 'échec de la publication',
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       "Publication partielle : {{count}} événement(s) publiés avant une erreur ({{error}}). Rien d'incomplet n'a été laissé — vous pouvez réessayer sans risque.",
-    'Cancelled — nothing was published ({{error}})': "Annulé — rien n'a été publié ({{error}})"
+    'Cancelled — nothing was published ({{error}})': "Annulé — rien n'a été publié ({{error}})",
+    'Add tags': 'Ajouter des tags',
+    "Author's hashtag": "Hashtag de l'auteur",
+    "Author's hashtag — not a decentralized tag yet":
+      "Hashtag de l'auteur — pas encore un tag décentralisé",
+    'Agree & apply as tag': "D'accord — appliquer comme tag",
+    'Browse hashtag': 'Parcourir le hashtag',
+    'Also hashtagged by the author': "Aussi utilisé comme hashtag par l'auteur",
+    'Note posted, but applying a tag failed: {{error}}':
+      "Note publiée, mais l'application d'un tag a échoué : {{error}}",
+    'Applied {{count}} tag(s) to your note': '{{count}} tag(s) appliqués à votre note',
+    'Tags were not applied because the note was posted as a different account':
+      "Les tags n'ont pas été appliqués car la note a été publiée avec un autre compte",
+    'Decentralized tags for #': 'Tags décentralisés pour #',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      "Taper # ouvre le sélecteur de tags décentralisés au lieu d'écrire un simple hashtag"
   }
 }

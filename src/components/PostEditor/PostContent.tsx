@@ -29,8 +29,10 @@ import mediaUpload from '@/services/media-upload.service'
 import postDraftService from '@/services/post-draft.service'
 import { TAccount, TPollCreateData, TPostTargetItem } from '@/types'
 import { TPostDraftUnsigned } from '@/types/post-draft'
+import taggingService from '@/services/tagging.service'
+import { slug as slugify } from '@/lib/tagging/sdk/event-tagging/index.js'
 import { Content } from '@tiptap/react'
-import { CircleHelp, ImageUp, ListTodo, Lock, Settings, Smile, X } from 'lucide-react'
+import { CircleHelp, ImageUp, ListTodo, Lock, Settings, Smile, Tag, X } from 'lucide-react'
 import { Event, kinds } from 'nostr-tools'
 import {
   forwardRef,
@@ -44,6 +46,8 @@ import {
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import ExpressionPickerDialog from '../ExpressionPickerDialog'
+import TagPickerDialog from '../TagPickerDialog'
+import { TTagStanceInput } from '../TagChips/useTagStance'
 import Mentions from './Mentions'
 import ParentEventPreview from './ParentEventPreview'
 import PollEditor from './PollEditor'
@@ -157,6 +161,62 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
       relays: []
     }
   )
+
+  // Decentralized tags chosen while composing; applied after the note lands on
+  // relays (session-only — they are not persisted with drafts).
+  const [tagPickerOpen, setTagPickerOpen] = useState(false)
+  const [pendingTags, setPendingTags] = useState<
+    { input: TTagStanceInput; displayName: string; key: string }[]
+  >([])
+
+  const addPendingTag = (input: TTagStanceInput, displayName: string) => {
+    const key =
+      'authorPubkey' in input ? `${input.authorPubkey}:${input.slug}` : `new:${slugify(input.name)}`
+    setPendingTags((prev) => (prev.some((tag) => tag.key === key) ? prev : [...prev, { input, displayName, key }]))
+  }
+
+  const removePendingTag = (key: string) => {
+    setPendingTags((prev) => prev.filter((tag) => tag.key !== key))
+  }
+
+  const handleHashKey = () => {
+    if (!storage.getPreferDtagOnHash()) return false
+    setTagPickerOpen(true)
+    return true
+  }
+
+  // Apply the composer's chosen tags to the just-published note. Runs after the
+  // editor has closed — toasts carry the outcome.
+  const applyComposerTags = async (published: Event, tags: TTagStanceInput[]) => {
+    let applied = 0
+    for (const tagInput of tags) {
+      try {
+        const result = await taggingService.applyTagToEvent({
+          tagInput,
+          event: published,
+          polarity: 1
+        })
+        if (result.failedAt) {
+          toast.warning(
+            t('Note posted, but applying a tag failed: {{error}}', {
+              error: result.failedAt.error ?? t('publish failed')
+            })
+          )
+        } else {
+          applied++
+        }
+      } catch (error) {
+        toast.error(
+          t('Note posted, but applying a tag failed: {{error}}', {
+            error: error instanceof Error ? error.message : String(error)
+          })
+        )
+      }
+    }
+    if (applied > 0) {
+      toast.success(t('Applied {{count}} tag(s) to your note', { count: applied }))
+    }
+  }
   const [minPow, setMinPow] = useState(initialDraft?.minPow ?? 0)
   const userDismissedProtected = useRef(false)
   const handleProtectedSuggestionChange = useCallback((suggested: boolean) => {
@@ -381,6 +441,15 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
           skipAuthorRelayLookup: resolvedAccount.skipAuthorRelayLookup
         }
 
+        // Composer-chosen decentralized tags: applied (as the ACTIVE account)
+        // once the note lands. Skipped when posting as another/anonymous
+        // account — tagging with the active key would publicly link the two.
+        const tagsToApply = pendingTags.map((tag) => tag.input)
+        const canApplyTags = tagsToApply.length > 0 && targetPubkey === pubkey
+        if (tagsToApply.length > 0 && !canApplyTags) {
+          toast.info(t('Tags were not applied because the note was posted as a different account'))
+        }
+
         // Hand off to the outbox: it surfaces the "Sending..." toast right away,
         // then resolves relays → signs → moves the draft into the immutable
         // pending queue → publishes, all in the background.
@@ -396,7 +465,12 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
           parentEvent,
           parentEventCoordinate:
             typeof initialParentStuff === 'string' ? initialParentStuff : undefined,
-          highlightedText
+          highlightedText,
+          onPublished: canApplyTags
+            ? (published) => {
+                void applyComposerTags(published, tagsToApply)
+              }
+            : undefined
         })
         close()
       } catch (error) {
@@ -455,6 +529,7 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
         setText={setText}
         initialContent={initialContent}
         onSubmit={() => post()}
+        onHashKey={handleHashKey}
         className={isPoll ? 'min-h-20' : 'min-h-52'}
         onUploadStart={handleUploadStart}
         onUploadProgress={handleUploadProgress}
@@ -487,6 +562,30 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
           </div>
         }
       />
+
+      {pendingTags.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1 px-5 pb-2 sm:px-6">
+          {pendingTags.map((tag) => (
+            <div
+              key={tag.key}
+              className="text-primary bg-primary/10 border-primary/60 flex max-w-full items-center gap-1 rounded-full border px-2 py-0.5 text-xs"
+            >
+              <Tag className="size-3 shrink-0" />
+              <span className="truncate" dir="auto">
+                {tag.displayName}
+              </span>
+              <button
+                type="button"
+                className="hover:text-foreground shrink-0"
+                title={t('Remove')}
+                onClick={() => removePendingTag(tag.key)}
+              >
+                <X className="size-3" />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
 
       {isPoll && (
         <div className="px-5 pb-3 sm:px-6">
@@ -625,6 +724,15 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
           <Button
             variant="ghost"
             size="icon"
+            title={t('Add tags')}
+            className={pendingTags.length > 0 ? 'bg-muted text-foreground' : ''}
+            onClick={() => setTagPickerOpen(true)}
+          >
+            <Tag />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
             title={t('Post settings')}
             className={showMoreOptions ? 'bg-muted text-foreground' : ''}
             onClick={() => setShowMoreOptions((pre) => !pre)}
@@ -683,6 +791,13 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
           </div>
         </>
       )}
+
+      <TagPickerDialog
+        open={tagPickerOpen}
+        onOpenChange={setTagPickerOpen}
+        selectContext="event"
+        onSelect={addPendingTag}
+      />
     </div>
   )
 })

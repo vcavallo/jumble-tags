@@ -1177,6 +1177,21 @@ export default {
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'आंशिक रूप से प्रकाशित: त्रुटि ({{error}}) से पहले {{count}} इवेंट प्रकाशित हुए। कुछ भी अधूरा नहीं छूटा — आप सुरक्षित रूप से पुनः प्रयास कर सकते हैं।',
     'Cancelled — nothing was published ({{error}})':
-      'रद्द किया गया — कुछ भी प्रकाशित नहीं हुआ ({{error}})'
+      'रद्द किया गया — कुछ भी प्रकाशित नहीं हुआ ({{error}})',
+    'Add tags': 'टैग जोड़ें',
+    "Author's hashtag": 'लेखक का हैशटैग',
+    "Author's hashtag — not a decentralized tag yet":
+      'लेखक का हैशटैग — अभी विकेंद्रीकृत टैग नहीं है',
+    'Agree & apply as tag': 'सहमत हों और टैग के रूप में लागू करें',
+    'Browse hashtag': 'हैशटैग ब्राउज़ करें',
+    'Also hashtagged by the author': 'लेखक ने इसे हैशटैग के रूप में भी उपयोग किया',
+    'Note posted, but applying a tag failed: {{error}}':
+      'नोट प्रकाशित हुआ, लेकिन एक टैग लागू नहीं हो सका: {{error}}',
+    'Applied {{count}} tag(s) to your note': 'आपके नोट पर {{count}} टैग लागू किए गए',
+    'Tags were not applied because the note was posted as a different account':
+      'टैग लागू नहीं हुए क्योंकि नोट दूसरे खाते से प्रकाशित हुआ था',
+    'Decentralized tags for #': '# के लिए विकेंद्रीकृत टैग',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      '# टाइप करने पर सादे हैशटैग की जगह विकेंद्रीकृत टैग चुनने वाला खुलता है'
   }
 }

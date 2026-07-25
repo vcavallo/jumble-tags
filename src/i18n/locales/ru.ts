@@ -1183,6 +1183,22 @@ export default {
     'publish failed': 'не удалось опубликовать',
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'Опубликовано частично: {{count}} событие(й) успело опубликоваться до ошибки ({{error}}). Ничего незавершённого не осталось — можно безопасно повторить.',
-    'Cancelled — nothing was published ({{error}})': 'Отменено — ничего не опубликовано ({{error}})'
+    'Cancelled — nothing was published ({{error}})':
+      'Отменено — ничего не опубликовано ({{error}})',
+    'Add tags': 'Добавить теги',
+    "Author's hashtag": 'Хэштег автора',
+    "Author's hashtag — not a decentralized tag yet":
+      'Хэштег автора — ещё не децентрализованный тег',
+    'Agree & apply as tag': 'Согласиться и применить как тег',
+    'Browse hashtag': 'Смотреть хэштег',
+    'Also hashtagged by the author': 'Автор также использовал как хэштег',
+    'Note posted, but applying a tag failed: {{error}}':
+      'Заметка опубликована, но тег не удалось применить: {{error}}',
+    'Applied {{count}} tag(s) to your note': 'К заметке применено тегов: {{count}}',
+    'Tags were not applied because the note was posted as a different account':
+      'Теги не применены, потому что заметка опубликована от другого аккаунта',
+    'Decentralized tags for #': 'Децентрализованные теги для #',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      'Ввод # открывает выбор децентрализованных тегов вместо обычного хэштега'
   }
 }

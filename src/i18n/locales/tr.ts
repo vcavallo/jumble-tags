@@ -1181,6 +1181,21 @@ export default {
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'Kısmen yayınlandı: bir hatadan ({{error}}) önce {{count}} etkinlik yayınlandı. Yarım kalan bir şey yok — güvenle yeniden deneyebilirsiniz.',
     'Cancelled — nothing was published ({{error}})':
-      'İptal edildi — hiçbir şey yayınlanmadı ({{error}})'
+      'İptal edildi — hiçbir şey yayınlanmadı ({{error}})',
+    'Add tags': 'Etiket ekle',
+    "Author's hashtag": 'Yazarın hashtag’i',
+    "Author's hashtag — not a decentralized tag yet":
+      'Yazarın hashtag’i — henüz merkeziyetsiz bir etiket değil',
+    'Agree & apply as tag': 'Katıl ve etiket olarak uygula',
+    'Browse hashtag': 'Hashtag’e göz at',
+    'Also hashtagged by the author': 'Yazar tarafından hashtag olarak da kullanıldı',
+    'Note posted, but applying a tag failed: {{error}}':
+      'Not yayınlandı ancak bir etiket uygulanamadı: {{error}}',
+    'Applied {{count}} tag(s) to your note': 'Notunuza {{count}} etiket uygulandı',
+    'Tags were not applied because the note was posted as a different account':
+      'Not farklı bir hesapla yayınlandığı için etiketler uygulanmadı',
+    'Decentralized tags for #': '# için merkeziyetsiz etiketler',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      '# yazınca düz hashtag yerine merkeziyetsiz etiket seçici açılır'
   }
 }

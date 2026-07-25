@@ -1135,6 +1135,19 @@ export default {
     'publish failed': '發布失敗',
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       '部分發布：在錯誤（{{error}}）發生前已發布 {{count}} 個事件。沒有留下未完成的內容——可以放心重試。',
-    'Cancelled — nothing was published ({{error}})': '已取消——未發布任何內容（{{error}}）'
+    'Cancelled — nothing was published ({{error}})': '已取消——未發布任何內容（{{error}}）',
+    'Add tags': '新增標籤',
+    "Author's hashtag": '作者的主題標籤',
+    "Author's hashtag — not a decentralized tag yet": '作者的主題標籤——還不是去中心化標籤',
+    'Agree & apply as tag': '同意並套用為標籤',
+    'Browse hashtag': '瀏覽主題標籤',
+    'Also hashtagged by the author': '作者也將其用作主題標籤',
+    'Note posted, but applying a tag failed: {{error}}': '貼文已發布，但標籤套用失敗：{{error}}',
+    'Applied {{count}} tag(s) to your note': '已為你的貼文套用 {{count}} 個標籤',
+    'Tags were not applied because the note was posted as a different account':
+      '由於貼文以其他帳號發布，標籤未被套用',
+    'Decentralized tags for #': '# 使用去中心化標籤',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      '輸入 # 時開啟去中心化標籤選擇器，而不是一般主題標籤'
   }
 }

@@ -1177,6 +1177,20 @@ export default {
     'publish failed': 'انتشار ناموفق بود',
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'انتشار ناقص: {{count}} رویداد پیش از خطا ({{error}}) منتشر شد. چیزی ناتمام باقی نمانده — می‌توانید با خیال راحت دوباره تلاش کنید.',
-    'Cancelled — nothing was published ({{error}})': 'لغو شد — چیزی منتشر نشد ({{error}})'
+    'Cancelled — nothing was published ({{error}})': 'لغو شد — چیزی منتشر نشد ({{error}})',
+    'Add tags': 'افزودن برچسب‌ها',
+    "Author's hashtag": 'هشتگ نویسنده',
+    "Author's hashtag — not a decentralized tag yet": 'هشتگ نویسنده — هنوز برچسب غیرمتمرکز نیست',
+    'Agree & apply as tag': 'موافقم — به‌عنوان برچسب اعمال کن',
+    'Browse hashtag': 'مرور هشتگ',
+    'Also hashtagged by the author': 'نویسنده آن را به‌عنوان هشتگ هم استفاده کرده است',
+    'Note posted, but applying a tag failed: {{error}}':
+      'یادداشت منتشر شد، اما اعمال یک برچسب ناموفق بود: {{error}}',
+    'Applied {{count}} tag(s) to your note': '{{count}} برچسب روی یادداشت شما اعمال شد',
+    'Tags were not applied because the note was posted as a different account':
+      'برچسب‌ها اعمال نشدند چون یادداشت با حساب دیگری منتشر شد',
+    'Decentralized tags for #': 'برچسب‌های غیرمتمرکز برای #',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      'تایپ # به‌جای هشتگ ساده، انتخاب‌گر برچسب غیرمتمرکز را باز می‌کند'
   }
 }

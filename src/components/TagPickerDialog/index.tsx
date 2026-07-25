@@ -10,7 +10,7 @@ import taggingService, { TTagApplicability, TTagElement } from '@/services/taggi
 import { Check, ChevronDown, ChevronUp, Loader2, Plus, Tag as TagIcon } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TTagStanceTarget, useTagStance } from '../TagChips/useTagStance'
+import { TTagStanceInput, TTagStanceTarget, useTagStance } from '../TagChips/useTagStance'
 
 /**
  * The tag picker (F2/F4): search existing tags, apply one to the target note
@@ -18,15 +18,25 @@ import { TTagStanceTarget, useTagStance } from '../TagChips/useTagStance'
  * "Content tags" and "Profile tags" via the house applicability lists (with
  * the SDK's hint-scan fallback) — the target-relevant section leads, the other
  * stays reachable because applicability is a hint, not a gate.
+ *
+ * Two modes:
+ *  - apply (pass `target`): picking a tag publishes the stance immediately.
+ *  - select (pass `onSelect` + `selectContext`): picking a tag hands it back to
+ *    the caller without publishing — used by the composer, which applies the
+ *    chosen tags after the note lands on relays.
  */
 export default function TagPickerDialog({
   open,
   onOpenChange,
-  target
+  target,
+  selectContext,
+  onSelect
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
-  target: TTagStanceTarget
+  target?: TTagStanceTarget
+  selectContext?: 'event' | 'pubkey'
+  onSelect?: (tagInput: TTagStanceInput, displayName: string) => void
 }) {
   const { t } = useTranslation()
   const { applyStance, busy } = useTagStance()
@@ -38,16 +48,16 @@ export default function TagPickerDialog({
   const [newTagName, setNewTagName] = useState('')
   const [newTagDescription, setNewTagDescription] = useState('')
 
-  const noteState = useNoteTags(target.type === 'event' ? target.event : undefined)
-  const profileState = useProfileTags(target.type === 'pubkey' ? target.pubkey : undefined)
+  const noteState = useNoteTags(target?.type === 'event' ? target.event : undefined)
+  const profileState = useProfileTags(target?.type === 'pubkey' ? target.pubkey : undefined)
   const myStances = useMemo(() => {
-    const state = target.type === 'event' ? noteState : profileState
+    const state = target?.type === 'event' ? noteState : target ? profileState : undefined
     const map = new Map<string, 'apply' | 'dispute'>()
     state?.chips.forEach((chip) => {
       if (chip.mine) map.set(chip.coordinate, chip.mine)
     })
     return map
-  }, [target.type, noteState, profileState])
+  }, [target, noteState, profileState])
 
   useEffect(() => {
     if (!open) {
@@ -69,7 +79,11 @@ export default function TagPickerDialog({
     }
   }, [open])
 
-  const leadingContext = target.type === 'event' ? 'event' : 'pubkey'
+  const leadingContext = target
+    ? target.type === 'event'
+      ? 'event'
+      : 'pubkey'
+    : (selectContext ?? 'event')
   const { leading, other, exactMatch } = useMemo(() => {
     const q = query.trim().toLowerCase()
     const qSlug = q ? slugify(q) : ''
@@ -97,18 +111,31 @@ export default function TagPickerDialog({
   }, [elements, applicability, query, leadingContext])
 
   const applyExisting = (element: TTagElement) => {
-    applyStance(
-      target,
-      { authorPubkey: element.authorPubkey, slug: element.slug, eventId: element.eventId },
-      1,
-      () => onOpenChange(false)
-    )
+    const tagInput = {
+      authorPubkey: element.authorPubkey,
+      slug: element.slug,
+      eventId: element.eventId
+    }
+    if (onSelect) {
+      onSelect(tagInput, element.name)
+      onOpenChange(false)
+      return
+    }
+    if (!target) return
+    applyStance(target, tagInput, 1, () => onOpenChange(false))
   }
 
   const createAndApply = () => {
     const name = newTagName.trim()
     if (!name) return
-    applyStance(target, { name, description: newTagDescription.trim() }, 1, () => {
+    const tagInput = { name, description: newTagDescription.trim() }
+    if (onSelect) {
+      onSelect(tagInput, name)
+      onOpenChange(false)
+      return
+    }
+    if (!target) return
+    applyStance(target, tagInput, 1, () => {
       onOpenChange(false)
     })
   }
@@ -148,7 +175,11 @@ export default function TagPickerDialog({
           rows inflate the auto track past the dialog width. */}
       <div className="min-w-0 space-y-3">
         <DialogTitle className="text-lg font-semibold">
-          {target.type === 'event' ? t('Tag this note') : t('Tag this profile')}
+          {onSelect
+            ? t('Add tags')
+            : target?.type === 'pubkey'
+              ? t('Tag this profile')
+              : t('Tag this note')}
         </DialogTitle>
         {creating ? (
           <div className="space-y-3">
@@ -176,7 +207,7 @@ export default function TagPickerDialog({
               </Button>
               <Button disabled={busy || !newTagName.trim()} onClick={createAndApply}>
                 {busy && <Loader2 className="animate-spin" />}
-                {t('Create & apply')}
+                {onSelect ? t('Add tag') : t('Create & apply')}
               </Button>
             </div>
           </div>

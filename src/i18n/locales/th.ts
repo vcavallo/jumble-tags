@@ -1160,6 +1160,21 @@ export default {
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       'เผยแพร่บางส่วน: มี {{count}} เหตุการณ์ถูกเผยแพร่ก่อนเกิดข้อผิดพลาด ({{error}}) ไม่มีสิ่งใดค้างอยู่ — ลองใหม่ได้อย่างปลอดภัย',
     'Cancelled — nothing was published ({{error}})':
-      'ยกเลิกแล้ว — ไม่มีสิ่งใดถูกเผยแพร่ ({{error}})'
+      'ยกเลิกแล้ว — ไม่มีสิ่งใดถูกเผยแพร่ ({{error}})',
+    'Add tags': 'เพิ่มแท็ก',
+    "Author's hashtag": 'แฮชแท็กของผู้เขียน',
+    "Author's hashtag — not a decentralized tag yet":
+      'แฮชแท็กของผู้เขียน — ยังไม่ใช่แท็กแบบกระจายศูนย์',
+    'Agree & apply as tag': 'เห็นด้วยและใช้เป็นแท็ก',
+    'Browse hashtag': 'ดูแฮชแท็ก',
+    'Also hashtagged by the author': 'ผู้เขียนใช้เป็นแฮชแท็กด้วย',
+    'Note posted, but applying a tag failed: {{error}}':
+      'โพสต์โน้ตแล้ว แต่ใช้แท็กไม่สำเร็จ: {{error}}',
+    'Applied {{count}} tag(s) to your note': 'ใช้แท็ก {{count}} รายการกับโน้ตของคุณแล้ว',
+    'Tags were not applied because the note was posted as a different account':
+      'ไม่ได้ใช้แท็กเพราะโน้ตถูกโพสต์ด้วยบัญชีอื่น',
+    'Decentralized tags for #': 'แท็กแบบกระจายศูนย์สำหรับ #',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      'การพิมพ์ # จะเปิดตัวเลือกแท็กแบบกระจายศูนย์แทนแฮชแท็กธรรมดา'
   }
 }

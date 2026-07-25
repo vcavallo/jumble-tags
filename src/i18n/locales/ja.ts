@@ -1178,6 +1178,21 @@ export default {
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       '一部のみ公開: エラー（{{error}}）の前に{{count}}件のイベントが公開されました。不完全なものは残っていません — 安全に再試行できます。',
     'Cancelled — nothing was published ({{error}})':
-      'キャンセルしました — 何も公開されていません（{{error}}）'
+      'キャンセルしました — 何も公開されていません（{{error}}）',
+    'Add tags': 'タグを追加',
+    "Author's hashtag": '作者のハッシュタグ',
+    "Author's hashtag — not a decentralized tag yet":
+      '作者のハッシュタグ — まだ分散型タグではありません',
+    'Agree & apply as tag': '同意してタグとして適用',
+    'Browse hashtag': 'ハッシュタグを見る',
+    'Also hashtagged by the author': '作者もハッシュタグとして使用',
+    'Note posted, but applying a tag failed: {{error}}':
+      'ノートは公開されましたが、タグの適用に失敗しました: {{error}}',
+    'Applied {{count}} tag(s) to your note': 'ノートに{{count}}件のタグを適用しました',
+    'Tags were not applied because the note was posted as a different account':
+      '別のアカウントで公開されたため、タグは適用されませんでした',
+    'Decentralized tags for #': '# で分散型タグ',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      '# を入力すると通常のハッシュタグの代わりに分散型タグピッカーが開きます'
   }
 }

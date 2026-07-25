@@ -1134,6 +1134,19 @@ export default {
     'publish failed': '发布失败',
     'Partially published: {{count}} event(s) landed before a failure ({{error}}). Nothing dangling was left — you can retry safely.':
       '部分发布：在出错（{{error}}）前已发布 {{count}} 个事件。没有留下未完成的内容——可以放心重试。',
-    'Cancelled — nothing was published ({{error}})': '已取消——未发布任何内容（{{error}}）'
+    'Cancelled — nothing was published ({{error}})': '已取消——未发布任何内容（{{error}}）',
+    'Add tags': '添加标签',
+    "Author's hashtag": '作者的话题标签',
+    "Author's hashtag — not a decentralized tag yet": '作者的话题标签——还不是去中心化标签',
+    'Agree & apply as tag': '同意并应用为标签',
+    'Browse hashtag': '浏览话题',
+    'Also hashtagged by the author': '作者也将其用作话题标签',
+    'Note posted, but applying a tag failed: {{error}}': '笔记已发布，但标签应用失败：{{error}}',
+    'Applied {{count}} tag(s) to your note': '已为你的笔记应用 {{count}} 个标签',
+    'Tags were not applied because the note was posted as a different account':
+      '由于笔记以其他账号发布，标签未被应用',
+    'Decentralized tags for #': '# 使用去中心化标签',
+    'Typing # opens the decentralized tag picker instead of writing a plain hashtag':
+      '输入 # 时打开去中心化标签选择器，而不是普通话题标签'
   }
 }

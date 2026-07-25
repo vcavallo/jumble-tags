@@ -5,7 +5,7 @@ import { toTag } from '@/lib/link'
 import { cn } from '@/lib/utils'
 import { useSecondaryPage } from '@/PageManager'
 import { chipNetCount, TTagChipData } from '@/services/tagging.service'
-import { ChevronRight, Tag as TagIcon } from 'lucide-react'
+import { ChevronRight, Hash, Tag as TagIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TTagStanceTarget, useTagStance } from './useTagStance'
@@ -13,15 +13,19 @@ import { TTagStanceTarget, useTagStance } from './useTagStance'
 /**
  * One tag chip. Click opens the stance popover: counts, who applied, a link to
  * the tag page and the viewer's Apply / Dispute actions (latest-wins replace).
+ * `hashtagged` marks a decentralized tag the note's author ALSO used as a
+ * legacy #hashtag.
  */
 export default function TagChip({
   chip,
   target,
-  className
+  className,
+  hashtagged = false
 }: {
   chip: TTagChipData
   target: TTagStanceTarget
   className?: string
+  hashtagged?: boolean
 }) {
   const { t } = useTranslation()
   const { push } = useSecondaryPage()
@@ -45,6 +49,11 @@ export default function TagChip({
           title={chip.description || name}
         >
           <TagIcon className="size-3 shrink-0" />
+          {hashtagged && (
+            <Hash className="-ms-0.5 size-3 shrink-0 opacity-70">
+              <title>{t('Also hashtagged by the author')}</title>
+            </Hash>
+          )}
           <span
             dir="auto"
             className={cn('truncate', net <= 0 && chip.mine === 'dispute' && 'line-through')}
