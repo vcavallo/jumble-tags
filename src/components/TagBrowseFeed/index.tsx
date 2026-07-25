@@ -1,21 +1,20 @@
 import NormalFeed from '@/components/NormalFeed'
-import NoteList from '@/components/NoteList'
-import TagBrowseContent, { TaggedNoteList } from '@/components/TagBrowseContent'
+import NoteCard, { NoteCardLoadingSkeleton } from '@/components/NoteCard'
+import TagBrowseContent, { addressToNaddr } from '@/components/TagBrowseContent'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { SPECIAL_FEED_ID } from '@/constants'
 import { toTag } from '@/lib/link'
 import { getDefaultRelayUrls } from '@/lib/relay'
 import { SecondaryPageLink } from '@/PageManager'
+import { useKindFilter } from '@/providers/KindFilterProvider'
+import { useMuteList } from '@/providers/MuteListProvider'
 import { useNostr } from '@/providers/NostrProvider'
-import taggingService, {
-  isRowEndorsed,
-  rowNet,
-  TTagPageData
-} from '@/services/tagging.service'
+import client from '@/services/client.service'
+import taggingService, { isRowEndorsed, rowNet } from '@/services/tagging.service'
 import { ChevronRight, Hash, Loader2, Tag as TagIcon } from 'lucide-react'
 import { Event } from 'nostr-tools'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 type TBrowseMode = 'dtags' | 'hashtags' | 'blend'
@@ -119,7 +118,6 @@ export default function TagBrowseFeed({ hashtag, kinds }: { hashtag: string; kin
         <BlendFeed
           authorPubkey={resolved.authorPubkey}
           slug={resolved.slug}
-          hashtagFeed={hashtagFeed}
           hashtag={hashtag}
           kinds={kinds}
         />
@@ -148,60 +146,104 @@ function TagFeedHeader({ authorPubkey, slug }: { authorPubkey: string; slug: str
   )
 }
 
+const BLEND_PAGE_SIZE = 10
+const BLEND_HASHTAG_FETCH_LIMIT = 100
+
 /**
- * Blend: the decentralized tag's endorsed notes first, then the legacy
- * hashtag feed with dispute-filtered results (net-negative taggings drop the
- * note) and duplicates removed.
+ * Blend: ONE time-ordered feed that unions the legacy hashtag posts with the
+ * decentralized tag's net-applied posts, deduped — and drops every note whose
+ * decentralized tagging nets negative. So a hashtag-only post shows until the
+ * POV population disputes its tagging away; a net-applied post shows with or
+ * without the hashtag.
  */
 function BlendFeed({
   authorPubkey,
   slug,
   hashtag,
-  kinds,
-  hashtagFeed
+  kinds
 }: {
   authorPubkey: string
   slug: string
   hashtag: string
   kinds?: number[]
-  hashtagFeed: React.ReactNode
 }) {
   const { t } = useTranslation()
   const { pubkey: viewerPubkey } = useNostr()
-  const [data, setData] = useState<TTagPageData | null>(null)
+  const { getShowKinds } = useKindFilter()
+  const { mutePubkeySet } = useMuteList()
+  const [events, setEvents] = useState<Event[] | null>(null)
+  const [showCount, setShowCount] = useState(BLEND_PAGE_SIZE)
+  const bottomRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     let cancelled = false
-    setData(null)
-    taggingService
-      .fetchTagPageData(authorPubkey, slug, viewerPubkey)
-      .then((result) => {
-        if (!cancelled) setData(result)
-      })
-      .catch(() => {
-        if (!cancelled) setData({ element: null, notes: [], people: [] })
-      })
+    setEvents(null)
+    setShowCount(BLEND_PAGE_SIZE)
+    const load = async () => {
+      const showKinds =
+        kinds && kinds.length > 0 ? kinds : getShowKinds(SPECIAL_FEED_ID.HASHTAG)
+      const [tagData, hashtagEvents] = await Promise.all([
+        taggingService
+          .fetchTagPageData(authorPubkey, slug, viewerPubkey)
+          .catch(() => ({ element: null, notes: [], people: [] })),
+        client
+          .fetchEvents(getDefaultRelayUrls(), {
+            '#t': [hashtag],
+            kinds: showKinds,
+            limit: BLEND_HASHTAG_FETCH_LIMIT
+          })
+          .catch(() => [] as Event[])
+      ])
+
+      // Net-disputed taggings hide the note — hashtagged or not.
+      const excludedIds = new Set<string>()
+      for (const row of tagData.notes) {
+        if (rowNet(row) < 0 && row.target.id) excludedIds.add(row.target.id)
+      }
+      // Net-applied taggings bring the note in even without the hashtag.
+      const endorsedRows = tagData.notes.filter(isRowEndorsed)
+      const dtagEvents = (
+        await Promise.all(
+          endorsedRows.map((row) => {
+            const id = row.target.id ?? (row.target.address ? addressToNaddr(row.target.address) : null)
+            if (!id) return Promise.resolve(undefined)
+            return client.fetchEvent(id).catch(() => undefined)
+          })
+        )
+      ).filter((event): event is Event => !!event)
+
+      const byId = new Map<string, Event>()
+      for (const event of [...dtagEvents, ...hashtagEvents]) {
+        if (excludedIds.has(event.id) || mutePubkeySet.has(event.pubkey)) continue
+        if (!byId.has(event.id)) byId.set(event.id, event)
+      }
+      const merged = Array.from(byId.values()).sort((a, b) => b.created_at - a.created_at)
+      if (!cancelled) setEvents(merged)
+    }
+    load()
     return () => {
       cancelled = true
     }
-  }, [authorPubkey, slug, viewerPubkey])
+     
+  }, [authorPubkey, slug, hashtag, viewerPubkey])
 
-  const { endorsedRows, excludedIds } = useMemo(() => {
-    const rows = data?.notes ?? []
-    const endorsedRows = rows.filter(isRowEndorsed)
-    // Drop from the hashtag feed: notes already shown above, and notes the POV
-    // population disputed below zero.
-    const excludedIds = new Set<string>()
-    for (const row of endorsedRows) {
-      if (row.target.id) excludedIds.add(row.target.id)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && events && showCount < events.length) {
+          setShowCount((prev) => prev + BLEND_PAGE_SIZE)
+        }
+      },
+      { rootMargin: '10px', threshold: 0.1 }
+    )
+    const el = bottomRef.current
+    if (el) observer.observe(el)
+    return () => {
+      if (el) observer.unobserve(el)
     }
-    for (const row of rows) {
-      if (rowNet(row) < 0 && row.target.id) excludedIds.add(row.target.id)
-    }
-    return { endorsedRows, excludedIds }
-  }, [data])
+  }, [showCount, events])
 
-  if (data === null) {
+  if (events === null) {
     return (
       <div className="text-muted-foreground flex items-center justify-center gap-2 py-10 text-sm">
         <Loader2 className="size-4 animate-spin" />
@@ -210,30 +252,22 @@ function BlendFeed({
     )
   }
 
+  if (events.length === 0) {
+    return <div className="text-muted-foreground mt-4 text-center text-sm">{t('No notes found')}</div>
+  }
+
   return (
     <>
-      {endorsedRows.length > 0 && (
-        <>
-          <TagFeedHeader authorPubkey={authorPubkey} slug={slug} />
-          <TaggedNoteList rows={endorsedRows} />
-          <div className="text-muted-foreground flex items-center gap-1 px-4 pt-4 pb-2 text-xs">
-            <Hash className="size-3" />
-            {t('Hashtag posts')}
-          </div>
-        </>
-      )}
-      {excludedIds.size > 0 ? (
-        <NoteList
-          subRequests={[
-            {
-              urls: getDefaultRelayUrls(),
-              filter: { '#t': [hashtag], ...(kinds && kinds.length > 0 ? { kinds } : {}) }
-            }
-          ]}
-          filterFn={(event: Event) => !excludedIds.has(event.id)}
-        />
+      <TagFeedHeader authorPubkey={authorPubkey} slug={slug} />
+      {events.slice(0, showCount).map((event) => (
+        <NoteCard key={event.id} event={event} className="w-full" />
+      ))}
+      {showCount < events.length ? (
+        <div ref={bottomRef}>
+          <NoteCardLoadingSkeleton />
+        </div>
       ) : (
-        hashtagFeed
+        <div className="text-muted-foreground mt-2 text-center text-sm">{t('no more notes')}</div>
       )}
     </>
   )
