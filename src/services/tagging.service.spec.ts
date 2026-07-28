@@ -74,7 +74,7 @@ function asEvent(partial: { kind: number; tags: string[][]; content: string }, p
   } as Event
 }
 
-function flush(ms = 150) {
+function flush(ms = 450) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
