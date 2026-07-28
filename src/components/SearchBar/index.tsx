@@ -160,7 +160,13 @@ const SearchBar = forwardRef<
       // ignore
     }
 
-    const hashtag = search.match(/[\p{L}\p{N}\p{M}]+/u)?.[0].toLowerCase() ?? ''
+    // Keep spaces so multi-word decentralized tags ("live music") stay
+    // searchable — the tag browse slugifies the phrase to resolve the tag.
+    const hashtag =
+      search
+        .match(/[\p{L}\p{N}\p{M}][\p{L}\p{N}\p{M} ]*/u)?.[0]
+        .trim()
+        .toLowerCase() ?? ''
 
     setSelectableOptions([
       { type: 'notes', search },
