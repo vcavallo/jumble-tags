@@ -1,3 +1,4 @@
+import { BoundedMap } from '@/lib/bounded-map'
 import { getReplaceableCoordinateFromEvent, isReplaceableEvent } from '@/lib/event'
 import { Z_HANDLE_PUBKEYS } from '@/lib/tagging/config'
 import { publishTagEvent } from '@/lib/tagging/publish'
@@ -36,7 +37,10 @@ import { Event, Filter } from 'nostr-tools'
 
 const TAGGING_KIND = 39999
 const DESCRIPTOR_COORD_RE = /^39999:[0-9a-f]{64}:tagging:.+-tagging$/
-const BATCH_DELAY_MS = 50
+// Coalesce scroll-mounted notes into fewer, larger relay queries. Profiled at
+// 50ms a deep feed scroll produced many 1-item batches (each fanned out per
+// relay); 200ms trades imperceptible chip latency for ~4x larger batches.
+const BATCH_DELAY_MS = 200
 const FILTER_LIST_CAP = 100
 const HEADER_RETRY_MS = 60_000
 const CATALOG_TTL_MS = 5 * 60_000
@@ -192,7 +196,7 @@ class TaggingService {
   static instance: TaggingService
 
   /** Per-target tag state, keyed 'e:<id>' | 'a:<coord>' | 'p:<pubkey>'. */
-  private targetTagsMap = new Map<string, TTargetTagsState>()
+  private targetTagsMap = new BoundedMap<string, TTargetTagsState>({ maxSize: 2_000 })
   private subscribers = new Map<string, Set<() => void>>()
   private pendingNoteKeys = new Set<string>()
   private pendingProfileKeys = new Set<string>()
@@ -202,12 +206,12 @@ class TaggingService {
   private lastViewer: string | undefined
 
   /** Resolved per-tag tagging headers, by coordinate 39999:<author>:tagging:<slug>-tagging. */
-  private headerCache = new Map<string, Event>()
-  private headerLastTried = new Map<string, number>()
+  private headerCache = new BoundedMap<string, Event>({ maxSize: 2_000 })
+  private headerLastTried = new BoundedMap<string, number>({ maxSize: 2_000 })
 
   /** Tag-elements by coordinate 39999:<author>:<slug>. */
-  private tagElementByCoord = new Map<string, TTagElement>()
-  private tagElementLastTried = new Map<string, number>()
+  private tagElementByCoord = new BoundedMap<string, TTagElement>({ maxSize: 5_000 })
+  private tagElementLastTried = new BoundedMap<string, number>({ maxSize: 5_000 })
   /**
    * Tag-element EVENT ids → coordinate (and the reverse). Needed for the
    * deployed profile-tagging variant (protocol/tags.md §"Deployed variant"):
@@ -215,9 +219,9 @@ class TaggingService {
    * event id), so readers must resolve identity through these ids and union
    * `#a` lookups with legacy `#e` lookups until the corpus is backfilled.
    */
-  private elementIdToCoord = new Map<string, string>()
-  private coordToElementIds = new Map<string, Set<string>>()
-  private legacyElementIdLastTried = new Map<string, number>()
+  private elementIdToCoord = new BoundedMap<string, string>({ maxSize: 5_000 })
+  private coordToElementIds = new BoundedMap<string, Set<string>>({ maxSize: 5_000 })
+  private legacyElementIdLastTried = new BoundedMap<string, number>({ maxSize: 2_000 })
 
   /** The nostr-user-tag member, extended with the legacy e-reference fallback. */
   private legacyAwareMembers: TTaggingMember[] = (() => {
