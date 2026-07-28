@@ -35,6 +35,7 @@ export type TPostTextareaHandle = {
   insertText: (text: string) => void
   insertEmoji: (emoji: string | TEmoji) => void
   getJSON: () => unknown
+  focus: () => void
 }
 
 /** ProseMirror leaf placeholder used when reading text around the caret. */
@@ -247,7 +248,10 @@ const PostTextarea = forwardRef<
           }
         }
       },
-      getJSON: () => editor?.getJSON() ?? null
+      getJSON: () => editor?.getJSON() ?? null,
+      focus: () => {
+        editor?.commands.focus()
+      }
     }))
 
     if (!editor) {

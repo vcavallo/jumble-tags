@@ -794,7 +794,14 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
 
       <TagPickerDialog
         open={tagPickerOpen}
-        onOpenChange={setTagPickerOpen}
+        onOpenChange={(next) => {
+          setTagPickerOpen(next)
+          if (!next) {
+            // Hand the caret back to the editor so typing continues seamlessly
+            // after picking (or dismissing) a tag mid-sentence.
+            setTimeout(() => textareaRef.current?.focus(), 0)
+          }
+        }}
         selectContext="event"
         onSelect={addPendingTag}
       />

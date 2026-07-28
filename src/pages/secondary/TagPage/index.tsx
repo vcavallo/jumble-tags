@@ -28,7 +28,11 @@ const TagPage = forwardRef(
           return { pubkey: decoded.pubkey, slug: decoded.identifier }
         }
         if (!slug) return null
-        return { pubkey: userIdToPubkey(author), slug: decodeURIComponent(slug) }
+        // userIdToPubkey returns its input on decode failure — reject anything
+        // that is not a real pubkey so a bad URL 404s instead of half-rendering.
+        const pubkey = userIdToPubkey(author)
+        if (!/^[0-9a-f]{64}$/.test(pubkey)) return null
+        return { pubkey, slug: decodeURIComponent(slug) }
       } catch {
         return null
       }
