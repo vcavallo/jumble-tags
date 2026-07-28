@@ -29,7 +29,6 @@ import mediaUpload from '@/services/media-upload.service'
 import postDraftService from '@/services/post-draft.service'
 import { TAccount, TPollCreateData, TPostTargetItem } from '@/types'
 import { TPostDraftUnsigned } from '@/types/post-draft'
-import taggingService from '@/services/tagging.service'
 import { slug as slugify } from '@/lib/tagging/sdk/event-tagging/index.js'
 import { Content } from '@tiptap/react'
 import { CircleHelp, ImageUp, ListTodo, Lock, Settings, Smile, Tag, X } from 'lucide-react'
@@ -162,12 +161,12 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
     }
   )
 
-  // Decentralized tags chosen while composing; applied after the note lands on
-  // relays (session-only — they are not persisted with drafts).
+  // Decentralized tags chosen while composing; persisted with drafts and
+  // applied by the outbox once the note lands on relays.
   const [tagPickerOpen, setTagPickerOpen] = useState(false)
   const [pendingTags, setPendingTags] = useState<
     { input: TTagStanceInput; displayName: string; key: string }[]
-  >([])
+  >(initialDraft?.pendingTags ?? [])
 
   const addPendingTag = (input: TTagStanceInput, displayName: string) => {
     const key =
@@ -185,38 +184,6 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
     return true
   }
 
-  // Apply the composer's chosen tags to the just-published note. Runs after the
-  // editor has closed — toasts carry the outcome.
-  const applyComposerTags = async (published: Event, tags: TTagStanceInput[]) => {
-    let applied = 0
-    for (const tagInput of tags) {
-      try {
-        const result = await taggingService.applyTagToEvent({
-          tagInput,
-          event: published,
-          polarity: 1
-        })
-        if (result.failedAt) {
-          toast.warning(
-            t('Note posted, but applying a tag failed: {{error}}', {
-              error: result.failedAt.error ?? t('publish failed')
-            })
-          )
-        } else {
-          applied++
-        }
-      } catch (error) {
-        toast.error(
-          t('Note posted, but applying a tag failed: {{error}}', {
-            error: error instanceof Error ? error.message : String(error)
-          })
-        )
-      }
-    }
-    if (applied > 0) {
-      toast.success(t('Applied {{count}} tag(s) to your note', { count: applied }))
-    }
-  }
   const [minPow, setMinPow] = useState(initialDraft?.minPow ?? 0)
   const userDismissedProtected = useRef(false)
   const handleProtectedSuggestionChange = useCallback((suggested: boolean) => {
@@ -281,9 +248,11 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
       highlightedText,
       openFrom,
       imetaTags: collectImetaTagsForUrls(text),
-      customEmojis: collectCustomEmojisInText(text)
+      customEmojis: collectCustomEmojisInText(text),
+      pendingTags: pendingTags.length > 0 ? pendingTags : undefined
     }
   }, [
+    pendingTags,
     pubkey,
     text,
     mentions,
@@ -466,11 +435,7 @@ const PostContent = forwardRef<TPostContentHandle, Props>(function PostContent(
           parentEventCoordinate:
             typeof initialParentStuff === 'string' ? initialParentStuff : undefined,
           highlightedText,
-          onPublished: canApplyTags
-            ? (published) => {
-                void applyComposerTags(published, tagsToApply)
-              }
-            : undefined
+          pendingTagInputs: canApplyTags ? tagsToApply : undefined
         })
         close()
       } catch (error) {

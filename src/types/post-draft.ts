@@ -10,6 +10,13 @@ export type TPostDraftBase = {
   updatedAt: number
 }
 
+/** A decentralized-tag reference chosen in the composer (serializable). */
+export type TPendingTagInput =
+  | { name: string; description?: string }
+  | { authorPubkey: string; slug: string; eventId?: string }
+
+export type TPendingPostTag = { input: TPendingTagInput; displayName: string; key: string }
+
 export type TPostDraftUnsigned = TPostDraftBase & {
   status: 'draft'
   tiptapJson: unknown
@@ -32,10 +39,14 @@ export type TPostDraftUnsigned = TPostDraftBase & {
   openFrom?: string[]
   imetaTags: Record<string, string[]>
   customEmojis: Record<string, TEmoji>
+  /** Composer-chosen decentralized tags, restored with the draft. */
+  pendingTags?: TPendingPostTag[]
 }
 
 export type TPostDraftSigned = TPostDraftBase & {
   status: 'pending' | 'failed'
+  /** Decentralized tags to apply once the note lands (survives reload/resume). */
+  pendingTagInputs?: TPendingTagInput[]
   signedEvent: Event
   targetRelays: string[]
   parentEvent?: Event
