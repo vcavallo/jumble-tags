@@ -2,10 +2,14 @@ import { deleteDraftEventCache } from '@/lib/draft-event'
 import { formatError } from '@/lib/error'
 import { minePow } from '@/lib/event'
 import client from '@/services/client.service'
+import taggingService from '@/services/tagging.service'
+import i18n from '@/i18n'
+import { toast } from 'sonner'
 import indexedDb from '@/services/indexed-db.service'
 import threadService from '@/services/thread.service'
 import { ISigner, TDraftEvent, TPublishOptions } from '@/types'
 import {
+  TPendingTagInput,
   TPostDraft,
   TPostDraftSigned,
   TPostDraftStatus,
@@ -37,11 +41,11 @@ export type TSendInput = {
   parentEventCoordinate?: string
   highlightedText?: string
   /**
-   * Called once the signed event has been accepted by relays (initial send, or
-   * a later retry in the same session). Held in memory only — functions cannot
-   * be persisted with the pending record — so it does not survive a reload.
+   * Decentralized tags to apply (as the active account) once the note lands on
+   * relays. Serializable data, persisted with the pending record — it survives
+   * reload/resume, unlike a callback.
    */
-  onPublished?: (event: NostrEvent) => void
+  pendingTagInputs?: TPendingTagInput[]
 }
 
 class PostDraftService extends EventTarget {
@@ -49,7 +53,6 @@ class PostDraftService extends EventTarget {
 
   private map = new Map<string, TPostDraft>()
   private inflight = new Set<string>()
-  private onPublishedCallbacks = new Map<string, (event: NostrEvent) => void>()
   private initialized = false
   private initPromise: Promise<void> | null = null
 
@@ -190,11 +193,8 @@ class PostDraftService extends EventTarget {
       parentEvent,
       parentEventCoordinate,
       highlightedText,
-      onPublished
+      pendingTagInputs
     } = input
-    if (onPublished) {
-      this.onPublishedCallbacks.set(id, onPublished)
-    }
 
     // Resolve the concrete relay set first (needs the user's relay context but
     // not a signature), so once signing succeeds we go straight to pending.
@@ -221,7 +221,8 @@ class PostDraftService extends EventTarget {
       targetRelays,
       parentEvent,
       parentEventCoordinate,
-      highlightedText
+      highlightedText,
+      pendingTagInputs: pendingTagInputs?.length ? pendingTagInputs : undefined
     })
     await this.publishPending(pending)
   }
@@ -277,14 +278,8 @@ class PostDraftService extends EventTarget {
       // Optimistically surface the published note in any open thread, matching
       // the pre-drafts-box behavior where post() inserted the reply directly.
       threadService.addRepliesToThread([pending.signedEvent])
-      const onPublished = this.onPublishedCallbacks.get(pending.id)
-      if (onPublished) {
-        this.onPublishedCallbacks.delete(pending.id)
-        try {
-          onPublished(pending.signedEvent)
-        } catch {
-          // Post-publish hooks (e.g. composer taggings) surface their own errors.
-        }
+      if (pending.pendingTagInputs?.length) {
+        void this.applyPendingTags(pending.signedEvent, pending.pendingTagInputs)
       }
     } catch (err) {
       // One relay reason per line so the failed draft can list them readably.
@@ -292,6 +287,50 @@ class PostDraftService extends EventTarget {
       throw err
     } finally {
       this.inflight.delete(pending.id)
+    }
+  }
+
+  /**
+   * Apply the composer's chosen decentralized tags to the just-published note.
+   * Runs after the editor is long gone (possibly after an app reload) — toasts
+   * carry the outcome. Skipped when the active account no longer matches the
+   * note author, so an anonymous/other-account note is never publicly linked
+   * to the active key by a tagging.
+   */
+  private async applyPendingTags(published: NostrEvent, inputs: TPendingTagInput[]): Promise<void> {
+    if (client.pubkey !== published.pubkey) {
+      toast.info(
+        i18n.t('Tags were not applied because the note was posted as a different account')
+      )
+      return
+    }
+    let applied = 0
+    for (const tagInput of inputs) {
+      try {
+        const result = await taggingService.applyTagToEvent({
+          tagInput,
+          event: published,
+          polarity: 1
+        })
+        if (result.failedAt) {
+          toast.warning(
+            i18n.t('Note posted, but applying a tag failed: {{error}}', {
+              error: result.failedAt.error ?? i18n.t('publish failed')
+            })
+          )
+        } else {
+          applied++
+        }
+      } catch (error) {
+        toast.error(
+          i18n.t('Note posted, but applying a tag failed: {{error}}', {
+            error: error instanceof Error ? error.message : String(error)
+          })
+        )
+      }
+    }
+    if (applied > 0) {
+      toast.success(i18n.t('Applied {{count}} tag(s) to your note', { count: applied }))
     }
   }
 
