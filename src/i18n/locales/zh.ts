@@ -1172,6 +1172,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': '还没有人给你打标签 — 标签是他人针对你的资料发布的声明。',
     'Your tags': '你的标签',
     'Active this week': '本周活跃',
-    '{{count}} taggings · {{people}} people': '{{count}} 次打标 · {{people}} 人'
+    '{{count}} taggings · {{people}} people': '{{count}} 次打标 · {{people}} 人',
+    'Show all ({{count}})': '显示全部 ({{count}})',
+    'Show less': '收起'
   }
 }

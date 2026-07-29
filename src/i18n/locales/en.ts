@@ -1208,6 +1208,8 @@ export default {
     'Your tags': 'Your tags',
     'Active this week': 'Active this week',
     '{{count}} taggings · {{people}} people': '{{count}} taggings · {{people}} people',
+    'Show all ({{count}})': 'Show all ({{count}})',
+    'Show less': 'Show less',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.':
       'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.',
     'No one has tagged you yet — tags are claims others publish about your profile.':

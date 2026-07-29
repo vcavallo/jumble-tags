@@ -1201,6 +1201,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'لم يضع أحد وسمًا عليك بعد — الوسوم ادعاءات ينشرها الآخرون عن ملفك الشخصي.',
     'Your tags': 'وسومك',
     'Active this week': 'نشط هذا الأسبوع',
-    '{{count}} taggings · {{people}} people': '{{count}} وسم بواسطة {{people}} شخصًا'
+    '{{count}} taggings · {{people}} people': '{{count}} وسم بواسطة {{people}} شخصًا',
+    'Show all ({{count}})': 'عرض الكل ({{count}})',
+    'Show less': 'عرض أقل'
   }
 }

@@ -230,10 +230,16 @@ const coordParts = (coordinate: string) => {
   return { author, slug: rest.join(':') }
 }
 
-/** The stances the viewer has published, one row per tag, latest first. */
+const YOUR_TAGS_COLLAPSED_COUNT = 5
+
+/**
+ * The stances the viewer has published, one row per tag, latest first —
+ * collapsed to a handful of rows so the browse area stays reachable.
+ */
 function YourTags({ pubkey }: { pubkey: string }) {
   const { t } = useTranslation()
   const [rows, setRows] = useState<TMyTagStanceRow[] | null>(null)
+  const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -248,10 +254,12 @@ function YourTags({ pubkey }: { pubkey: string }) {
 
   if (!rows || rows.length === 0) return null
 
+  const shownRows = expanded ? rows : rows.slice(0, YOUR_TAGS_COLLAPSED_COUNT)
+
   return (
     <div className="border-b pb-2">
       <SectionHeading>{t('Your tags')}</SectionHeading>
-      {rows.map((row) => {
+      {shownRows.map((row) => {
         const { author, slug } = coordParts(row.coordinate)
         return (
           <SecondaryPageLink
@@ -282,6 +290,15 @@ function YourTags({ pubkey }: { pubkey: string }) {
           </SecondaryPageLink>
         )
       })}
+      {rows.length > YOUR_TAGS_COLLAPSED_COUNT && (
+        <button
+          type="button"
+          className="text-primary cursor-pointer px-4 py-1.5 text-sm hover:underline"
+          onClick={() => setExpanded((prev) => !prev)}
+        >
+          {expanded ? t('Show less') : t('Show all ({{count}})', { count: rows.length })}
+        </button>
+      )}
     </div>
   )
 }

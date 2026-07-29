@@ -1200,6 +1200,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'ยังไม่มีใครแท็กคุณ — แท็กคือคำกล่าวอ้างที่ผู้อื่นเผยแพร่เกี่ยวกับโปรไฟล์ของคุณ',
     'Your tags': 'แท็กของคุณ',
     'Active this week': 'มีความเคลื่อนไหวสัปดาห์นี้',
-    '{{count}} taggings · {{people}} people': '{{count}} การแท็ก · {{people}} คน'
+    '{{count}} taggings · {{people}} people': '{{count}} การแท็ก · {{people}} คน',
+    'Show all ({{count}})': 'แสดงทั้งหมด ({{count}})',
+    'Show less': 'แสดงน้อยลง'
   }
 }

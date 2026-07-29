@@ -1221,6 +1221,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'Még senki sem címkézett fel — a címkék mások által a profilodról közzétett állítások.',
     'Your tags': 'Címkéid',
     'Active this week': 'A héten aktív',
-    '{{count}} taggings · {{people}} people': '{{count}} címkézés · {{people}} ember'
+    '{{count}} taggings · {{people}} people': '{{count}} címkézés · {{people}} ember',
+    'Show all ({{count}})': 'Összes mutatása ({{count}})',
+    'Show less': 'Kevesebb mutatása'
   }
 }

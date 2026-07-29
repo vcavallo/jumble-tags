@@ -1173,6 +1173,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': '還沒有人給你加標籤 — 標籤是他人針對你的個人檔案發布的聲明。',
     'Your tags': '你的標籤',
     'Active this week': '本週活躍',
-    '{{count}} taggings · {{people}} people': '{{count}} 次標記 · {{people}} 人'
+    '{{count}} taggings · {{people}} people': '{{count}} 次標記 · {{people}} 人',
+    'Show all ({{count}})': '顯示全部 ({{count}})',
+    'Show less': '收合'
   }
 }

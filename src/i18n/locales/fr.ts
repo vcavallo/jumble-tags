@@ -1234,6 +1234,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'Personne ne vous a encore tagué — les tags sont des affirmations que les autres publient sur votre profil.',
     'Your tags': 'Vos tags',
     'Active this week': 'Actifs cette semaine',
-    '{{count}} taggings · {{people}} people': '{{count}} taggings · {{people}} personnes'
+    '{{count}} taggings · {{people}} people': '{{count}} taggings · {{people}} personnes',
+    'Show all ({{count}})': 'Tout afficher ({{count}})',
+    'Show less': 'Afficher moins'
   }
 }

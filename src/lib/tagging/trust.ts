@@ -28,6 +28,32 @@ export const ensure = (pubkeys: string[]) => source.ensure(pubkeys)
 export const predicate = (pubkey: string) => source.predicate(pubkey)
 
 /**
+ * The SCORED-ONLY variant: same corpus, same minRank/maxHops, but a pubkey
+ * with no published 30382 score does NOT pass (SDK semantics: any
+ * `unknownPolicy` other than `'trusted'` rejects unknowns at predicate time).
+ * Used for catalog VISIBILITY (browse/search/picker listings) where the
+ * default unknown-counts policy would wave through throwaway mint keys;
+ * tagging COUNTS keep the default predicate above. Degrades with `mode:
+ * 'everyone'` exactly like the default source.
+ */
+const strictSource =
+  TRUST_SETTINGS.mode === 'everyone'
+    ? {
+        ensure: async () => {},
+        predicate: () => true
+      }
+    : createHouseTrustSource({
+        fetchEvents: fetchTrustEvents,
+        assertionAuthorPubkeys: NIP85_AUTHOR_PUBKEYS,
+        minRank: TRUST_SETTINGS.minRank,
+        maxHops: TRUST_SETTINGS.maxHops,
+        unknownPolicy: 'everyone'
+      })
+
+export const ensureScored = (pubkeys: string[]) => strictSource.ensure(pubkeys)
+export const scoredPredicate = (pubkey: string) => strictSource.predicate(pubkey)
+
+/**
  * The house-published tag-applicability lists (which tags are for events vs
  * pubkeys), cached after the first successful fetch. Empty sets when the lists
  * are unpublished or unreachable — callers fall back to the SDK's client-side

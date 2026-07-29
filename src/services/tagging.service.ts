@@ -1210,15 +1210,21 @@ class TaggingService {
   /** =========== Tags page: trust filter, personal stances, activity =========== */
 
   /**
-   * Keep only tag-elements whose AUTHOR passes the house trust predicate — the
-   * same POV (and the same known limitations, e.g. unscored pubkeys counting
-   * under `unknownPolicy: trusted`) that already filters tagging asserters.
-   * For catalog/browse surfaces only: resolution and dedup flows must keep the
-   * full catalog, or an untrusted-author tag could be re-minted as a duplicate.
+   * Keep only tag-elements whose AUTHOR has a published score that passes the
+   * house POV (scored-only: the default unknown-counts policy would wave
+   * through every throwaway mint key — probed 2026-07-29: 6/1007 catalog
+   * authors scored, all junk authors unscored). The viewer's own tags are
+   * always kept — their stuff never silently vanishes. For catalog/browse
+   * surfaces only: resolution and dedup flows must keep the full catalog, or
+   * an untrusted-author tag could be re-minted as a duplicate. Tagging COUNTS
+   * keep the default predicate — strict there would zero nearly every count.
    */
   async filterElementsByAuthorTrust(elements: TTagElement[]): Promise<TTagElement[]> {
-    await trust.ensure(elements.map((element) => element.authorPubkey))
-    return elements.filter((element) => trust.predicate(element.authorPubkey))
+    const viewer = client.pubkey
+    await trust.ensureScored(elements.map((element) => element.authorPubkey))
+    return elements.filter(
+      (element) => element.authorPubkey === viewer || trust.scoredPredicate(element.authorPubkey)
+    )
   }
 
   /** Every concept-z value a tagging assertion can carry (all members × namespaces). */
@@ -1290,12 +1296,9 @@ class TaggingService {
   }
 
   /**
-   * Tags with recent tagging activity, POV-counted: asserters are filtered by
-   * the house trust predicate, tag authors by the same predicate, and (when
-   * the house applicability lists are reachable) rows are limited to tags the
-   * house lists know — the only present signal that separates real tags from
-   * throwaway QA mints, whose ephemeral keys are unscored and therefore pass
-   * the predicate under `unknownPolicy: trusted`.
+   * Tags with recent tagging activity, POV-counted: asserter counts use the
+   * default house predicate; the tags themselves are limited to scored
+   * authors (same visibility rule as the catalog, viewer exempt).
    */
   async fetchRecentTagActivity(sinceDays = 7, maxRows = 8): Promise<TTagActivityRow[]> {
     const candidates = latestByCoord(
@@ -1329,14 +1332,12 @@ class TaggingService {
       row.latestAt = Math.max(row.latestAt, tagging.createdAt)
     }
     let rows = Array.from(byCoord.values())
-    await trust.ensure(rows.map((row) => row.coordinate.split(':')[1]))
-    rows = rows.filter((row) => trust.predicate(row.coordinate.split(':')[1]))
-    const applicability = await this.getApplicability()
-    if (applicability.event.size > 0 || applicability.pubkey.size > 0) {
-      rows = rows.filter(
-        (row) => applicability.event.has(row.coordinate) || applicability.pubkey.has(row.coordinate)
-      )
-    }
+    const viewer = client.pubkey
+    await trust.ensureScored(rows.map((row) => row.coordinate.split(':')[1]))
+    rows = rows.filter((row) => {
+      const author = row.coordinate.split(':')[1]
+      return author === viewer || trust.scoredPredicate(author)
+    })
     rows.sort((a, b) => b.taggings - a.taggings || b.latestAt - a.latestAt)
     const top = rows.slice(0, maxRows)
     await this.ensureTagElements(top.map((row) => row.coordinate))

@@ -1221,6 +1221,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'Henüz kimse seni etiketlemedi — etiketler başkalarının profilin hakkında yayınladığı iddialardır.',
     'Your tags': 'Etiketlerin',
     'Active this week': 'Bu hafta aktif',
-    '{{count}} taggings · {{people}} people': '{{count}} etiketleme · {{people}} kişi'
+    '{{count}} taggings · {{people}} people': '{{count}} etiketleme · {{people}} kişi',
+    'Show all ({{count}})': 'Tümünü göster ({{count}})',
+    'Show less': 'Daha az göster'
   }
 }

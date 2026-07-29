@@ -1217,6 +1217,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'अभी तक किसी ने आपको टैग नहीं किया — टैग वे दावे हैं जो दूसरे आपकी प्रोफ़ाइल के बारे में प्रकाशित करते हैं।',
     'Your tags': 'आपके टैग',
     'Active this week': 'इस सप्ताह सक्रिय',
-    '{{count}} taggings · {{people}} people': '{{count}} टैगिंग · {{people}} लोग'
+    '{{count}} taggings · {{people}} people': '{{count}} टैगिंग · {{people}} लोग',
+    'Show all ({{count}})': 'सभी दिखाएँ ({{count}})',
+    'Show less': 'कम दिखाएँ'
   }
 }

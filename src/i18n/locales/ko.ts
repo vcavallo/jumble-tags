@@ -1204,6 +1204,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': '아직 아무도 나를 태그하지 않았습니다 — 태그는 다른 사람들이 내 프로필에 대해 게시하는 주장입니다.',
     'Your tags': '내 태그',
     'Active this week': '이번 주 활발',
-    '{{count}} taggings · {{people}} people': '태깅 {{count}}회 · {{people}}명'
+    '{{count}} taggings · {{people}} people': '태깅 {{count}}회 · {{people}}명',
+    'Show all ({{count}})': '모두 보기 ({{count}})',
+    'Show less': '간략히 보기'
   }
 }

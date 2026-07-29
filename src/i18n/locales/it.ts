@@ -1225,6 +1225,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'Nessuno ti ha ancora taggato — i tag sono affermazioni che gli altri pubblicano sul tuo profilo.',
     'Your tags': 'I tuoi tag',
     'Active this week': 'Attivi questa settimana',
-    '{{count}} taggings · {{people}} people': '{{count}} tagging · {{people}} persone'
+    '{{count}} taggings · {{people}} people': '{{count}} tagging · {{people}} persone',
+    'Show all ({{count}})': 'Mostra tutti ({{count}})',
+    'Show less': 'Mostra meno'
   }
 }

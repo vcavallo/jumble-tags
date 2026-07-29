@@ -1216,6 +1216,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'هنوز کسی به شما برچسب نزده است — برچسب‌ها ادعاهایی هستند که دیگران درباره نمایه شما منتشر می‌کنند.',
     'Your tags': 'برچسب‌های شما',
     'Active this week': 'فعال در این هفته',
-    '{{count}} taggings · {{people}} people': '{{count}} برچسب‌گذاری · {{people}} نفر'
+    '{{count}} taggings · {{people}} people': '{{count}} برچسب‌گذاری · {{people}} نفر',
+    'Show all ({{count}})': 'نمایش همه ({{count}})',
+    'Show less': 'نمایش کمتر'
   }
 }

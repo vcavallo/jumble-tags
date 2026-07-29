@@ -1218,6 +1218,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'まだ誰もあなたをタグ付けしていません — タグは他の人があなたのプロフィールについて公開する主張です。',
     'Your tags': 'あなたのタグ',
     'Active this week': '今週アクティブ',
-    '{{count}} taggings · {{people}} people': '{{count}}件のタグ付け · {{people}}人'
+    '{{count}} taggings · {{people}} people': '{{count}}件のタグ付け · {{people}}人',
+    'Show all ({{count}})': 'すべて表示 ({{count}})',
+    'Show less': '表示を減らす'
   }
 }

@@ -1224,6 +1224,8 @@ export default {
     'No one has tagged you yet — tags are claims others publish about your profile.': 'Вас ещё никто не отметил — теги — это утверждения, которые другие публикуют о вашем профиле.',
     'Your tags': 'Ваши теги',
     'Active this week': 'Активны на этой неделе',
-    '{{count}} taggings · {{people}} people': '{{count}} тегирований · {{people}} чел.'
+    '{{count}} taggings · {{people}} people': '{{count}} тегирований · {{people}} чел.',
+    'Show all ({{count}})': 'Показать все ({{count}})',
+    'Show less': 'Показать меньше'
   }
 }
