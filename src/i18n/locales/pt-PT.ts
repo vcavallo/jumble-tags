@@ -1228,6 +1228,7 @@ export default {
     'Active this week': 'Ativas esta semana',
     '{{count}} taggings · {{people}} people': '{{count}} marcações · {{people}} pessoas',
     'Show all ({{count}})': 'Mostrar tudo ({{count}})',
-    'Show less': 'Mostrar menos'
+    'Show less': 'Mostrar menos',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} etiquetas correspondentes estão ocultas porque os seus criadores ainda não têm pontuação de confiança.'
   }
 }

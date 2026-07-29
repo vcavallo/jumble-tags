@@ -1226,6 +1226,7 @@ export default {
     'Active this week': 'Активны на этой неделе',
     '{{count}} taggings · {{people}} people': '{{count}} тегирований · {{people}} чел.',
     'Show all ({{count}})': 'Показать все ({{count}})',
-    'Show less': 'Показать меньше'
+    'Show less': 'Показать меньше',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} совпадающих тегов скрыто, потому что у их создателей ещё нет оценки доверия.'
   }
 }

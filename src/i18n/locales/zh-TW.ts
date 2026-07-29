@@ -1175,6 +1175,7 @@ export default {
     'Active this week': '本週活躍',
     '{{count}} taggings · {{people}} people': '{{count}} 次標記 · {{people}} 人',
     'Show all ({{count}})': '顯示全部 ({{count}})',
-    'Show less': '收合'
+    'Show less': '收合',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '有 {{count}} 個符合的標籤被隱藏，因為其建立者尚無信任評分。'
   }
 }

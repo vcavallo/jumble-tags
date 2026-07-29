@@ -1206,6 +1206,7 @@ export default {
     'Active this week': '이번 주 활발',
     '{{count}} taggings · {{people}} people': '태깅 {{count}}회 · {{people}}명',
     'Show all ({{count}})': '모두 보기 ({{count}})',
-    'Show less': '간략히 보기'
+    'Show less': '간략히 보기',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '일치하는 태그 {{count}}개는 작성자에게 아직 신뢰 점수가 없어 숨겨져 있습니다.'
   }
 }

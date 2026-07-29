@@ -1202,6 +1202,7 @@ export default {
     'Active this week': 'มีความเคลื่อนไหวสัปดาห์นี้',
     '{{count}} taggings · {{people}} people': '{{count}} การแท็ก · {{people}} คน',
     'Show all ({{count}})': 'แสดงทั้งหมด ({{count}})',
-    'Show less': 'แสดงน้อยลง'
+    'Show less': 'แสดงน้อยลง',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': 'แท็กที่ตรงกัน {{count}} รายการถูกซ่อนไว้ เพราะผู้สร้างยังไม่มีคะแนนความน่าเชื่อถือ'
   }
 }

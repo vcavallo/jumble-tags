@@ -1236,6 +1236,7 @@ export default {
     'Active this week': 'Actifs cette semaine',
     '{{count}} taggings · {{people}} people': '{{count}} taggings · {{people}} personnes',
     'Show all ({{count}})': 'Tout afficher ({{count}})',
-    'Show less': 'Afficher moins'
+    'Show less': 'Afficher moins',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} tags correspondants sont masqués car leurs créateurs n’ont pas encore de score de confiance.'
   }
 }

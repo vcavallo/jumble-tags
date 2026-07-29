@@ -1,6 +1,7 @@
 import SearchInput from '@/components/SearchInput'
 import { ProfileTagChips } from '@/components/TagChips'
 import {
+  HiddenByScoringHint,
   matchTagElements,
   TagElementList,
   useTrustedTagCatalog
@@ -44,7 +45,8 @@ const TagsPage = forwardRef<TPageRef>((_, ref) => {
   const [introDismissed, setIntroDismissed] = useState(() => storage.getDismissedTagsPageIntro())
   const [browseTab, setBrowseTab] = useState<TBrowseTab>('profile')
   const browseTabPinnedRef = useRef(false)
-  const elements = useTrustedTagCatalog()
+  const catalog = useTrustedTagCatalog()
+  const elements = catalog?.trusted ?? null
 
   useEffect(() => {
     let cancelled = false
@@ -58,6 +60,10 @@ const TagsPage = forwardRef<TPageRef>((_, ref) => {
   const matches = useMemo(
     () => (query ? matchTagElements(elements, query) : []),
     [elements, query]
+  )
+  const hiddenMatchCount = useMemo(
+    () => (query && catalog ? matchTagElements(catalog.all, query).length - matches.length : 0),
+    [catalog, query, matches.length]
   )
 
   const { profileTags, contentTags, otherTags } = useMemo(() => {
@@ -146,11 +152,18 @@ const TagsPage = forwardRef<TPageRef>((_, ref) => {
         elements === null ? (
           <CenteredLoader label={t('Loading tags...')} />
         ) : matches.length === 0 ? (
-          <div className="text-muted-foreground mt-4 text-center text-sm">
-            {t('No matching tags')}
-          </div>
+          hiddenMatchCount > 0 ? (
+            <HiddenByScoringHint count={hiddenMatchCount} />
+          ) : (
+            <div className="text-muted-foreground mt-4 text-center text-sm">
+              {t('No matching tags')}
+            </div>
+          )
         ) : (
-          <TagElementList elements={matches} />
+          <>
+            <TagElementList elements={matches} />
+            <HiddenByScoringHint count={hiddenMatchCount} />
+          </>
         )
       ) : (
         <>

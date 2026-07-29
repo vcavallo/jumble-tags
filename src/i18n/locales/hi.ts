@@ -1219,6 +1219,7 @@ export default {
     'Active this week': 'इस सप्ताह सक्रिय',
     '{{count}} taggings · {{people}} people': '{{count}} टैगिंग · {{people}} लोग',
     'Show all ({{count}})': 'सभी दिखाएँ ({{count}})',
-    'Show less': 'कम दिखाएँ'
+    'Show less': 'कम दिखाएँ',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} मेल खाते टैग छिपे हैं क्योंकि उनके निर्माताओं का अभी कोई विश्वास स्कोर नहीं है।'
   }
 }

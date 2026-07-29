@@ -1218,6 +1218,7 @@ export default {
     'Active this week': 'فعال در این هفته',
     '{{count}} taggings · {{people}} people': '{{count}} برچسب‌گذاری · {{people}} نفر',
     'Show all ({{count}})': 'نمایش همه ({{count}})',
-    'Show less': 'نمایش کمتر'
+    'Show less': 'نمایش کمتر',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} برچسب منطبق پنهان شده‌اند زیرا سازندگان آنها هنوز امتیاز اعتماد ندارند.'
   }
 }

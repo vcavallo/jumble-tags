@@ -1230,6 +1230,7 @@ export default {
     'Active this week': 'Aktywne w tym tygodniu',
     '{{count}} taggings · {{people}} people': '{{count}} otagowań · {{people}} osób',
     'Show all ({{count}})': 'Pokaż wszystkie ({{count}})',
-    'Show less': 'Pokaż mniej'
+    'Show less': 'Pokaż mniej',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} pasujących tagów jest ukrytych, ponieważ ich twórcy nie mają jeszcze oceny zaufania.'
   }
 }

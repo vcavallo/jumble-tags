@@ -1223,6 +1223,7 @@ export default {
     'Active this week': 'Bu hafta aktif',
     '{{count}} taggings · {{people}} people': '{{count}} etiketleme · {{people}} kişi',
     'Show all ({{count}})': 'Tümünü göster ({{count}})',
-    'Show less': 'Daha az göster'
+    'Show less': 'Daha az göster',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': 'Eşleşen {{count}} etiket gizli çünkü oluşturucularının henüz güven puanı yok.'
   }
 }

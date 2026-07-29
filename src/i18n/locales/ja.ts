@@ -1220,6 +1220,7 @@ export default {
     'Active this week': '今週アクティブ',
     '{{count}} taggings · {{people}} people': '{{count}}件のタグ付け · {{people}}人',
     'Show all ({{count}})': 'すべて表示 ({{count}})',
-    'Show less': '表示を減らす'
+    'Show less': '表示を減らす',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '一致するタグのうち{{count}}件は、作成者にまだ信頼スコアがないため非表示です。'
   }
 }

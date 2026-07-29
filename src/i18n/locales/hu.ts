@@ -1223,6 +1223,7 @@ export default {
     'Active this week': 'A héten aktív',
     '{{count}} taggings · {{people}} people': '{{count}} címkézés · {{people}} ember',
     'Show all ({{count}})': 'Összes mutatása ({{count}})',
-    'Show less': 'Kevesebb mutatása'
+    'Show less': 'Kevesebb mutatása',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} találat rejtve van, mert a létrehozóiknak még nincs bizalmi pontszámuk.'
   }
 }

@@ -1203,6 +1203,7 @@ export default {
     'Active this week': 'نشط هذا الأسبوع',
     '{{count}} taggings · {{people}} people': '{{count}} وسم بواسطة {{people}} شخصًا',
     'Show all ({{count}})': 'عرض الكل ({{count}})',
-    'Show less': 'عرض أقل'
+    'Show less': 'عرض أقل',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '{{count}} وسمًا مطابقًا مخفي لأن منشئيها ليس لديهم درجة ثقة بعد.'
   }
 }

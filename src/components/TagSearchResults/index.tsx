@@ -1,5 +1,5 @@
 import Username from '@/components/Username'
-import { toTag } from '@/lib/link'
+import { toTag, toTagsGuide } from '@/lib/link'
 import { slug as slugify } from '@/lib/tagging/sdk/event-tagging/index.js'
 import { SecondaryPageLink } from '@/PageManager'
 import taggingService, { TTagElement } from '@/services/tagging.service'
@@ -8,6 +8,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const PAGE_SIZE = 30
+
+export type TTagCatalog = { trusted: TTagElement[]; all: TTagElement[] }
 
 /**
  * Partial-match filter over the tag catalog — the same name/slug/description
@@ -107,17 +109,18 @@ export function TagElementList({ elements }: { elements: TTagElement[] }) {
 
 /**
  * Load the catalog (cache first, then a fresh relay read) with tag authors
- * passed through the house trust predicate. Shared by the search results and
- * the Tags page.
+ * passed through the scored-only visibility rule. Returns both the trusted
+ * view and the full set, so surfaces can say how much scoring hid instead of
+ * hiding silently. Shared by the search results and the Tags page.
  */
-export function useTrustedTagCatalog() {
-  const [elements, setElements] = useState<TTagElement[] | null>(null)
+export function useTrustedTagCatalog(): TTagCatalog | null {
+  const [catalog, setCatalog] = useState<TTagCatalog | null>(null)
 
   useEffect(() => {
     let cancelled = false
-    const load = async (els: TTagElement[]) => {
-      const trusted = await taggingService.filterElementsByAuthorTrust(els)
-      if (!cancelled) setElements(trusted)
+    const load = async (all: TTagElement[]) => {
+      const trusted = await taggingService.filterElementsByAuthorTrust(all)
+      if (!cancelled) setCatalog({ trusted, all })
     }
     taggingService.getAllTagElements().then(load)
     taggingService.refreshCatalogAndGet().then(load)
@@ -126,17 +129,40 @@ export function useTrustedTagCatalog() {
     }
   }, [])
 
-  return elements
+  return catalog
+}
+
+/** "N matching tags are hidden by scoring" — transparency line with a guide link. */
+export function HiddenByScoringHint({ count }: { count: number }) {
+  const { t } = useTranslation()
+  if (count <= 0) return null
+  return (
+    <div className="text-muted-foreground px-4 py-3 text-center text-sm">
+      {t('{{count}} matching tags are hidden because their creators have no trust score yet.', {
+        count
+      })}{' '}
+      <SecondaryPageLink to={toTagsGuide()} className="text-primary hover:underline">
+        {t('How decentralized tags work')}
+      </SecondaryPageLink>
+    </div>
+  )
 }
 
 /** The "Tags" section of plain-text search results. */
 export default function TagSearchResults({ search }: { search: string }) {
   const { t } = useTranslation()
-  const elements = useTrustedTagCatalog()
+  const catalog = useTrustedTagCatalog()
 
-  const matches = useMemo(() => matchTagElements(elements, search), [elements, search])
+  const matches = useMemo(
+    () => matchTagElements(catalog?.trusted ?? null, search),
+    [catalog, search]
+  )
+  const hiddenCount = useMemo(
+    () => (catalog ? matchTagElements(catalog.all, search).length - matches.length : 0),
+    [catalog, search, matches.length]
+  )
 
-  if (elements === null) {
+  if (catalog === null) {
     return (
       <div className="text-muted-foreground flex items-center justify-center gap-2 py-10 text-sm">
         <Loader2 className="size-4 animate-spin" />
@@ -146,10 +172,17 @@ export default function TagSearchResults({ search }: { search: string }) {
   }
 
   if (matches.length === 0) {
-    return (
+    return hiddenCount > 0 ? (
+      <HiddenByScoringHint count={hiddenCount} />
+    ) : (
       <div className="text-muted-foreground mt-4 text-center text-sm">{t('No matching tags')}</div>
     )
   }
 
-  return <TagElementList elements={matches} />
+  return (
+    <>
+      <TagElementList elements={matches} />
+      <HiddenByScoringHint count={hiddenCount} />
+    </>
+  )
 }

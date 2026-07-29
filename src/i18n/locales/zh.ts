@@ -1174,6 +1174,7 @@ export default {
     'Active this week': '本周活跃',
     '{{count}} taggings · {{people}} people': '{{count}} 次打标 · {{people}} 人',
     'Show all ({{count}})': '显示全部 ({{count}})',
-    'Show less': '收起'
+    'Show less': '收起',
+    '{{count}} matching tags are hidden because their creators have no trust score yet.': '有 {{count}} 个匹配的标签被隐藏，因为其创建者尚无信任评分。'
   }
 }
