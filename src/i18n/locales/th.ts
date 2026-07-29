@@ -1197,6 +1197,9 @@ export default {
     'Other tags': 'แท็กอื่น ๆ',
     'All tags': 'แท็กทั้งหมด',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'แท็กคือคำกล่าวอ้างสาธารณะที่มีลายเซ็นซึ่งใครก็สร้างได้ สิ่งที่คุณเห็นที่นี่ถูกกรองผ่านเครือข่ายความน่าเชื่อถือ',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'ยังไม่มีใครแท็กคุณ — แท็กคือคำกล่าวอ้างที่ผู้อื่นเผยแพร่เกี่ยวกับโปรไฟล์ของคุณ'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'ยังไม่มีใครแท็กคุณ — แท็กคือคำกล่าวอ้างที่ผู้อื่นเผยแพร่เกี่ยวกับโปรไฟล์ของคุณ',
+    'Your tags': 'แท็กของคุณ',
+    'Active this week': 'มีความเคลื่อนไหวสัปดาห์นี้',
+    '{{count}} taggings · {{people}} people': '{{count}} การแท็ก · {{people}} คน'
   }
 }

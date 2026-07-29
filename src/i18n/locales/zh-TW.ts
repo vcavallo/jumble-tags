@@ -1170,6 +1170,9 @@ export default {
     'Other tags': '其他標籤',
     'All tags': '全部標籤',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': '標籤是任何人都可以發布的公開簽名聲明。你在這裡看到的內容經過信任網路過濾。',
-    'No one has tagged you yet — tags are claims others publish about your profile.': '還沒有人給你加標籤 — 標籤是他人針對你的個人檔案發布的聲明。'
+    'No one has tagged you yet — tags are claims others publish about your profile.': '還沒有人給你加標籤 — 標籤是他人針對你的個人檔案發布的聲明。',
+    'Your tags': '你的標籤',
+    'Active this week': '本週活躍',
+    '{{count}} taggings · {{people}} people': '{{count}} 次標記 · {{people}} 人'
   }
 }

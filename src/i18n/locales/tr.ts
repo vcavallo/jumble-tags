@@ -1218,6 +1218,9 @@ export default {
     'Other tags': 'Diğer etiketler',
     'All tags': 'Tüm etiketler',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'Etiketler herkesin yayınlayabileceği açık, imzalı iddialardır. Burada gördükleriniz bir güven ağından süzülür.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'Henüz kimse seni etiketlemedi — etiketler başkalarının profilin hakkında yayınladığı iddialardır.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Henüz kimse seni etiketlemedi — etiketler başkalarının profilin hakkında yayınladığı iddialardır.',
+    'Your tags': 'Etiketlerin',
+    'Active this week': 'Bu hafta aktif',
+    '{{count}} taggings · {{people}} people': '{{count}} etiketleme · {{people}} kişi'
   }
 }

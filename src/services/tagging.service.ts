@@ -91,6 +91,24 @@ export type TTagPageData = {
 
 export type TTagApplicability = { event: Set<string>; pubkey: Set<string> }
 
+/** One tag the viewer has published stances with (Tags page "Your tags"). */
+export type TMyTagStanceRow = {
+  coordinate: string
+  element: TTagElement | null
+  applies: number
+  disputes: number
+  latestAt: number
+}
+
+/** One tag with recent POV-counted tagging activity (Tags page "Active this week"). */
+export type TTagActivityRow = {
+  coordinate: string
+  element: TTagElement | null
+  taggings: number
+  asserters: number
+  latestAt: number
+}
+
 /** Net display count for a chip: applications − disputes (counted set only). */
 export function chipNetCount(chip: TTagChipData) {
   return chip.applications.length - chip.disputes.length
@@ -1187,6 +1205,146 @@ class TaggingService {
     const people = Array.from(peopleByPubkey.values()).sort((a, b) => b.appliedAt - a.appliedAt)
 
     return { element, notes, people }
+  }
+
+  /** =========== Tags page: trust filter, personal stances, activity =========== */
+
+  /**
+   * Keep only tag-elements whose AUTHOR passes the house trust predicate — the
+   * same POV (and the same known limitations, e.g. unscored pubkeys counting
+   * under `unknownPolicy: trusted`) that already filters tagging asserters.
+   * For catalog/browse surfaces only: resolution and dedup flows must keep the
+   * full catalog, or an untrusted-author tag could be re-minted as a duplicate.
+   */
+  async filterElementsByAuthorTrust(elements: TTagElement[]): Promise<TTagElement[]> {
+    await trust.ensure(elements.map((element) => element.authorPubkey))
+    return elements.filter((element) => trust.predicate(element.authorPubkey))
+  }
+
+  /** Every concept-z value a tagging assertion can carry (all members × namespaces). */
+  private conceptZValues(): string[] {
+    return Z_HANDLE_PUBKEYS.flatMap((taPubkey) =>
+      taggingMembers.map((member) => member.conceptZ(taPubkey))
+    )
+  }
+
+  /**
+   * Normalize a mixed batch of tagging assertions (profile + event members):
+   * resolve legacy `e`-only tag refs, fetch the tagging headers event-taggings
+   * hang off, then run the SDK normalizer with the legacy-aware members.
+   */
+  private async normalizeMixedTaggings(candidates: Event[]): Promise<TNormalizedTagging[]> {
+    await this.resolveLegacyElementRefs(candidates)
+    const descriptorCoords = new Set<string>()
+    for (const candidate of candidates) {
+      for (const tag of candidate.tags) {
+        if (tag[0] === 'z' && DESCRIPTOR_COORD_RE.test(tag[1] ?? '')) {
+          descriptorCoords.add(tag[1])
+        }
+      }
+    }
+    await this.ensureHeaders(Array.from(descriptorCoords))
+    const headers = Array.from(descriptorCoords)
+      .map((coord) => this.headerCache.get(coord))
+      .filter((header): header is Event => !!header)
+    return normalizeTaggings({
+      assertions: candidates,
+      headers,
+      members: this.legacyAwareMembers,
+      honoredAuthorities: Z_HANDLE_PUBKEYS
+    })
+  }
+
+  /** The viewer's own published stances, aggregated per tag, latest first. */
+  async fetchMyTagStances(viewer: string): Promise<TMyTagStanceRow[]> {
+    const candidates = latestByCoord(
+      await fetchTagEvents({
+        kinds: [TAGGING_KIND],
+        authors: [viewer],
+        '#z': this.conceptZValues()
+      })
+    )
+    const taggings = (await this.normalizeMixedTaggings(candidates)).filter(
+      (tagging) => tagging.asserter === viewer
+    )
+    const byCoord = new Map<string, TMyTagStanceRow>()
+    for (const tagging of taggings) {
+      const coordinate = tagElementAddr(tagging.tag.authorPubkey, tagging.tag.slug)
+      let row = byCoord.get(coordinate)
+      if (!row) {
+        row = { coordinate, element: null, applies: 0, disputes: 0, latestAt: 0 }
+        byCoord.set(coordinate, row)
+      }
+      if (tagging.stance === 'apply') {
+        row.applies += 1
+      } else {
+        row.disputes += 1
+      }
+      row.latestAt = Math.max(row.latestAt, tagging.createdAt)
+    }
+    await this.ensureTagElements(Array.from(byCoord.keys()))
+    for (const row of byCoord.values()) {
+      row.element = this.tagElementByCoord.get(row.coordinate) ?? null
+    }
+    return Array.from(byCoord.values()).sort((a, b) => b.latestAt - a.latestAt)
+  }
+
+  /**
+   * Tags with recent tagging activity, POV-counted: asserters are filtered by
+   * the house trust predicate, tag authors by the same predicate, and (when
+   * the house applicability lists are reachable) rows are limited to tags the
+   * house lists know — the only present signal that separates real tags from
+   * throwaway QA mints, whose ephemeral keys are unscored and therefore pass
+   * the predicate under `unknownPolicy: trusted`.
+   */
+  async fetchRecentTagActivity(sinceDays = 7, maxRows = 8): Promise<TTagActivityRow[]> {
+    const candidates = latestByCoord(
+      await fetchTagEvents({
+        kinds: [TAGGING_KIND],
+        '#z': this.conceptZValues(),
+        since: now() - sinceDays * 86_400,
+        limit: 500
+      })
+    )
+    const taggings = await this.normalizeMixedTaggings(candidates)
+    await trust.ensure(taggings.map((tagging) => tagging.asserter))
+    const byCoord = new Map<string, TTagActivityRow & { asserterSet: Set<string> }>()
+    for (const tagging of taggings) {
+      if (!trust.predicate(tagging.asserter)) continue
+      const coordinate = tagElementAddr(tagging.tag.authorPubkey, tagging.tag.slug)
+      let row = byCoord.get(coordinate)
+      if (!row) {
+        row = {
+          coordinate,
+          element: null,
+          taggings: 0,
+          asserters: 0,
+          latestAt: 0,
+          asserterSet: new Set()
+        }
+        byCoord.set(coordinate, row)
+      }
+      row.taggings += 1
+      row.asserterSet.add(tagging.asserter)
+      row.latestAt = Math.max(row.latestAt, tagging.createdAt)
+    }
+    let rows = Array.from(byCoord.values())
+    await trust.ensure(rows.map((row) => row.coordinate.split(':')[1]))
+    rows = rows.filter((row) => trust.predicate(row.coordinate.split(':')[1]))
+    const applicability = await this.getApplicability()
+    if (applicability.event.size > 0 || applicability.pubkey.size > 0) {
+      rows = rows.filter(
+        (row) => applicability.event.has(row.coordinate) || applicability.pubkey.has(row.coordinate)
+      )
+    }
+    rows.sort((a, b) => b.taggings - a.taggings || b.latestAt - a.latestAt)
+    const top = rows.slice(0, maxRows)
+    await this.ensureTagElements(top.map((row) => row.coordinate))
+    return top.map(({ asserterSet, ...row }) => ({
+      ...row,
+      asserters: asserterSet.size,
+      element: this.tagElementByCoord.get(row.coordinate) ?? null
+    }))
   }
 }
 

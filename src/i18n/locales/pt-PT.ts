@@ -1223,6 +1223,9 @@ export default {
     'Other tags': 'Outras etiquetas',
     'All tags': 'Todas as etiquetas',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'As etiquetas são afirmações públicas e assinadas que qualquer pessoa pode fazer. O que vê aqui é filtrado por uma rede de confiança.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'Ainda ninguém o etiquetou — as etiquetas são afirmações que outros publicam sobre o seu perfil.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Ainda ninguém o etiquetou — as etiquetas são afirmações que outros publicam sobre o seu perfil.',
+    'Your tags': 'As suas etiquetas',
+    'Active this week': 'Ativas esta semana',
+    '{{count}} taggings · {{people}} people': '{{count}} marcações · {{people}} pessoas'
   }
 }

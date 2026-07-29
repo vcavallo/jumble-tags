@@ -1215,6 +1215,9 @@ export default {
     'Other tags': 'その他のタグ',
     'All tags': 'すべてのタグ',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'タグは誰でも発行できる公開の署名付き主張です。ここに表示される内容はウェブ・オブ・トラストでフィルタリングされています。',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'まだ誰もあなたをタグ付けしていません — タグは他の人があなたのプロフィールについて公開する主張です。'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'まだ誰もあなたをタグ付けしていません — タグは他の人があなたのプロフィールについて公開する主張です。',
+    'Your tags': 'あなたのタグ',
+    'Active this week': '今週アクティブ',
+    '{{count}} taggings · {{people}} people': '{{count}}件のタグ付け · {{people}}人'
   }
 }

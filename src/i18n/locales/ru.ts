@@ -1221,6 +1221,9 @@ export default {
     'Other tags': 'Другие теги',
     'All tags': 'Все теги',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'Теги — это публичные подписанные утверждения, которые может сделать каждый. То, что вы видите здесь, отфильтровано через сеть доверия.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'Вас ещё никто не отметил — теги — это утверждения, которые другие публикуют о вашем профиле.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Вас ещё никто не отметил — теги — это утверждения, которые другие публикуют о вашем профиле.',
+    'Your tags': 'Ваши теги',
+    'Active this week': 'Активны на этой неделе',
+    '{{count}} taggings · {{people}} people': '{{count}} тегирований · {{people}} чел.'
   }
 }

@@ -1231,6 +1231,9 @@ export default {
     'Other tags': 'Autres tags',
     'All tags': 'Tous les tags',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'Les tags sont des affirmations publiques et signées que chacun peut publier. Ce que vous voyez ici est filtré par un réseau de confiance.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'Personne ne vous a encore tagué — les tags sont des affirmations que les autres publient sur votre profil.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Personne ne vous a encore tagué — les tags sont des affirmations que les autres publient sur votre profil.',
+    'Your tags': 'Vos tags',
+    'Active this week': 'Actifs cette semaine',
+    '{{count}} taggings · {{people}} people': '{{count}} taggings · {{people}} personnes'
   }
 }

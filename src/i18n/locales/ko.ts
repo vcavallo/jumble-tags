@@ -1201,6 +1201,9 @@ export default {
     'Other tags': '기타 태그',
     'All tags': '모든 태그',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': '태그는 누구나 발행할 수 있는 공개 서명 주장입니다. 여기 보이는 내용은 신뢰망으로 필터링됩니다.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': '아직 아무도 나를 태그하지 않았습니다 — 태그는 다른 사람들이 내 프로필에 대해 게시하는 주장입니다.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': '아직 아무도 나를 태그하지 않았습니다 — 태그는 다른 사람들이 내 프로필에 대해 게시하는 주장입니다.',
+    'Your tags': '내 태그',
+    'Active this week': '이번 주 활발',
+    '{{count}} taggings · {{people}} people': '태깅 {{count}}회 · {{people}}명'
   }
 }

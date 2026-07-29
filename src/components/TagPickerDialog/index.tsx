@@ -51,6 +51,7 @@ export default function TagPickerDialog({
   const { applyStance, busy } = useTagStance()
   const [query, setQuery] = useState('')
   const [elements, setElements] = useState<TTagElement[] | null>(null)
+  const [trustedElements, setTrustedElements] = useState<TTagElement[] | null>(null)
   const [applicability, setApplicability] = useState<TTagApplicability | null>(null)
   const [showOtherSection, setShowOtherSection] = useState(false)
   const [creating, setCreating] = useState(false)
@@ -84,9 +85,18 @@ export default function TagPickerDialog({
     }
     let cancelled = false
     // Serve the cache instantly, then replace with a fresh relay read so tags
-    // minted moments ago by others appear immediately.
-    taggingService.getAllTagElements().then((els) => !cancelled && setElements(els))
-    taggingService.refreshCatalogAndGet().then((els) => !cancelled && setElements(els))
+    // minted moments ago by others appear immediately. The DISPLAYED lists are
+    // trust-filtered by tag author; the full set stays for exact-match dedup
+    // (never offer "create" over an existing slug, trusted author or not).
+    const load = (els: TTagElement[]) => {
+      if (cancelled) return
+      setElements(els)
+      taggingService
+        .filterElementsByAuthorTrust(els)
+        .then((trusted) => !cancelled && setTrustedElements(trusted))
+    }
+    taggingService.getAllTagElements().then(load)
+    taggingService.refreshCatalogAndGet().then(load)
     taggingService.getApplicability().then((sets) => !cancelled && setApplicability(sets))
     return () => {
       cancelled = true
@@ -101,7 +111,7 @@ export default function TagPickerDialog({
   const { leading, other, exactMatch } = useMemo(() => {
     const q = query.trim().toLowerCase()
     const qSlug = q ? slugify(q) : ''
-    const filtered = (elements ?? []).filter(
+    const filtered = (trustedElements ?? elements ?? []).filter(
       (el) =>
         !q ||
         el.name.toLowerCase().includes(q) ||
@@ -121,7 +131,7 @@ export default function TagPickerDialog({
     const exactMatch =
       !!q && (elements ?? []).some((el) => el.name.toLowerCase() === q || el.slug === qSlug)
     return { leading, other, exactMatch }
-  }, [elements, applicability, query, leadingContext])
+  }, [elements, trustedElements, applicability, query, leadingContext])
 
   const applyExisting = (element: TTagElement) => {
     const tagInput = {

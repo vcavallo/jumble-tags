@@ -1214,6 +1214,9 @@ export default {
     'Other tags': 'अन्य टैग',
     'All tags': 'सभी टैग',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'टैग सार्वजनिक, हस्ताक्षरित दावे हैं जो कोई भी कर सकता है। यहाँ जो दिखता है वह विश्वास-जाल से छनकर आता है।',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'अभी तक किसी ने आपको टैग नहीं किया — टैग वे दावे हैं जो दूसरे आपकी प्रोफ़ाइल के बारे में प्रकाशित करते हैं।'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'अभी तक किसी ने आपको टैग नहीं किया — टैग वे दावे हैं जो दूसरे आपकी प्रोफ़ाइल के बारे में प्रकाशित करते हैं।',
+    'Your tags': 'आपके टैग',
+    'Active this week': 'इस सप्ताह सक्रिय',
+    '{{count}} taggings · {{people}} people': '{{count}} टैगिंग · {{people}} लोग'
   }
 }

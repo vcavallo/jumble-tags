@@ -1213,6 +1213,9 @@ export default {
     'Other tags': 'برچسب‌های دیگر',
     'All tags': 'همه برچسب‌ها',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'برچسب‌ها ادعاهای عمومی و امضاشده‌ای هستند که هر کسی می‌تواند منتشر کند. آنچه اینجا می‌بینید از طریق شبکه اعتماد فیلتر شده است.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'هنوز کسی به شما برچسب نزده است — برچسب‌ها ادعاهایی هستند که دیگران درباره نمایه شما منتشر می‌کنند.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'هنوز کسی به شما برچسب نزده است — برچسب‌ها ادعاهایی هستند که دیگران درباره نمایه شما منتشر می‌کنند.',
+    'Your tags': 'برچسب‌های شما',
+    'Active this week': 'فعال در این هفته',
+    '{{count}} taggings · {{people}} people': '{{count}} برچسب‌گذاری · {{people}} نفر'
   }
 }

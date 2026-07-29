@@ -1198,6 +1198,9 @@ export default {
     'Other tags': 'وسوم أخرى',
     'All tags': 'كل الوسوم',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'الوسوم ادعاءات علنية وموقّعة يمكن لأي شخص نشرها. ما تراه هنا مُرشّح عبر شبكة ثقة.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'لم يضع أحد وسمًا عليك بعد — الوسوم ادعاءات ينشرها الآخرون عن ملفك الشخصي.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'لم يضع أحد وسمًا عليك بعد — الوسوم ادعاءات ينشرها الآخرون عن ملفك الشخصي.',
+    'Your tags': 'وسومك',
+    'Active this week': 'نشط هذا الأسبوع',
+    '{{count}} taggings · {{people}} people': '{{count}} وسم بواسطة {{people}} شخصًا'
   }
 }

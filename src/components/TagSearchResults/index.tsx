@@ -4,8 +4,10 @@ import { slug as slugify } from '@/lib/tagging/sdk/event-tagging/index.js'
 import { SecondaryPageLink } from '@/PageManager'
 import taggingService, { TTagElement } from '@/services/tagging.service'
 import { Loader2, Tag as TagIcon } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+const PAGE_SIZE = 30
 
 /**
  * Partial-match filter over the tag catalog — the same name/slug/description
@@ -65,21 +67,72 @@ export function TagElementRow({ element }: { element: TTagElement }) {
   )
 }
 
-/** The "Tags" section of plain-text search results. */
-export default function TagSearchResults({ search }: { search: string }) {
-  const { t } = useTranslation()
+/**
+ * A windowed tag-element list: renders in pages of PAGE_SIZE, revealing more
+ * as the sentinel scrolls into view — the catalog is thousands of rows.
+ */
+export function TagElementList({ elements }: { elements: TTagElement[] }) {
+  const [showCount, setShowCount] = useState(PAGE_SIZE)
+  const bottomRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    setShowCount(PAGE_SIZE)
+  }, [elements])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && showCount < elements.length) {
+          setShowCount((prev) => prev + PAGE_SIZE)
+        }
+      },
+      { rootMargin: '200px', threshold: 0 }
+    )
+    const el = bottomRef.current
+    if (el) observer.observe(el)
+    return () => {
+      if (el) observer.unobserve(el)
+    }
+  }, [showCount, elements])
+
+  return (
+    <div>
+      {elements.slice(0, showCount).map((el) => (
+        <TagElementRow key={el.coordinate} element={el} />
+      ))}
+      {showCount < elements.length && <div ref={bottomRef} className="h-8" />}
+    </div>
+  )
+}
+
+/**
+ * Load the catalog (cache first, then a fresh relay read) with tag authors
+ * passed through the house trust predicate. Shared by the search results and
+ * the Tags page.
+ */
+export function useTrustedTagCatalog() {
   const [elements, setElements] = useState<TTagElement[] | null>(null)
 
   useEffect(() => {
     let cancelled = false
-    // Serve the cache instantly, then replace with a fresh relay read so tags
-    // minted moments ago by others appear immediately.
-    taggingService.getAllTagElements().then((els) => !cancelled && setElements(els))
-    taggingService.refreshCatalogAndGet().then((els) => !cancelled && setElements(els))
+    const load = async (els: TTagElement[]) => {
+      const trusted = await taggingService.filterElementsByAuthorTrust(els)
+      if (!cancelled) setElements(trusted)
+    }
+    taggingService.getAllTagElements().then(load)
+    taggingService.refreshCatalogAndGet().then(load)
     return () => {
       cancelled = true
     }
   }, [])
+
+  return elements
+}
+
+/** The "Tags" section of plain-text search results. */
+export default function TagSearchResults({ search }: { search: string }) {
+  const { t } = useTranslation()
+  const elements = useTrustedTagCatalog()
 
   const matches = useMemo(() => matchTagElements(elements, search), [elements, search])
 
@@ -98,11 +151,5 @@ export default function TagSearchResults({ search }: { search: string }) {
     )
   }
 
-  return (
-    <div>
-      {matches.map((el) => (
-        <TagElementRow key={el.coordinate} element={el} />
-      ))}
-    </div>
-  )
+  return <TagElementList elements={matches} />
 }

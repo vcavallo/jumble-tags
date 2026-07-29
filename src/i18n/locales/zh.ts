@@ -1169,6 +1169,9 @@ export default {
     'Other tags': '其他标签',
     'All tags': '全部标签',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': '标签是任何人都可以发布的公开签名声明。你在这里看到的内容经过信任网络过滤。',
-    'No one has tagged you yet — tags are claims others publish about your profile.': '还没有人给你打标签 — 标签是他人针对你的资料发布的声明。'
+    'No one has tagged you yet — tags are claims others publish about your profile.': '还没有人给你打标签 — 标签是他人针对你的资料发布的声明。',
+    'Your tags': '你的标签',
+    'Active this week': '本周活跃',
+    '{{count}} taggings · {{people}} people': '{{count}} 次打标 · {{people}} 人'
   }
 }

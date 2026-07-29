@@ -1218,6 +1218,9 @@ export default {
     'Other tags': 'Egyéb címkék',
     'All tags': 'Összes címke',
     'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'A címkék nyilvános, aláírt állítások, amelyeket bárki tehet. Amit itt látsz, azt egy bizalmi háló szűri.',
-    'No one has tagged you yet — tags are claims others publish about your profile.': 'Még senki sem címkézett fel — a címkék mások által a profilodról közzétett állítások.'
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Még senki sem címkézett fel — a címkék mások által a profilodról közzétett állítások.',
+    'Your tags': 'Címkéid',
+    'Active this week': 'A héten aktív',
+    '{{count}} taggings · {{people}} people': '{{count}} címkézés · {{people}} ember'
   }
 }
