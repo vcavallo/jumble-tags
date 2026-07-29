@@ -1207,6 +1207,13 @@ export default {
     'View tag page': 'टैग पेज देखें',
     'Hashtag posts': 'हैशटैग पोस्ट',
     'Create & dispute': 'बनाएँ और आपत्ति करें',
-    'All hashtags': 'सभी हैशटैग'
+    'All hashtags': 'सभी हैशटैग',
+    'How decentralized tags work': 'विकेंद्रीकृत टैग कैसे काम करते हैं',
+    'A Jumble fork with decentralized tags': 'विकेंद्रीकृत टैग के साथ Jumble का एक फ़ोर्क',
+    'Tags on you': 'आप पर लगे टैग',
+    'Other tags': 'अन्य टैग',
+    'All tags': 'सभी टैग',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'टैग सार्वजनिक, हस्ताक्षरित दावे हैं जो कोई भी कर सकता है। यहाँ जो दिखता है वह विश्वास-जाल से छनकर आता है।',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'अभी तक किसी ने आपको टैग नहीं किया — टैग वे दावे हैं जो दूसरे आपकी प्रोफ़ाइल के बारे में प्रकाशित करते हैं।'
   }
 }

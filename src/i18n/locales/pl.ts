@@ -1218,6 +1218,13 @@ export default {
     'View tag page': 'Zobacz stronę tagu',
     'Hashtag posts': 'Wpisy z hashtagiem',
     'Create & dispute': 'Utwórz i zakwestionuj',
-    'All hashtags': 'Wszystkie hashtagi'
+    'All hashtags': 'Wszystkie hashtagi',
+    'How decentralized tags work': 'Jak działają zdecentralizowane tagi',
+    'A Jumble fork with decentralized tags': 'Fork Jumble ze zdecentralizowanymi tagami',
+    'Tags on you': 'Tagi o tobie',
+    'Other tags': 'Inne tagi',
+    'All tags': 'Wszystkie tagi',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'Tagi to publiczne, podpisane twierdzenia, które każdy może opublikować. To, co tu widzisz, jest filtrowane przez sieć zaufania.',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Nikt cię jeszcze nie otagował — tagi to twierdzenia, które inni publikują o twoim profilu.'
   }
 }

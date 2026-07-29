@@ -1194,6 +1194,13 @@ export default {
     'View tag page': '태그 페이지 보기',
     'Hashtag posts': '해시태그 게시물',
     'Create & dispute': '만들고 이의 제기',
-    'All hashtags': '모든 해시태그'
+    'All hashtags': '모든 해시태그',
+    'How decentralized tags work': '분산형 태그의 작동 방식',
+    'A Jumble fork with decentralized tags': '분산형 태그를 지원하는 Jumble 포크',
+    'Tags on you': '나에게 달린 태그',
+    'Other tags': '기타 태그',
+    'All tags': '모든 태그',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': '태그는 누구나 발행할 수 있는 공개 서명 주장입니다. 여기 보이는 내용은 신뢰망으로 필터링됩니다.',
+    'No one has tagged you yet — tags are claims others publish about your profile.': '아직 아무도 나를 태그하지 않았습니다 — 태그는 다른 사람들이 내 프로필에 대해 게시하는 주장입니다.'
   }
 }

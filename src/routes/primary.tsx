@@ -8,6 +8,7 @@ import ProfilePage from '@/pages/primary/ProfilePage'
 import RelayPage from '@/pages/primary/RelayPage'
 import SearchPage from '@/pages/primary/SearchPage'
 import SettingsPage from '@/pages/primary/SettingsPage'
+import TagsPage from '@/pages/primary/TagsPage'
 import { TPageRef } from '@/types'
 import { createRef } from 'react'
 
@@ -20,6 +21,7 @@ const PRIMARY_ROUTE_CONFIGS = [
   { key: 'profile', component: ProfilePage },
   { key: 'relay', component: RelayPage },
   { key: 'search', component: SearchPage },
+  { key: 'tags', component: TagsPage },
   { key: 'bookmark', component: BookmarkPage },
   { key: 'settings', component: SettingsPage }
 ] as const

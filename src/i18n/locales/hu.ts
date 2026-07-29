@@ -1211,6 +1211,13 @@ export default {
     'View tag page': 'Címkeoldal megnyitása',
     'Hashtag posts': 'Hashtag-bejegyzések',
     'Create & dispute': 'Létrehozás és vitatás',
-    'All hashtags': 'Összes hashtag'
+    'All hashtags': 'Összes hashtag',
+    'How decentralized tags work': 'Hogyan működnek a decentralizált címkék',
+    'A Jumble fork with decentralized tags': 'Egy Jumble-fork decentralizált címkékkel',
+    'Tags on you': 'Címkék rólad',
+    'Other tags': 'Egyéb címkék',
+    'All tags': 'Összes címke',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'A címkék nyilvános, aláírt állítások, amelyeket bárki tehet. Amit itt látsz, azt egy bizalmi háló szűri.',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Még senki sem címkézett fel — a címkék mások által a profilodról közzétett állítások.'
   }
 }

@@ -1208,6 +1208,13 @@ export default {
     'View tag page': 'タグページを見る',
     'Hashtag posts': 'ハッシュタグの投稿',
     'Create & dispute': '作成して異議を唱える',
-    'All hashtags': 'すべてのハッシュタグ'
+    'All hashtags': 'すべてのハッシュタグ',
+    'How decentralized tags work': '分散型タグの仕組み',
+    'A Jumble fork with decentralized tags': '分散型タグ対応のJumbleフォーク',
+    'Tags on you': 'あなたへのタグ',
+    'Other tags': 'その他のタグ',
+    'All tags': 'すべてのタグ',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'タグは誰でも発行できる公開の署名付き主張です。ここに表示される内容はウェブ・オブ・トラストでフィルタリングされています。',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'まだ誰もあなたをタグ付けしていません — タグは他の人があなたのプロフィールについて公開する主張です。'
   }
 }

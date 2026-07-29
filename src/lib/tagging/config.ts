@@ -30,6 +30,12 @@ export const Z_HANDLE_PUBKEYS: string[] = taggingConfig.zHandlePubkeys
 /** The house instance's current Tapestry Assistant (authors the applicability lists). */
 export const LOCAL_TA_PUBKEY: string = taggingConfig.localTaPubkey
 
+/** The reference deployment this build points at (identity only — never build features on its API). */
+export const HOUSE_INSTANCE: { name: string; relay: string } = {
+  name: taggingConfig.houseInstance.name,
+  relay: taggingConfig.houseInstance.relay
+}
+
 /** Keys honored as kind-30382 trust-assertion authors (current TA first, then retired). */
 export const NIP85_AUTHOR_PUBKEYS: string[] = taggingConfig.nip85AuthorPubkeys
 

@@ -1216,6 +1216,13 @@ export default {
     'View tag page': 'Ver página da tag',
     'Hashtag posts': 'Publicações da hashtag',
     'Create & dispute': 'Criar e contestar',
-    'All hashtags': 'Todas as hashtags'
+    'All hashtags': 'Todas as hashtags',
+    'How decentralized tags work': 'Como funcionam as etiquetas descentralizadas',
+    'A Jumble fork with decentralized tags': 'Um fork do Jumble com etiquetas descentralizadas',
+    'Tags on you': 'Etiquetas sobre si',
+    'Other tags': 'Outras etiquetas',
+    'All tags': 'Todas as etiquetas',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'As etiquetas são afirmações públicas e assinadas que qualquer pessoa pode fazer. O que vê aqui é filtrado por uma rede de confiança.',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Ainda ninguém o etiquetou — as etiquetas são afirmações que outros publicam sobre o seu perfil.'
   }
 }

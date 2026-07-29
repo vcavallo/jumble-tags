@@ -1191,6 +1191,13 @@ export default {
     'View tag page': 'عرض صفحة الوسم',
     'Hashtag posts': 'منشورات الهاشتاغ',
     'Create & dispute': 'إنشاء واعتراض',
-    'All hashtags': 'كل الهاشتاغات'
+    'All hashtags': 'كل الهاشتاغات',
+    'How decentralized tags work': 'كيف تعمل الوسوم اللامركزية',
+    'A Jumble fork with decentralized tags': 'نسخة من Jumble مع وسوم لامركزية',
+    'Tags on you': 'وسوم عليك',
+    'Other tags': 'وسوم أخرى',
+    'All tags': 'كل الوسوم',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'الوسوم ادعاءات علنية وموقّعة يمكن لأي شخص نشرها. ما تراه هنا مُرشّح عبر شبكة ثقة.',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'لم يضع أحد وسمًا عليك بعد — الوسوم ادعاءات ينشرها الآخرون عن ملفك الشخصي.'
   }
 }

@@ -1163,6 +1163,13 @@ export default {
     'View tag page': '檢視標籤頁面',
     'Hashtag posts': '主題標籤貼文',
     'Create & dispute': '建立並提出爭議',
-    'All hashtags': '全部主題標籤'
+    'All hashtags': '全部主題標籤',
+    'How decentralized tags work': '去中心化標籤的運作原理',
+    'A Jumble fork with decentralized tags': '支援去中心化標籤的 Jumble 分支',
+    'Tags on you': '你身上的標籤',
+    'Other tags': '其他標籤',
+    'All tags': '全部標籤',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': '標籤是任何人都可以發布的公開簽名聲明。你在這裡看到的內容經過信任網路過濾。',
+    'No one has tagged you yet — tags are claims others publish about your profile.': '還沒有人給你加標籤 — 標籤是他人針對你的個人檔案發布的聲明。'
   }
 }

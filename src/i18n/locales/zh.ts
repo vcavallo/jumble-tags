@@ -1162,6 +1162,13 @@ export default {
     'View tag page': '查看标签页面',
     'Hashtag posts': '话题标签帖子',
     'Create & dispute': '创建并提出异议',
-    'All hashtags': '全部话题标签'
+    'All hashtags': '全部话题标签',
+    'How decentralized tags work': '去中心化标签的工作原理',
+    'A Jumble fork with decentralized tags': '支持去中心化标签的 Jumble 分叉',
+    'Tags on you': '你身上的标签',
+    'Other tags': '其他标签',
+    'All tags': '全部标签',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': '标签是任何人都可以发布的公开签名声明。你在这里看到的内容经过信任网络过滤。',
+    'No one has tagged you yet — tags are claims others publish about your profile.': '还没有人给你打标签 — 标签是他人针对你的资料发布的声明。'
   }
 }

@@ -1199,6 +1199,51 @@ export default {
     'View tag page': 'View tag page',
     'Hashtag posts': 'Hashtag posts',
     'Create & dispute': 'Create & dispute',
-    'All hashtags': 'All hashtags'
+    'All hashtags': 'All hashtags',
+    'How decentralized tags work': 'How decentralized tags work',
+    'A Jumble fork with decentralized tags': 'A Jumble fork with decentralized tags',
+    'Tags on you': 'Tags on you',
+    'Other tags': 'Other tags',
+    'All tags': 'All tags',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.':
+      'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.',
+    'No one has tagged you yet — tags are claims others publish about your profile.':
+      'No one has tagged you yet — tags are claims others publish about your profile.',
+    'This app is a Jumble fork with decentralized tagging: community-created tags that anyone can apply to notes and profiles. Everything you see is computed from public, cryptographically signed events on relays — there is no central tag database and no moderator deciding what a tag contains.':
+      'This app is a Jumble fork with decentralized tagging: community-created tags that anyone can apply to notes and profiles. Everything you see is computed from public, cryptographically signed events on relays — there is no central tag database and no moderator deciding what a tag contains.',
+    'Tags are created by people, not platforms': 'Tags are created by people, not platforms',
+    'A tag is itself a small Nostr event. Anyone can create one, and a tag is identified by its creator plus a slug — so "podcaster" created by Alice and "podcaster" created by Bob are two distinct tags. Tags are shared: once created, everyone applies the same tag, and its page shows everything the network has gathered under it.':
+      'A tag is itself a small Nostr event. Anyone can create one, and a tag is identified by its creator plus a slug — so "podcaster" created by Alice and "podcaster" created by Bob are two distinct tags. Tags are shared: once created, everyone applies the same tag, and its page shows everything the network has gathered under it.',
+    'Tagging and disputing': 'Tagging and disputing',
+    'Applying a tag publishes a signed assertion: "this note (or this profile) belongs to this tag — says me." Disputing publishes the opposite stance. You always have exactly one live stance per tag and target; applying after disputing (or the reverse) replaces it. Nothing is silently deleted — a dispute is itself a public, signed statement anyone can read.':
+      'Applying a tag publishes a signed assertion: "this note (or this profile) belongs to this tag — says me." Disputing publishes the opposite stance. You always have exactly one live stance per tag and target; applying after disputing (or the reverse) replaces it. Nothing is silently deleted — a dispute is itself a public, signed statement anyone can read.',
+    'What you see is a point of view': 'What you see is a point of view',
+    'Anyone can publish taggings, so raw counts would be trivially spammable. Instead, counts are filtered through a web of trust: an assertion only counts when its author is trusted under the point of view (PoV) this app is configured with. There is no global truth — every count is a view from somewhere.':
+      'Anyone can publish taggings, so raw counts would be trivially spammable. Instead, counts are filtered through a web of trust: an assertion only counts when its author is trusted under the point of view (PoV) this app is configured with. There is no global truth — every count is a view from somewhere.',
+    'This build ships the "{{house}}" point of view. Trust scores come from NIP-85 Trusted Assertions (kind 30382) published by that deployment\'s Tapestry Assistant, and an asserter counts when their published rank is at least {{minRank}}.':
+      'This build ships the "{{house}}" point of view. Trust scores come from NIP-85 Trusted Assertions (kind 30382) published by that deployment\'s Tapestry Assistant, and an asserter counts when their published rank is at least {{minRank}}.',
+    'People with no published score currently also count — the deployment counts unscored asserters while its trust pipeline matures. Your own stances are always visible to you, trusted or not.':
+      'People with no published score currently also count — the deployment counts unscored asserters while its trust pipeline matures. Your own stances are always visible to you, trusted or not.',
+    'Trust filtering is currently off: every asserter counts.':
+      'Trust filtering is currently off: every asserter counts.',
+    'Disputed content is hidden, not deleted': 'Disputed content is hidden, not deleted',
+    'A tag page shows what the PoV population endorses: entries with more applies than disputes. Net-disputed notes and profiles move behind a "Show disputed" toggle instead of disappearing — you can always look at what was disputed away and by whom.':
+      'A tag page shows what the PoV population endorses: entries with more applies than disputes. Net-disputed notes and profiles move behind a "Show disputed" toggle instead of disappearing — you can always look at what was disputed away and by whom.',
+    'Tags vs hashtags': 'Tags vs hashtags',
+    'A hashtag is plain text inside one note; a tag is a standalone event with an identity that others can endorse or dispute. Searching a hashtag here offers three views: the decentralized tag\'s endorsed feed, the raw hashtag feed, and a blend where net-disputed notes drop out. Any hashtag can be bridged into a real tag from a note that uses it.':
+      'A hashtag is plain text inside one note; a tag is a standalone event with an identity that others can endorse or dispute. Searching a hashtag here offers three views: the decentralized tag\'s endorsed feed, the raw hashtag feed, and a blend where net-disputed notes drop out. Any hashtag can be bridged into a real tag from a note that uses it.',
+    'Where the data lives': 'Where the data lives',
+    'Tags and taggings are read from and published to the tag-hub relays below in addition to your own relays. Trust artifacts (the kind-30382 assertions) live on the deployment\'s trust relays.':
+      'Tags and taggings are read from and published to the tag-hub relays below in addition to your own relays. Trust artifacts (the kind-30382 assertions) live on the deployment\'s trust relays.',
+    'The baked-in defaults': 'The baked-in defaults',
+    'Tag hub relays': 'Tag hub relays',
+    'Trust relays': 'Trust relays',
+    'Reference deployment': 'Reference deployment',
+    'Tapestry Assistant (trust list author)': 'Tapestry Assistant (trust list author)',
+    'Honored trust-assertion authors': 'Honored trust-assertion authors',
+    'Tag namespaces': 'Tag namespaces',
+    'Trust settings': 'Trust settings',
+    'These defaults define the point of view this build ships with. The protocol itself is open: other deployments can run other points of view over the same public data, and future versions may let you choose your own.':
+      'These defaults define the point of view this build ships with. The protocol itself is open: other deployments can run other points of view over the same public data, and future versions may let you choose your own.'
   }
 }

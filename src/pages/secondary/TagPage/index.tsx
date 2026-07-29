@@ -1,23 +1,39 @@
 import NotFound from '@/components/NotFound'
-import TagBrowseContent from '@/components/TagBrowseContent'
+import TagBrowseContent, { TTagBrowseTab } from '@/components/TagBrowseContent'
 import Username from '@/components/Username'
 import SecondaryPageLayout from '@/layouts/SecondaryPageLayout'
 import { userIdToPubkey } from '@/lib/pubkey'
 import { TTagPageData } from '@/services/tagging.service'
 import { Tag as TagIcon } from 'lucide-react'
 import { nip19 } from 'nostr-tools'
-import { forwardRef, useMemo, useState } from 'react'
+import { forwardRef, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 /**
  * The tag page (F5): everything tagged with one tag, addressed by the tag
  * coordinate — /tags/<author>/<slug> (author as npub or hex; an naddr for the
- * kind-39999 tag-element is accepted as /tags/<naddr>).
+ * kind-39999 tag-element is accepted as /tags/<naddr>). The selected tab is
+ * kept in the URL (?tab=notes|people) so a specific view is shareable.
  */
 const TagPage = forwardRef(
   ({ author, slug, index }: { author?: string; slug?: string; index?: number }, ref) => {
     const { t } = useTranslation()
     const [element, setElement] = useState<TTagPageData['element']>(null)
+
+    const initialTab = useMemo<TTagBrowseTab | undefined>(() => {
+      const tab = new URLSearchParams(window.location.search).get('tab')
+      return tab === 'people' || tab === 'notes' ? tab : undefined
+    }, [])
+
+    const handleTabChange = useCallback((tab: TTagBrowseTab) => {
+      const url = new URL(window.location.href)
+      url.searchParams.set('tab', tab)
+      const newUrl = url.pathname + url.search + url.hash
+      // Keep the PageManager's {index, url} history state intact so back/forward
+      // rebuilds this page (with the chosen tab) instead of losing its place.
+      const state = window.history.state
+      window.history.replaceState(state ? { ...state, url: newUrl } : state, '', newUrl)
+    }, [])
 
     const tagId = useMemo(() => {
       if (!author) return null
@@ -74,6 +90,8 @@ const TagPage = forwardRef(
         <TagBrowseContent
           tagAuthorPubkey={tagId.pubkey}
           slug={tagId.slug}
+          initialTab={initialTab}
+          onTabChange={handleTabChange}
           onDataLoaded={(data) => setElement(data.element)}
         />
       </SecondaryPageLayout>

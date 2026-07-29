@@ -11,7 +11,7 @@ import Username, { SimpleUsername } from '@/components/Username'
 import { formatNpub } from '@/lib/pubkey'
 import { toBookmarks, toProfile, toRelaySettings, toSettings, toWallet } from '@/lib/link'
 import { cn } from '@/lib/utils'
-import { useSecondaryPage } from '@/PageManager'
+import { usePrimaryPage, useSecondaryPage } from '@/PageManager'
 import { useNostr } from '@/providers/NostrProvider'
 import {
   ArrowDownUp,
@@ -22,6 +22,7 @@ import {
   QrCode,
   Server,
   Settings,
+  Tag,
   UserRound,
   Wallet
 } from 'lucide-react'
@@ -32,6 +33,7 @@ import { useTranslation } from 'react-i18next'
 export default function MeDrawerContent({ onClose }: { onClose?: () => void }) {
   const { t } = useTranslation()
   const { push } = useSecondaryPage()
+  const { navigate: navigatePrimary } = usePrimaryPage()
   const { pubkey } = useNostr()
   const [loginDialogOpen, setLoginDialogOpen] = useState(false)
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
@@ -118,6 +120,15 @@ export default function MeDrawerContent({ onClose }: { onClose?: () => void }) {
         <Item onClick={() => navigate(toBookmarks())}>
           <Bookmark />
           {t('Bookmarks')}
+        </Item>
+        <Item
+          onClick={() => {
+            onClose?.()
+            navigatePrimary('tags')
+          }}
+        >
+          <Tag />
+          {t('Tags')}
         </Item>
         <Item onClick={() => navigate(toWallet())}>
           <Wallet />

@@ -19,6 +19,8 @@ const SHOW_COUNT = 10
 
 export type TTagNoteRow = TTagPageData['notes'][number]
 
+export type TTagBrowseTab = 'notes' | 'people'
+
 /**
  * The browsing view of one decentralized tag: Notes / People tabs with the
  * disputed rows hidden by default and a prominent reveal toggle — a tag feed
@@ -28,18 +30,25 @@ export type TTagNoteRow = TTagPageData['notes'][number]
 export default function TagBrowseContent({
   tagAuthorPubkey,
   slug,
+  initialTab,
+  onTabChange,
   onDataLoaded
 }: {
   tagAuthorPubkey: string
   slug: string
+  initialTab?: TTagBrowseTab
+  onTabChange?: (tab: TTagBrowseTab) => void
   onDataLoaded?: (data: TTagPageData) => void
 }) {
   const { t } = useTranslation()
   const { pubkey: viewerPubkey } = useNostr()
-  const [tab, setTab] = useState('notes')
+  const [tab, setTab] = useState<string>(initialTab ?? 'notes')
   const [data, setData] = useState<TTagPageData | null>(null)
   const [isFetching, setIsFetching] = useState(true)
   const [showDisputed, setShowDisputed] = useState(false)
+  // An explicit initial tab (from the URL) or a user click pins the tab;
+  // otherwise an empty Notes tab auto-falls-through to a non-empty People tab.
+  const tabPinnedRef = useRef(!!initialTab)
   const onDataLoadedRef = useRef(onDataLoaded)
   onDataLoadedRef.current = onDataLoaded
 
@@ -78,6 +87,13 @@ export default function TagBrowseContent({
 
   const disputedCount = tab === 'notes' ? disputedNotes.length : disputedPeople.length
 
+  useEffect(() => {
+    if (isFetching || !data || tabPinnedRef.current) return
+    if (endorsedNotes.length === 0 && endorsedPeople.length > 0) {
+      setTab('people')
+    }
+  }, [isFetching, data, endorsedNotes.length, endorsedPeople.length])
+
   return (
     <>
       <Tabs
@@ -86,7 +102,11 @@ export default function TagBrowseContent({
           { value: 'people', label: 'People', count: endorsedPeople.length }
         ]}
         value={tab}
-        onTabChange={setTab}
+        onTabChange={(value) => {
+          tabPinnedRef.current = true
+          setTab(value)
+          onTabChange?.(value as TTagBrowseTab)
+        }}
         options={
           disputedCount > 0 ? (
             <Button

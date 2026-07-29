@@ -91,6 +91,7 @@ export const toTag = (authorPubkey: string, slug: string) => {
   const npub = authorPubkey.startsWith('npub') ? authorPubkey : nip19.npubEncode(authorPubkey)
   return `/tags/${npub}/${encodeURIComponent(slug)}`
 }
+export const toTagsGuide = () => '/tags-guide'
 export const toFollowPack = (eventOrId: Event | string) => {
   if (typeof eventOrId === 'string') return `/follow-packs/${eventOrId}`
   const naddr = getNoteBech32Id(eventOrId)

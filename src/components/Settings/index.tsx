@@ -14,6 +14,7 @@ import {
   toPostSettings,
   toRelaySettings,
   toSystemSettings,
+  toTagsGuide,
   toTranslation,
   toWallet
 } from '@/lib/link'
@@ -34,6 +35,7 @@ import {
   Server,
   Settings2,
   Smile,
+  Tag,
   Wallet
 } from 'lucide-react'
 import { useState } from 'react'
@@ -139,6 +141,12 @@ export default function Settings() {
       )}
 
       <SettingsGroup>
+        <SettingsRow
+          icon={<Tag />}
+          title={t('How decentralized tags work')}
+          chevron
+          onClick={() => push(toTagsGuide())}
+        />
         <AboutInfoDialog>
           <SettingsRow
             icon={<Info />}

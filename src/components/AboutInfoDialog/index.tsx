@@ -1,12 +1,15 @@
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { CODY_PUBKEY } from '@/constants'
+import { toTagsGuide } from '@/lib/link'
+import { useSecondaryPage } from '@/PageManager'
 import { useScreenSize } from '@/providers/ScreenSizeProvider'
 import { useState } from 'react'
 import Username from '../Username'
 
 export default function AboutInfoDialog({ children }: { children: React.ReactNode }) {
   const { isSmallScreen } = useScreenSize()
+  const { push } = useSecondaryPage()
   const [open, setOpen] = useState(false)
 
   const content = (
@@ -14,6 +17,19 @@ export default function AboutInfoDialog({ children }: { children: React.ReactNod
       <div className="text-xl font-semibold">Jumble</div>
       <div className="text-muted-foreground">
         A user-friendly Nostr client for exploring relay feeds
+      </div>
+      <div className="rounded-lg border p-3 text-sm">
+        This build is a fork of Jumble with <span className="font-semibold">decentralized tags</span>.{' '}
+        <button
+          type="button"
+          className="text-primary hover:underline"
+          onClick={() => {
+            setOpen(false)
+            push(toTagsGuide())
+          }}
+        >
+          How decentralized tags work
+        </button>
       </div>
       <div>
         Made by <Username userId={CODY_PUBKEY} className="inline-block text-primary" showAt />

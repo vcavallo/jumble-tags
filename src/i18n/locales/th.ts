@@ -1190,6 +1190,13 @@ export default {
     'View tag page': 'ดูหน้าแท็ก',
     'Hashtag posts': 'โพสต์แฮชแท็ก',
     'Create & dispute': 'สร้างและคัดค้าน',
-    'All hashtags': 'แฮชแท็กทั้งหมด'
+    'All hashtags': 'แฮชแท็กทั้งหมด',
+    'How decentralized tags work': 'แท็กแบบกระจายศูนย์ทำงานอย่างไร',
+    'A Jumble fork with decentralized tags': 'ฟอร์กของ Jumble พร้อมแท็กแบบกระจายศูนย์',
+    'Tags on you': 'แท็กเกี่ยวกับคุณ',
+    'Other tags': 'แท็กอื่น ๆ',
+    'All tags': 'แท็กทั้งหมด',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'แท็กคือคำกล่าวอ้างสาธารณะที่มีลายเซ็นซึ่งใครก็สร้างได้ สิ่งที่คุณเห็นที่นี่ถูกกรองผ่านเครือข่ายความน่าเชื่อถือ',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'ยังไม่มีใครแท็กคุณ — แท็กคือคำกล่าวอ้างที่ผู้อื่นเผยแพร่เกี่ยวกับโปรไฟล์ของคุณ'
   }
 }

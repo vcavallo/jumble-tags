@@ -20,6 +20,8 @@ import PostButton from './PostButton'
 import ProfileButton from './ProfileButton'
 import SearchButton from './SearchButton'
 import SettingsButton from './SettingsButton'
+import TagGuideLink from './TagGuideLink'
+import TagsButton from './TagsButton'
 import UpdateButton from './UpdateButton'
 
 export default function PrimaryPageSidebar() {
@@ -61,6 +63,7 @@ export default function PrimaryPageSidebar() {
         <NotificationsButton collapse={sidebarCollapse} />
         <MessagesButton collapse={sidebarCollapse} />
         <SearchButton collapse={sidebarCollapse} />
+        <TagsButton collapse={sidebarCollapse} />
         <ProfileButton collapse={sidebarCollapse} />
         {pubkey && <BookmarkButton collapse={sidebarCollapse} />}
         <SettingsButton collapse={sidebarCollapse} />
@@ -69,6 +72,7 @@ export default function PrimaryPageSidebar() {
       <div className="flex flex-col gap-4">
         <UpdateButton collapse={sidebarCollapse} />
         <DesktopAppTip collapse={sidebarCollapse} />
+        <TagGuideLink collapse={sidebarCollapse} />
         <LayoutSwitcher collapse={sidebarCollapse} />
         <AccountButton collapse={sidebarCollapse} />
       </div>

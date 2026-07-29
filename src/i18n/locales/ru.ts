@@ -1214,6 +1214,13 @@ export default {
     'View tag page': 'Открыть страницу тега',
     'Hashtag posts': 'Посты с хэштегом',
     'Create & dispute': 'Создать и оспорить',
-    'All hashtags': 'Все хэштеги'
+    'All hashtags': 'Все хэштеги',
+    'How decentralized tags work': 'Как работают децентрализованные теги',
+    'A Jumble fork with decentralized tags': 'Форк Jumble с децентрализованными тегами',
+    'Tags on you': 'Теги о вас',
+    'Other tags': 'Другие теги',
+    'All tags': 'Все теги',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'Теги — это публичные подписанные утверждения, которые может сделать каждый. То, что вы видите здесь, отфильтровано через сеть доверия.',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Вас ещё никто не отметил — теги — это утверждения, которые другие публикуют о вашем профиле.'
   }
 }

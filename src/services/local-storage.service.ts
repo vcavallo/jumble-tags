@@ -56,6 +56,7 @@ class LocalStorageService {
   private mediaUploadServiceConfigMap: Record<string, TMediaUploadServiceConfig> = {}
   private dismissedTooManyRelaysAlert: boolean = false
   private dismissedDesktopAppTip: boolean = false
+  private dismissedTagsPageIntro: boolean = false
   private showKinds: number[] = []
   private showKindsMap: Record<string, number[]> = {}
   private hideContentMentioningMutedUsers: boolean = false
@@ -225,6 +226,9 @@ class LocalStorageService {
 
     this.dismissedDesktopAppTip =
       window.localStorage.getItem(StorageKey.DISMISSED_DESKTOP_APP_TIP) === 'true'
+
+    this.dismissedTagsPageIntro =
+      window.localStorage.getItem(StorageKey.DISMISSED_TAGS_PAGE_INTRO) === 'true'
 
     const showKindsStr = window.localStorage.getItem(StorageKey.SHOW_KINDS)
     if (!showKindsStr) {
@@ -1025,6 +1029,15 @@ class LocalStorageService {
   setDismissedDesktopAppTip(dismissed: boolean) {
     this.dismissedDesktopAppTip = dismissed
     window.localStorage.setItem(StorageKey.DISMISSED_DESKTOP_APP_TIP, dismissed.toString())
+  }
+
+  getDismissedTagsPageIntro() {
+    return this.dismissedTagsPageIntro
+  }
+
+  setDismissedTagsPageIntro(dismissed: boolean) {
+    this.dismissedTagsPageIntro = dismissed
+    window.localStorage.setItem(StorageKey.DISMISSED_TAGS_PAGE_INTRO, dismissed.toString())
   }
 
   getShowKinds() {

@@ -1211,6 +1211,13 @@ export default {
     'View tag page': 'Etiket sayfasını gör',
     'Hashtag posts': 'Hashtag gönderileri',
     'Create & dispute': 'Oluştur ve itiraz et',
-    'All hashtags': 'Tüm hashtagler'
+    'All hashtags': 'Tüm hashtagler',
+    'How decentralized tags work': 'Merkeziyetsiz etiketler nasıl çalışır',
+    'A Jumble fork with decentralized tags': 'Merkeziyetsiz etiketli bir Jumble çatalı',
+    'Tags on you': 'Senin hakkındaki etiketler',
+    'Other tags': 'Diğer etiketler',
+    'All tags': 'Tüm etiketler',
+    'Tags are public, signed claims anyone can make. What you see here is filtered through a web of trust.': 'Etiketler herkesin yayınlayabileceği açık, imzalı iddialardır. Burada gördükleriniz bir güven ağından süzülür.',
+    'No one has tagged you yet — tags are claims others publish about your profile.': 'Henüz kimse seni etiketlemedi — etiketler başkalarının profilin hakkında yayınladığı iddialardır.'
   }
 }
