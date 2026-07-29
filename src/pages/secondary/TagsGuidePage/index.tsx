@@ -77,6 +77,20 @@ const TagsGuidePage = forwardRef(({ index }: { index?: number }, ref) => {
           )}
         </Section>
 
+        <Section title={t("Why some people's tags don't show up")}>
+          <p>
+            {t(
+              "Browsing surfaces — the Tags page, tag search, and the tag picker — only list tags whose creator has a published trust score under this build's point of view. A tag by an unscored creator is not deleted or blocked: it still lives on the relays, its page still opens from a direct link, taggings made with it still show on notes and profiles, and your own tags are always visible to you. It just doesn't appear in discovery."
+            )}
+          </p>
+          <p>
+            {t(
+              'The reason is spam economics: minting a tag is free and permissionless, so throwaway keys flood the catalog. Most honest newcomers simply have no score yet — but an unscored key looks exactly like a throwaway one, so discovery holds tag creators to a higher bar than counting does. When the {{house}} trust pipeline publishes a score for a creator, their hidden tags reappear automatically — nothing needs to be republished.',
+              { house: HOUSE_INSTANCE.name }
+            )}
+          </p>
+        </Section>
+
         <Section title={t('Disputed content is hidden, not deleted')}>
           <p>
             {t(
@@ -157,11 +171,19 @@ const TagsGuidePage = forwardRef(({ index }: { index?: number }, ref) => {
           </div>
         </Section>
 
-        <p className="text-muted-foreground">
-          {t(
-            'These defaults define the point of view this build ships with. The protocol itself is open: other deployments can run other points of view over the same public data, and future versions may let you choose your own.'
-          )}
-        </p>
+        <Section title={t('Choosing your own point of view')}>
+          <p>
+            {t(
+              "The point of view in this build is fixed: it reads {{house}}'s published trust scores. The protocol does not require that — a set of trusted assertions is just signed, public data, and anyone can publish one.",
+              { house: HOUSE_INSTANCE.name }
+            )}
+          </p>
+          <p>
+            {t(
+              'Two things are planned. PoV selection: pick whose point of view you browse from — your own, a friend\'s, a community\'s, another instance\'s — and every count, catalog and feed recomputes from that vantage. TA generation from your own web of trust: a Tapestry Assistant computes trust scores from your graph — who you follow, who they follow, how close someone is to you — and publishes them under a key you choose. Together they turn "who does the house trust?" into "who do you trust?": the same public tags and taggings, read through your own eyes. The client\'s trust layer is a deliberate seam so this plugs in without changing anything else.'
+            )}
+          </p>
+        </Section>
       </div>
     </SecondaryPageLayout>
   )
